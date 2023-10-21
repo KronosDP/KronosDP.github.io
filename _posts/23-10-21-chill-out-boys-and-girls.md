@@ -1,0 +1,27 @@
+---
+title: Chill Out Boys and Girls
+date: 2023-10-21 22:10:30 +0700
+categories: [Thoughts, Reflection]
+tags: random     # TAG names should always be lowercase
+---
+
+Now I'm listening to Put Your Records On by Corinne Bailey Rae.
+
+Anyway, in these first 2 blog posts, I write the music that I'm listening to when I write this blog. I think that I’m doing that so you (as the reader) can know the mood as I write this blog.
+
+Firstly, let's talk about this song. It's very chill, judging by the tune. The music simply conveys that we should just chill out. It's not rocket science, and I will not make it complicated.
+
+So what's next? I've written a blog post about not worrying before, so what do I want to express through this post? I want to talk about how you can enjoy yourself.
+
+These days, fear of missing out (FOMO) often happens in society, and I hate it. 
+People follow each other because they don't want to get left behind. At least for me, it's a sad thing. People fear being a pioneer because they just follow each other's footsteps.
+
+Let me tell you a story. The other day I met a new friend. He is a good guy. I told him that I like to wander alone. Then, he said to me that it was very sad. Yes, yes, that's the whole story.
+
+Reading my story back, it's weird that he told me it's sad. But I can see why he said that. I wonder if he had tried that before. I can't stop pondering why people keep having this stigma that being alone is awful. On the contrary, I think being alone is an excellent way to take a break.
+
+The only person who matters that you're alone is yourself. You will not hear anybody whining. You don't have to compromise with one another. You don't have to fight with another. All you care about is yourself, and you do you. That's peaceful, don't you think?
+
+Before traveling, my head was filled with lots of noise. But, when traveling by myself, there was silence in my head. In my case, I found a lot of peace by traveling alone. I also got some things to write because of the peace that I got. I'll write those thoughts in my future blog post. 
+
+Yup, that's the whole story. Have I persuaded you to go out by yourself to be alone? I hope so? I don't know tho. Maybe that friend was right that going out by myself was weird. The point is, just try it if you haven't. I don't know; maybe it can chill you up. Next up, let's talk about how I see FOMO, okay?
