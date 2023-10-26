@@ -2,7 +2,7 @@
 title: Reflecting on Ourselves
 date: 2023-10-12 00:30:30 +0700
 categories: [Thoughts, Reflection]
-tags: random     # TAG names should always be lowercase
+tags: journaling     # TAG names should always be lowercase
 ---
 
 It's midnight on 12th October 2023. I am listening to Jasmine Nadya's cover of Don't Look Back in Anger on YouTube. I don't know why, but this song made me go into a whole conscious state of mind. 
