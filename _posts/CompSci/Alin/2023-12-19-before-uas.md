@@ -28,30 +28,52 @@ To prove that $ A^TA $ is invertible, show that $ A^TA\mathbf{x} = \mathbf{0} $ 
 
 If $ \mathbf{x} $ is a solution of $ A^TA\mathbf{x} = \mathbf{0} $, then $ A\mathbf{x} $ is in the null space of $ A^T $ and also in the column space of $ A $.
 
-By Theorem 4.8.7(b), the null space of $ A^T $ and the column space of $ A $ are orthogonal complements.
+By [Theorem 4.8.7(b)](#theorem-487b), the null space of $ A^T $ and the column space of $ A $ are orthogonal complements.
 
-Due to orthogonality, part (b) of Theorem 6.2.4 implies $ A\mathbf{x} = \mathbf{0} $.
+Due to orthogonality, part (b) of [Theorem 6.2.4](#theorem-624b) implies $ A\mathbf{x} = \mathbf{0} $.
 
 Since $ A $ is assumed to have linearly independent column vectors, the only solution to $ A\mathbf{x} = \mathbf{0} $ is $ \mathbf{x} = \mathbf{0} $.
-
-
 
 ### (b) ⇒ (a)
 
 Assume that $ A^TA $ is invertible. We want to show that the column vectors of $ A $ are linearly independent.
 
-Consider the linear combination $ c_1\mathbf{a}_1 + c_2\mathbf{a}_2 + \ldots + c_n\mathbf{a}_n = \mathbf{0} $, where $ \mathbf{a}_i $ is the $i$-th column vector of $ A $ and $ c_i $ are scalars.
+Consider the linear combination $ c_1\mathbf{a}\_1 + c_2\mathbf{a}\_2 + \ldots + c_n\mathbf{a}\_n = \mathbf{0} $, where $ \mathbf{a}_i $ is the $i$-th column vector of $ A $ and $ c_i $ are scalars.
 
 Multiply both sides by $ A^T $ from the left:
 
-$$ A^T(c_1\mathbf{a}_1 + c_2\mathbf{a}_2 + \ldots + c_n\mathbf{a}_n) = A^T\mathbf{0} $$
+$$ A^T(c_1\mathbf{a}\_1 + c_2\mathbf{a}\_2 + \ldots + c_n\mathbf{a}\_n) = A^T\mathbf{0} $$
 
 Using properties of transpose and the fact that $ A^TA $ is invertible, we get:
 
-$$ c_1A^T\mathbf{a}_1 + c_2A^T\mathbf{a}_2 + \ldots + c_nA^T\mathbf{a}_n = \mathbf{0} $$
+$$ c_1A^T\mathbf{a}\_1 + c_2A^T\mathbf{a}\_2 + \ldots + c_nA^T\mathbf{a}\_n = \mathbf{0} $$
 
 Since $ A^TA $ is invertible, its null space contains only the zero vector. This implies that the above equation can only be true if $ c_1 = c_2 = \ldots = c_n = 0 $, showing that the column vectors of $ A $ are linearly independent.
 
 Therefore, we have shown both (a) ⇒ (b) and (b) ⇒ (a), and the two statements are equivalent.
 
+## Theorem 4.8.7(b):
 
+If $A$ is a matrix, then the null space of $A^T$ and the column space of $A$ are orthogonal complements.
+
+**Proof:**
+Let $\mathbf{v}$ be a vector in the null space of $A^T$, i.e., $A^T \mathbf{v} = \mathbf{0}$. This means that $\mathbf{v}$ is orthogonal to every row vector of $A^T$.
+
+Since the rows of $A^T$ are the columns of $A$, $\mathbf{v}$ is orthogonal to every column vector of $A$. Thus, $\mathbf{v}$ is in the orthogonal complement of the column space of $A$.
+
+Conversely, let $\mathbf{w}$ be in the orthogonal complement of the column space of $A$. This means that $\mathbf{w}$ is orthogonal to every column vector of $A$.
+
+Since the columns of $A$ are the rows of $A^T$, $\mathbf{w}$ is orthogonal to every row vector of $A^T$. Hence, $\mathbf{w}$ is in the null space of $A^T$.
+
+Therefore, the null space of $A^T$ and the column space of $A$ are orthogonal complements.
+
+## Theorem 6.2.4(b)
+
+If $A$ is a matrix and $A\mathbf{x} = \mathbf{0}$ has only the trivial solution, then the columns of $A$ are linearly independent.
+
+**Proof:**
+Assume that $A\mathbf{x} = \mathbf{0}$ has only the trivial solution. Suppose $c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \ldots + c_n \mathbf{v}_n = \mathbf{0}$, where $\mathbf{v}_i$ are the columns of $A$ and $c_i$ are scalars.
+
+Let $A$ be an $m \times n$ matrix, and $\mathbf{v}_i$ be the $i$-th column vector of $A$. Then, $A\mathbf{x} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \ldots + c_n \mathbf{v}_n = \mathbf{0}$.
+
+Since $A\mathbf{x} = \mathbf{0}$ has only the trivial solution, we must have $c_1 = c_2 = \ldots = c_n = 0$. Thus, the columns of $A$ are linearly independent.
