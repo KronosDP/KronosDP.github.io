@@ -55,8 +55,10 @@ jobs:
           bundle exec htmlproofer _site \
             --disable-external \
             --allow-hash-href \
-            --empty-alt-ignore \
             --url-ignore "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+        shell: /usr/bin/bash -e {0}
+        env:
+          GITHUB_PAGES: true
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
