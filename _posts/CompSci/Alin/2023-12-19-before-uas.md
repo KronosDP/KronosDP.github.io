@@ -42,11 +42,11 @@ Consider the linear combination $ c_1\vec{a}\_1 + c_2\vec{a}\_2 + \ldots + c_n\v
 
 Multiply both sides by $ A^T $ from the left:
 
-$$ A^T(c_1\vec{a}\_1 + c_2\vec{a}\_2 + \ldots + c_n\vec{a}\_n) = A^T\vec{0} $$
+$$ A^T(c_1\vec{a_1}+ c_2\vec{a_2} + \ldots + c_n\vec{a_n}) = A^T\vec{0} $$
 
 Using properties of transpose and the fact that $ A^TA $ is invertible, we get:
 
-$$ c_1A^T\vec{a}\_1 + c_2A^T\vec{a}\_2 + \ldots + c_nA^T\vec{a}\_n = \vec{0} $$
+$$ c_1A^T\vec{a_1}\ + c_2A^T\vec{a_2}\ + \ldots + c_nA^T\vec{a_n}\ = \vec{0} $$
 
 Since $ A^TA $ is invertible, its null space contains only the zero vector. This implies that the above equation can only be true if $ c_1 = c_2 = \ldots = c_n = 0 $, showing that the column vectors of $ A $ are linearly independent.
 
@@ -72,8 +72,8 @@ Therefore, the null space of $A^T$ and the column space of $A$ are orthogonal co
 If $A$ is a matrix and $A\vec{x} = \vec{0}$ has only the trivial solution, then the columns of $A$ are linearly independent.
 
 **Proof:**
-Assume that $A\vec{x} = \vec{0}$ has only the trivial solution. Suppose $c_1 \vec{v}_1 + c_2 \vec{v}_2 + \ldots + c_n \vec{v}_n = \vec{0}$, where $\vec{v}_i$ are the columns of $A$ and $c_i$ are scalars.
+Assume that $A\vec{x} = \vec{0}$ has only the trivial solution. Suppose $c_1 \vec{v}_1 + c_2 \vec{v}_2 + \ldots + c_n \vec{v}_n = \vec{0}$, where $\vec{v_i}$ are the columns of $A$ and $c_i$ are scalars.
 
-Let $A$ be an $m \times n$ matrix, and $\vec{v}_i$ be the $i$-th column vector of $A$. Then, $A\vec{x} = c_1 \vec{v}_1 + c_2 \vec{v}_2 + \ldots + c_n \vec{v}_n = \vec{0}$.
+Let $A$ be an $m \times n$ matrix, and $\vec{v_i}$ be the $i$-th column vector of $A$. Then, $A\vec{x} = c_1 \vec{v}_1 + c_2 \vec{v}_2 + \ldots + c_n \vec{v}_n = \vec{0}$.
 
 Since $A\vec{x} = \vec{0}$ has only the trivial solution, we must have $c_1 = c_2 = \ldots = c_n = 0$. Thus, the columns of $A$ are linearly independent.
