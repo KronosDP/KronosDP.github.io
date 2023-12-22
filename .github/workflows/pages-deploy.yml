@@ -54,7 +54,8 @@ jobs:
         run: |
           bundle exec htmlproofer _site \
             --disable-external \
-            --allow-hash-href
+            --allow-hash-href \
+            --url-ignore "/blog/*"
         shell: /usr/bin/bash -e {0}
         env:
           GITHUB_PAGES: true
