@@ -54,8 +54,13 @@ jobs:
         run: |
           if [ ! -f "_site/blog/index.html" ]; then
             echo "Site build failed."
+            echo "Listing files in _site/blog:"
+            ls -l _site/blog
             exit 1
           fi
+        shell: /usr/bin/bash -e {0}
+        env:
+          GITHUB_PAGES: true
       
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
