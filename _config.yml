@@ -109,6 +109,9 @@ paginate: 10
 # The base URL of your site
 baseurl: "/blog"
 
+# The directory where Jekyll will output the generated site
+destination: "./_site/blog"
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
