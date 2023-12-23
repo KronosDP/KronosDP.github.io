@@ -1,6 +1,6 @@
 ---
 title: My Portfolio
-date: 2023-12-11 228:41:30 +0700
+date: 2023-12-22 12:41:30 +0700
 categories: [CV]
 tags: portfolio
 pin: True
@@ -49,42 +49,42 @@ I undertook a comprehensive Platform-Based Programming Course during my third se
 
 1. **Shopping List**
 
-   - [GitHub Repository](https://github.com/KronosDP/shopping-list)
-   - [Live Tutorial Project](https://darrel-danadyaksa-tutorial.pbp.cs.ui.ac.id/)
+   - [GitHub Repository](https://github.com/KronosDP/shopping-list){:target="\_blank"}
+   - [Live Tutorial Project](https://darrel-danadyaksa-tutorial.pbp.cs.ui.ac.id/){:target="\_blank"}
 
    The Shopping List project was a tutorial assignment showcasing my proficiency in designing and implementing web-based applications.
 
 2. **Shopping List - Mobile**
 
-   - [GitHub Repository](https://github.com/KronosDP/shopping-list-mobile)
-   - [Live Mobile App](https://install.appcenter.ms/orgs/organisasi-baru/apps/shopping-list/distribution_groups/public)
+   - [GitHub Repository](https://github.com/KronosDP/shopping-list-mobile){:target="\_blank"}
+   - [Live Mobile App](https://install.appcenter.ms/orgs/organisasi-baru/apps/shopping-list/distribution_groups/public){:target="\_blank"}
 
    The mobile version of the Shopping List project was developed to extend accessibility and user convenience.
 
 3. **Pinjam Buku**
 
-   - [GitHub Repository](https://github.com/KronosDP/PinjamBuku)
-   - [Live Homework Project](https://darrel-danadyaksa-tugas.pbp.cs.ui.ac.id/)
+   - [GitHub Repository](https://github.com/KronosDP/PinjamBuku){:target="\_blank"}
+   - [Live Homework Project](https://darrel-danadyaksa-tugas.pbp.cs.ui.ac.id/){:target="\_blank"}
 
    Pinjam Buku represents a homework assignment showcasing my ability to conceptualize and execute a web-based project.
 
 4. **Pinjam Buku - Mobile**
 
-   - [GitHub Repository](https://github.com/KronosDP/pinjam-buku-mobile)
+   - [GitHub Repository](https://github.com/KronosDP/pinjam-buku-mobile){:target="\_blank"}
 
    The mobile version of the Pinjam Buku project is designed for seamless interaction and user engagement.
 
 5. **Ulas Buku**
 
-   - [GitHub Repository](https://github.com/kelompok-e10/UlasBuku)
-   - [Live Collaborative Project](https://ulasbuku-e10-tk.pbp.cs.ui.ac.id/)
+   - [GitHub Repository](https://github.com/kelompok-e10/UlasBuku){:target="\_blank"}
+   - [Live Collaborative Project](https://ulasbuku-e10-tk.pbp.cs.ui.ac.id/){:target="\_blank"}
 
    Ulas Buku represents a collaborative effort, demonstrating my ability to work within a team to deliver a comprehensive website and mobile application.
 
 6. **Ulas Buku - Mobile**
 
-   - [GitHub Repository](https://github.com/kelompok-e10/UlasBuku-Mobile)
-   - [Live Mobile App](https://install.appcenter.ms/orgs/ulasbuku-mobile/apps/ulasbuku-mobile/distribution_groups/public)
+   - [GitHub Repository](https://github.com/kelompok-e10/UlasBuku-Mobile){:target="\_blank"}
+   - [Live Mobile App](https://install.appcenter.ms/orgs/ulasbuku-mobile/apps/ulasbuku-mobile/distribution_groups/public){:target="\_blank"}
 
    The mobile version of the Ulas Buku project was crafted to complement the web application and provide a cohesive user experience.
 
