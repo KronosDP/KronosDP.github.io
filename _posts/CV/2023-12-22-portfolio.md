@@ -6,7 +6,7 @@ tags: portfolio
 pin: True
 ---
 
-# Are You an HR?
+# Are You a HRD?
 
 If so, welcome to this part of my portfolio blog at my personal blog. Feel free to look at the projects that I've made over the years. Because it's quite a long read, I'll let you explore this blog.
 
@@ -105,19 +105,23 @@ For those eager to explore the world of data science, here's my comprehensive re
 
 ## Accomplishments Without Links
 
-### 1. Peer Counselor Training 🌱
+### Peer Counselor Training 🌱
 
 I am a peer counselor at the faculty of computer science at the University of Indonesia. I also underwent peer counselor training facilitated by a group of final-year postgraduate students at the faculty of psychology at the University of Indonesia. During the training, I gained extensive knowledge and skills in peer counseling. Although the certificate is currently in the process of being issued, I have practical experience in peer counseling within my Discord community, the [Intergalactic Science Kingdom](#intergalactic-science-kingdom-isk-).
 
-### 2. Peer Teacher, Intellect, Intelligence Department, and Neuron 🚀
+### Peer Teacher, Intellect, Intelligence Department, and Neuron 🚀
 
 As a peer teacher at the [Intergalactic Science Kingdom](#intergalactic-science-kingdom-isk-), I conduct weekly English classes, engaging in activities such as book reading, including the Campbell Biology book. Campbell Biology book is a book that is often used by college students to study biology, so you can imagine how challenging the vocabulary can be. I focus on enhancing English fluency, correcting pronunciation, and answering mathematics and physics questions. Initially an intellect for six months, I progressed to roles in the Intelligence Department and Neuron, both superior to the intellect role. In these roles, I recruit new intellects and manage the community for growth and vitality.
 
-### 3. Community Manager 🌐
+### Open House Fasilkom Public Relation and MC Staff 🎤
+
+On my first semester of being a computer science student at the Univeristy of Indonesia, I became the staff for Public Relation affairs. There, I contacted many schools to be a part of Open House Fasilkom event, which promotes Fasilkom UI to high school students around Indonesia. Not only that but I became the MC to that event. There, I taught simple coding to high school students. I taught hundreds of students that day to do coding by demonstrating live coding to them and taught them one by one, helped by collagues.
+
+### Community Manager 🌐
 
 As the Community Manager for the [Universal Flight Group](#universal-flight-group-ufl-%EF%B8%8F) Discord community, my primary responsibility was to facilitate and enhance the collective experience of our members. Organizing weekly group flights, I skillfully managed interactions among a diverse community with members from countries such as Latvia and the USA. This role honed my English proficiency, which is crucial for effective global communication within our international community, and expanded my geographical knowledge as I oversaw virtual flights connecting airports worldwide. Through this experience, I developed a deeper understanding of cross-cultural dynamics and strengthened my skills in fostering a sense of unity among our aviation enthusiasts.
 
-### 4. Dynamic Leadership as a Whatsapp Group Administrator
+### Dynamic Leadership as a Whatsapp Group Administrator
 
 As a Whatsapp Group Administrator at the [Space Rocket Indonesia](#space-rocket-indonesia-) Community, I oversee daily operations, including regularly locking and unlocking the group. This established routine promotes members' focus and productivity during daylight hours, creating a designated space for community relaxation. Managing interpersonal conflicts is a crucial responsibility, and I also serve as the editor, conducting thorough fact-checking to ensure the community's content meets high-quality standards before publication. My passion for the space rocket industry, driven by a love for orbital mechanics in physics, led me to become deeply engaged with this community.
 
