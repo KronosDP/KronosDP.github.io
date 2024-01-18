@@ -2,7 +2,19 @@
 title: Proof of Inverse Existence for A^TA
 date: 2023-12-19 22:44:30 +0700
 categories: [CompSci, Linear Algebra]
-tags: [Linear Algebra, Matrix, Vector Space, Linear Independence, Orthogonal Complements, Null Space, Theorem Proof, Mathematics, Transpose of a Matrix, Invertible Matrix]
+tags:
+  [
+    Linear Algebra,
+    Matrix,
+    Vector Space,
+    Linear Independence,
+    Orthogonal Complements,
+    Null Space,
+    Theorem Proof,
+    Mathematics,
+    Transpose of a Matrix,
+    Invertible Matrix,
+  ]
 math: True
 ---
 
