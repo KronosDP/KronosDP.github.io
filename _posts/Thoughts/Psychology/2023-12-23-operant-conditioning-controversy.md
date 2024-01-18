@@ -2,7 +2,18 @@
 title: The Controversy of Operant Conditioning
 date: 2023-12-23 10:35:30 +0700
 categories: [Thought, Psychology]
-tags: psychology, thought
+tags: [
+Artificial Intelligence,
+Reinforcement Learning,
+Operant Conditioning,
+Psychology,
+Education,
+Controversy,
+Motivation,
+Personal Experience,
+Ethics in AI,
+Machine Learning
+]
 math: True
 ---
 

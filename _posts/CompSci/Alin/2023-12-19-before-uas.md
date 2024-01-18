@@ -2,7 +2,7 @@
 title: Proof of Inverse Existence for A^TA
 date: 2023-12-19 22:44:30 +0700
 categories: [CompSci, Linear Algebra]
-tags: [rank, nulitas, ruang baris, ruang kolom, ruang null, review, uas]
+tags: [Linear Algebra, Matrix, Vector Space, Linear Independence, Orthogonal Complements, Null Space, Theorem Proof, Mathematics, Transpose of a Matrix, Invertible Matrix]
 math: True
 ---
 

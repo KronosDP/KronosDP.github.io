@@ -16,7 +16,7 @@ timezone: Asia/Jakarta
 
 title: DaBlog # the main title
 
-tagline:  A blog where I vent every thought # it will display as the sub-title
+tagline: A blog where I vent every thought # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   I don't know what description to put here, so I'll just put this here.
@@ -35,8 +35,8 @@ social:
   email: darrel.danadyaksa19@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/KronosDP # change to your github homepage
-    # Uncomment below to add more social links
+    - https://www.linkedin.com/in/darrel-danadyaksa-poli/
+    - https://github.com/KronosDP
     - https://www.instagram.com/kronos_darrel/
 
 google_site_verification: # fill in to your verification string
@@ -65,7 +65,7 @@ theme_mode: # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: 
+img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
 avatar: /assets/lib/avatar.png

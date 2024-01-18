@@ -2,7 +2,16 @@
 title: Volume dan Luas Permukaan Bola
 date: 2024-01-01 12:04:30 +0700
 categories: [UTBK, PK]
-tags: penurunan, rumus, kalkulus, bola, volume, luas permukaan, kalkulus 1
+tags: [
+    Mathematics,
+    Calculus,
+    Sphere,
+    Volume of Sphere,
+    Surface Area of Sphere,
+    Integrals,
+    Mathematical Proofs,
+    Geometry
+  ]
 math: True
 ---
 

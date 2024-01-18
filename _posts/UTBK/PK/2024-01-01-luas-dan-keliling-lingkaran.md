@@ -2,7 +2,16 @@
 title: Luas dan Keliling Lingkaran
 date: 2024-01-01 11:21:30 +0700
 categories: [UTBK, PK]
-tags: penurunan, rumus, kalkulus, lingkaran, luas, keliling, kalkulus 1
+tags: [Mathematics,
+Calculus,
+Circle,
+Area of Circle,
+Circumference of Circle,
+Integrals,
+Trigonometry,
+Mathematical Proofs,
+Geometry
+]
 math: True
 ---
 
