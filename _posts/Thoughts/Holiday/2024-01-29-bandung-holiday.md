@@ -1,5 +1,5 @@
 ---
-title: The Controversy of Operant Conditioning
+title: 2024 Bandung Holiday!
 date: 2024-01-29 12:25:30 +0700
 categories: [Thought, Holiday]
 tags: [
