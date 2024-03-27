@@ -1,5 +1,5 @@
 ---
-title: 2024 Bandung Holiday!
+title: 2024 Jogja Holiday!
 date: 2024-03-27 23:57:30 +0700
 categories: [Thought, Holiday]
 tags: [
