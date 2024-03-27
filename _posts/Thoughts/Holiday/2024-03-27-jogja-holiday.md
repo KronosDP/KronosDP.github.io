@@ -1,6 +1,6 @@
 ---
 title: 2024 Bandung Holiday!
-date: 2024-01-29 12:25:30 +0700
+date: 2024-03-27 23:57:30 +0700
 categories: [Thought, Holiday]
 tags: [
 Travel,
