@@ -12,7 +12,8 @@ Suatu pagi ketika diriku sedang pergi ke kampus, tiba-tiba lagu ini diputar di s
 
 Pada blog ini akan dibahas lirik dari lagu `teguhkan mereka` karena belum ada lirik dari lagu ini menurut pengetahuan saya di internet. Berikut [tautan lagunya](https://www.youtube.com/watch?v=n7YGOvtQw5cs) dan beginilah lirik lagunya:
 
-```Di hari yang indah ini
+```
+Di hari yang indah ini
 Dua insan berjanji
 Menghadap kepadaMu
 Memohonkan berkat
@@ -49,6 +50,7 @@ Berjanji tuk' setia
 Dalam suka dan duka
 Dengan penyertaanMu Tuhan
 Teguhkanlah mereka
+
 ```
 
 Ketika saya pertama kali mendengar lagu ini, saya cukup suka dengan bagian _memohonkan berkat_ karena terdapat nada yang turun setengah (kalau saya tidak salah). Selain itu, saya cukup senang karena sepertinya lagu ini ditujukan untuk _weddingan_ dan menurut saya lagu _weddingan_ saat ini kurang sesuai dengan selera saya. Intinya adalah, saya jatuh cinta pada lagu ini ketika pertama kali mendengarkannya.
