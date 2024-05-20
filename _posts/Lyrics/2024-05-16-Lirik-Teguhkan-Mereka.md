@@ -10,9 +10,10 @@ Suatu pagi ketika diriku sedang pergi ke kampus, tiba-tiba lagu ini diputar di s
 
 ## Teguhkan Mereka
 
-Pada blog ini akan dibahas lirik dari lagu `teguhkan mereka` karena belum ada lirik dari lagu ini menurut pengetahuan saya di internet. Berikut [tautan lagunya](https://www.youtube.com/watch?v=n7YGOvtQw5cs) dan beginilah lirik lagunya:
+Pada blog ini akan dibahas lirik dari lagu `teguhkan mereka` karena belum ada lirik dari lagu ini menurut pengetahuan saya di internet. Berikut [tautan lagunya](https://www.youtube.com/watch?v=MT9BQ21yqpU) dan beginilah lirik lagunya:
 
 ```
+
 Di hari yang indah ini
 Dua insan berjanji
 Menghadap kepadaMu
