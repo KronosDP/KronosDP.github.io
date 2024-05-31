@@ -14,7 +14,7 @@ My compulsive behavior came from the fact that I always need to check out my pho
 
 ## The Protocol
 
-To adress this issue, I want to write this blog! I want to make a protocol that I can read so that I will not become obsessive and compulsive towards a girl. This protocol will be ran if I found a girl that I like. **_*This protocol should be done before you ask her out to be your gf*_**. The protocol is basically divided into 2 category which is my own filter and God's will. **_First, let's talk about my own filter, which my criteria_**.
+To adress this issue, I want to write this blog! I want to make a protocol that I can read so that I will not become obsessive and compulsive towards a girl. This protocol will be ran if I found a girl that I like. **_This protocol should be done before you ask her out to be your gf_**. The protocol is basically divided into 2 category which is my own filter and God's will. **_First, let's talk about my own filter, which my criteria_**.
 
 - **_Check if she enable you to be more productive to do God's will_**. In this case God's will for me to do. It can be to teach, do counseling, programming, and what **_God want's me to do_**. This is pretty ambigous tho. Because I can't know for sure what God's will for me is. I can't say that God's will the thing that I am mastering on because sometimes it's the hard thing that God wants me to do. On the other hand, it can be the easy simple thing that God wants me to do. There is not a way of surely knowing what God's will for me but I'm pretty sure that God will show me the way.
 
@@ -28,4 +28,4 @@ The next thing that I can do pipeliningly while doing my filter (that I mentione
 
 ## Ending
 
-If I were about to say: \_this list/protocol could change, would you see it as a loop hole? Probably yes. That's why I won't say it. The fact is that this is a fixed list for checking if she's the right person or not. This list could be added tho. Best luck for you.
+If I were about to say: _this list/protocol could change, would you see it as a loop hole?_ Probably yes. That's why I won't say it. The fact is that this is a fixed list for checking if she's the right person or not. This list could be added tho. Best luck for you.
