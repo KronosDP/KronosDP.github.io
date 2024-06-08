@@ -24,6 +24,10 @@ First, let’s talk about my own filter (aka my criteria)
 
 - **_Check for my own obsessive and compulsive behavior towards her_**. This is important because you want to avoid making the same mistake such that a person gets your obsessive and compulsive treatment, right? This can be checked by seeing how much you're prioritizing her. Always remember that **_she is not on top of your priority list_**. Please treat her with space for her to grow. Also, trust that God will keep her safe wherever she is. But, if she's not dressed modestly, she's not the one. That is not negotiable. If you're dealing with a case where she is already close to you, but you're giving your obsessive and compulsive behavior again, please search for help. Please realize that **_she is not on top of your priority list_**. If you can't do it, **_look up for help_**.
 
+- **_The Right Most Couple on the Normal Distribution_**. Based on previous relationship, I've noticed that how we think about relationshop is different with most people. This is important for me because I hate the fomo culture. I really don't like to follow what other people think how things should be done. I want my relationship with a special person to be specific for me.
+
+- **_Worth it for each other_**. This is actually written in the Bible. Somehow, you'll just feel it. You'll feel that you're worth it for each other. Both of your "level" are approximately the same. If not, you'll feel like the other person will try to make you to be better at the part where you or her aren't worth.
+
 The next thing that I can do pipelining while doing my filter (that I mentioned above) is to do these things:
 
 - **Pray**. It’s not hard to do, but most people often forget it. You should ask God if she’s really the one. The answer from God can be one of these points: `Yes or yes or perhaps wait, no because I have something better for you.` Either way, the only way to know what God wants me to do is to pray every day to **ask him for the answer** and **wait for God’s timing**. You should ask God if she’s His will or not.
@@ -53,6 +57,8 @@ Ah yes, this part... someone in John Wick says, "Rules. Without them, we live wi
 Like an operating system, I think rules are essential in our life. I remembered that my operating system lecturer said that an operating system is just like the law book of our computer. I wonder if that's true or not (it probably is true). But I just wanna say that without the law controlling our computers, racing conditions, and deadlocks could happen inside our computers. We don't want that to happen, right?
 
 The one and I think the very essential problem in a relationship is when 2 sides refuse to communicate appropriately when there is a problem. The problem is frequently not the real problem; it's their ego. That is why, in my future relationship, `one of the most important rules is that when the clock hits 00:00, both parties should stop being angry at each other`. This rule is a must and can't be negotiated. Also, if both parties are in different time zones, the time used for this rule is for the person who has the faster time and who hits 00:00 on their clock faster.
+
+A new that I've gotten out of my mind that I haven't implemented is to do presentation. This presentation will be done bi-weekly and monthly. This presentation will be done using chat, voice call using any communication media possible, and irl meet. Feel free for both parties to use power point. The goal of this is to give each other life update. Also, it's a great opportunity to express gratitute towards God and to each other.
 
 ## Ending
 
