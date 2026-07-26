@@ -29,25 +29,26 @@ $sidebar-screen-min-width   : 1024px;
 /* Default light theme for the site using soft baby blue palette */
 :root {
     --global-base-color                 : #5274CC;
-    --global-bg-color                   : #F0F4FF;
-    --global-footer-bg-color            : #E2EBFB;
-    --global-border-color               : #CCDAFF;
-    --global-dark-border-color          : #99B6FF;
-    --global-code-background-color      : #E2EBFB;
-    --global-code-text-color            : #001E67;
-    --global-fig-caption-color          : #5274CC;
-    --global-link-color                 : #5274CC;
-    --global-link-color-hover           : #001E67;
-    --global-link-color-visited         : #5274CC;
-    --global-masthead-link-color        : #0A1633;
-    --global-masthead-link-color-hover  : #5274CC;
-    --global-text-color                 : #0F172A;
-    --global-text-color-light           : #1E3A8A;
+    --global-bg-color                   : #0F172A;
+    --global-footer-bg-color            : #1E293B;
+    --global-border-color               : rgba(153, 182, 255, 0.2);
+    --global-dark-border-color          : #334155;
+    --global-code-background-color      : #1E293B;
+    --global-code-text-color            : #CCDAFF;
+    --global-fig-caption-color          : #99B6FF;
+    --global-link-color                 : #99B6FF;
+    --global-link-color-hover           : #CCDAFF;
+    --global-link-color-visited         : #99B6FF;
+    --global-masthead-link-color        : #F8FAFC;
+    --global-masthead-link-color-hover  : #99B6FF;
+    --global-text-color                 : #F8FAFC;
+    --global-text-color-light           : #CCDAFF;
+    --global-thead-color                : #1E293B;
 
-    --card-surface-bg                   : #ffffff;
-    --card-surface-border               : #CCDAFF;
+    --card-surface-bg                   : #1E293B;
+    --card-surface-border               : rgba(153, 182, 255, 0.2);
     --accent-cobalt                     : #5274CC;
-    --accent-sky                        : #5274CC;
-    --accent-pastel                     : #1E3A8A;
+    --accent-sky                        : #99B6FF;
+    --accent-pastel                     : #CCDAFF;
 }
 
