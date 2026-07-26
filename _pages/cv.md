@@ -136,7 +136,7 @@ Education
 ### **University of Indonesia** &mdash; *Depok, Indonesia*
 **Undergraduate Computer Science** *(Aug 2022 &ndash; Aug 2026)*
 * **Focus Areas:** Software Engineering, Web & Mobile Development, Deep Learning, Natural Language Processing, Computer Vision, Algorithms & Complexity.
-* **Academic Mentorship:** Teaching Assistant for Software Engineering Project, Operating Systems, Calculus 1 (Regular & International), and Calculus 2.
+* **Academic Mentorship:** Teaching Assistant for AI and Data Science Introductory Course (2026), Calculus 1 (Short Semester 2026, Regular & International 2023&ndash;2024), Software Engineering Project (2025), Operating Systems (2025), and Calculus 2 (2024).
 * **Student Psychological Support:** Peer Counselor at Curhat Sama Panda, supporting student mental health at Faculty of Computer Science.
 
 AI Research & Engineering Experience
@@ -145,7 +145,7 @@ AI Research & Engineering Experience
 <div class="cv-nvidia-highlight">
   <div class="cv-item-header">
     <div>
-      <span class="cv-company" style="color: #76B900;"><i class="fab fa-nvidia"></i> NVIDIA</span> &mdash; <span class="cv-role">AI Research Intern</span>
+      <span class="cv-company" style="color: #86efac;"><i class="fab fa-nvidia"></i> NVIDIA</span> &mdash; <span class="cv-role">AI Research Intern</span>
     </div>
     <div class="cv-location-date">Remote &bull; Jan 2025 &ndash; Jun 2025</div>
   </div>
@@ -284,6 +284,8 @@ Projects & Achievements
 
 Teaching Experience
 ======
+* **Teaching Assistant for AI and Data Science Introductory Course** &bull; University of Indonesia (2026)
+* **Teaching Assistant for Calculus 1 (Short Semester)** &bull; University of Indonesia (2026)
 * **Teaching Assistant for Software Engineering Project** &bull; University of Indonesia (2025)
 * **Teaching Assistant for Operating Systems** &bull; University of Indonesia (2025)
 * **Teaching Assistant for Calculus 1 (Regular & International)** &bull; University of Indonesia (2023 &ndash; 2024)
