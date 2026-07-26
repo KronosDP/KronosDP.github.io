@@ -26,14 +26,14 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
-/* Default light theme for the site using custom blue palette */
+/* Default light theme for the site using soft baby blue palette */
 :root {
     --global-base-color                 : #5274CC;
-    --global-bg-color                   : #F4F7FF;
-    --global-footer-bg-color            : #CCDAFF;
+    --global-bg-color                   : #F0F4FF;
+    --global-footer-bg-color            : #E2EBFB;
     --global-border-color               : #CCDAFF;
     --global-dark-border-color          : #99B6FF;
-    --global-code-background-color      : #F4F7FF;
+    --global-code-background-color      : #E2EBFB;
     --global-code-text-color            : #001E67;
     --global-fig-caption-color          : #5274CC;
     --global-link-color                 : #5274CC;
@@ -41,14 +41,13 @@ $sidebar-screen-min-width   : 1024px;
     --global-link-color-visited         : #5274CC;
     --global-masthead-link-color        : #0A1633;
     --global-masthead-link-color-hover  : #5274CC;
-    --global-text-color                 : #0A1633;
-    --global-text-color-light           : #001E67;
-    --global-thead-color                : #CCDAFF;
+    --global-text-color                 : #0F172A;
+    --global-text-color-light           : #1E3A8A;
 
     --card-surface-bg                   : #ffffff;
     --card-surface-border               : #CCDAFF;
     --accent-cobalt                     : #5274CC;
     --accent-sky                        : #5274CC;
-    --accent-pastel                     : #001E67;
+    --accent-pastel                     : #1E3A8A;
 }
 
