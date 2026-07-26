@@ -12,27 +12,39 @@ redirect_from:
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(74, 144, 226, 0.08);
-    border: 1px solid rgba(74, 144, 226, 0.25);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   }
   .cv-download-btn {
-    background: #4a90e2;
-    color: #fff !important;
+    background: #3b82f6;
+    color: #ffffff !important;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     font-weight: 600;
+    font-size: 0.85rem;
     text-decoration: none !important;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    transition: all 0.2s ease;
   }
   .cv-download-btn:hover {
-    background: #357abd;
+    background: #2563eb;
+  }
+  .cv-download-btn.secondary-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--global-text-color, #e2e8f0) !important;
+  }
+  .cv-download-btn.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
   }
   .cv-section-title {
     font-size: 1.35rem;
@@ -40,7 +52,7 @@ redirect_from:
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba(120, 120, 120, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -70,8 +82,9 @@ redirect_from:
     opacity: 0.85;
   }
   .cv-nvidia-highlight {
-    background: rgba(118, 185, 0, 0.08);
-    border-left: 4px solid #76B900;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(134, 239, 172, 0.35);
+    border-left: 4px solid #86efac;
     padding: 1rem 1.25rem;
     border-radius: 0 8px 8px 0;
     margin-bottom: 1.5rem;
@@ -82,13 +95,13 @@ redirect_from:
     font-weight: 600;
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
-    background: rgba(120, 120, 120, 0.15);
+    background: rgba(255, 255, 255, 0.08);
     margin-right: 0.3rem;
     margin-top: 0.3rem;
   }
   .cv-tag.nvidia-tag {
-    background: rgba(118, 185, 0, 0.2);
-    color: #76B900;
+    background: rgba(134, 239, 172, 0.15);
+    color: #86efac;
   }
 </style>
 
@@ -101,10 +114,10 @@ redirect_from:
     <a href="/cv/resume-ai.pdf" target="_blank" class="cv-download-btn">
       <i class="fas fa-file-pdf"></i> Download PDF (AI / Research CV)
     </a>
-    <a href="/cv/resume.pdf" target="_blank" class="cv-download-btn" style="background: #27ae60;">
+    <a href="/cv/resume.pdf" target="_blank" class="cv-download-btn secondary-btn">
       <i class="fas fa-file-pdf"></i> Download PDF (Software Eng CV)
     </a>
-    <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" target="_blank" class="cv-download-btn" style="background: #0077b5;">
+    <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" target="_blank" class="cv-download-btn secondary-btn">
       <i class="fab fa-linkedin"></i> LinkedIn Profile
     </a>
   </div>

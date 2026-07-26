@@ -12,10 +12,18 @@ author_profile: true
     margin-top: 1rem;
   }
 
+<style>
+  .portfolio-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--global-text-color, #333);
+    margin-top: 1rem;
+  }
+
   /* Header Bar */
   .portfolio-intro {
-    background: rgba(74, 144, 226, 0.06);
-    border-left: 4px solid #4a90e2;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid #3b82f6;
     padding: 1.25rem 1.5rem;
     border-radius: 0 8px 8px 0;
     margin-bottom: 2rem;
@@ -42,9 +50,9 @@ author_profile: true
   }
 
   .filter-btn {
-    background: rgba(120, 120, 120, 0.1);
-    border: 1px solid rgba(120, 120, 120, 0.25);
-    color: var(--global-text-color, #444);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--global-text-color, #e2e8f0);
     padding: 0.45rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -55,20 +63,21 @@ author_profile: true
   }
 
   .filter-btn:hover, .filter-btn.active {
-    background: #4a90e2 !important;
-    color: #fff !important;
-    border-color: #4a90e2 !important;
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    background: #3b82f6 !important;
+    color: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
   }
 
   /* NVIDIA Featured Spotlight */
   .featured-nvidia-card {
-    background: linear-gradient(135deg, rgba(118, 185, 0, 0.12) 0%, rgba(20, 30, 20, 0.75) 100%);
-    border: 2px solid #76B900;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(134, 239, 172, 0.35);
+    border-top: 3px solid #86efac;
     border-radius: 12px;
     padding: 1.75rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 8px 25px rgba(118, 185, 0, 0.18);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
   }
@@ -77,9 +86,10 @@ author_profile: true
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #76B900;
-    color: #000;
-    font-weight: 800;
+    background: rgba(134, 239, 172, 0.15);
+    border: 1px solid rgba(134, 239, 172, 0.35);
+    color: #86efac;
+    font-weight: 700;
     font-size: 0.8rem;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
@@ -97,7 +107,7 @@ author_profile: true
 
   .featured-meta {
     font-size: 0.95rem;
-    color: #76B900;
+    color: #86efac;
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -116,8 +126,8 @@ author_profile: true
   }
 
   .metric-box {
-    background: rgba(118, 185, 0, 0.1);
-    border: 1px solid rgba(118, 185, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(134, 239, 172, 0.25);
     border-radius: 8px;
     padding: 0.75rem 1rem;
   }
@@ -125,7 +135,7 @@ author_profile: true
   .metric-value {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #76B900;
+    color: #86efac;
   }
 
   .metric-label {
@@ -143,8 +153,8 @@ author_profile: true
   }
 
   .showcase-card {
-    background: rgba(120, 120, 120, 0.05);
-    border: 1px solid rgba(120, 120, 120, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -155,8 +165,8 @@ author_profile: true
 
   .showcase-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-color: #4a90e2;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-color: #3b82f6;
   }
 
   .card-header {

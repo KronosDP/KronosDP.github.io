@@ -9,72 +9,81 @@ redirect_from:
 
 <style>
   .hero-banner {
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.12) 0%, rgba(20, 25, 35, 0.7) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   }
 
   .hero-title {
-    font-size: 1.85rem;
+    font-size: 1.9rem;
     font-weight: 800;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.4rem 0;
+    color: var(--global-text-color, #ffffff);
   }
 
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: #4a90e2;
+    color: #60a5fa;
     margin-bottom: 1.25rem;
+    letter-spacing: 0.3px;
   }
 
   .target-roles {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .role-badge {
     font-size: 0.8rem;
-    font-weight: 700;
-    padding: 0.3rem 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
     border-radius: 20px;
-    background: rgba(74, 144, 226, 0.15);
-    border: 1px solid rgba(74, 144, 226, 0.35);
-    color: var(--global-text-color, #eee);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--global-text-color, #e2e8f0);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .role-badge.nvidia-badge {
-    background: rgba(118, 185, 0, 0.15);
-    border-color: #76B900;
-    color: #76B900;
+    background: rgba(134, 239, 172, 0.1);
+    border-color: rgba(134, 239, 172, 0.35);
+    color: #86efac;
   }
 
   .hero-highlights {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
   }
 
   .highlight-card {
-    background: rgba(120, 120, 120, 0.08);
-    border: 1px solid rgba(120, 120, 120, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.1rem;
   }
 
   .highlight-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-    margin-bottom: 0.3rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .highlight-desc {
     font-size: 0.85rem;
+    line-height: 1.5;
     opacity: 0.85;
     margin: 0;
   }
@@ -89,32 +98,34 @@ redirect_from:
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.55rem 1.25rem;
     border-radius: 6px;
     text-decoration: none !important;
     transition: all 0.2s ease;
   }
 
   .cta-primary {
-    background: #4a90e2;
-    color: #fff !important;
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    background: #3b82f6;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
   }
 
   .cta-primary:hover {
-    background: #357abd;
+    background: #2563eb;
+    transform: translateY(-1px);
   }
 
   .cta-secondary {
-    background: rgba(120, 120, 120, 0.15);
-    color: var(--global-text-color, #eee) !important;
-    border: 1px solid rgba(120, 120, 120, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--global-text-color, #e2e8f0) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .cta-secondary:hover {
-    background: rgba(120, 120, 120, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
   }
 
   .section-heading {
@@ -122,7 +133,7 @@ redirect_from:
     font-weight: 800;
     margin: 2rem 0 1rem 0;
     padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba(120, 120, 120, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -142,16 +153,16 @@ redirect_from:
   </div>
 
   <div class="hero-highlights">
-    <div class="highlight-card" style="border-left: 3px solid #76B900;">
-      <div class="highlight-title" style="color: #76B900;"><i class="fab fa-nvidia"></i> NVIDIA AI Research</div>
+    <div class="highlight-card" style="border-top: 2px solid #86efac;">
+      <div class="highlight-title" style="color: #86efac;"><i class="fab fa-nvidia"></i> NVIDIA AI Research</div>
       <p class="highlight-desc">Benchmarked non-Transformer sequence models (RWKV) against Transformers for formal regular language capacity.</p>
     </div>
-    <div class="highlight-card" style="border-left: 3px solid #4a90e2;">
-      <div class="highlight-title" style="color: #4a90e2;"><i class="fas fa-microphone-alt"></i> Meeting.ai AI Engineer</div>
+    <div class="highlight-card" style="border-top: 2px solid #60a5fa;">
+      <div class="highlight-title" style="color: #60a5fa;"><i class="fas fa-microphone-alt"></i> Meeting.ai AI Engineer</div>
       <p class="highlight-desc">Stress-tested ASR under 10+ concurrent live streams & compressed speaker verification via knowledge distillation.</p>
     </div>
-    <div class="highlight-card" style="border-left: 3px solid #9b59b6;">
-      <div class="highlight-title" style="color: #9b59b6;"><i class="fas fa-graduation-cap"></i> TA @ Univ. of Indonesia</div>
+    <div class="highlight-card" style="border-top: 2px solid #c084fc;">
+      <div class="highlight-title" style="color: #c084fc;"><i class="fas fa-graduation-cap"></i> TA @ Univ. of Indonesia</div>
       <p class="highlight-desc">Teaching Assistant for Software Engineering Project, Operating Systems, and Calculus I & II.</p>
     </div>
   </div>
