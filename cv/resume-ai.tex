@@ -1,0 +1,170 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Optimized margins for a clean, spacious 2-page versatile CV
+\geometry{
+  left=0.6in,
+  right=0.6in,
+  top=0.42in,
+  bottom=0.42in
+}
+
+\pagestyle{empty}
+\linespread{1.01} % Easy-to-read line spacing
+
+% Section Headers: Pure Black & White, Clean Horizontal Rule
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\Large\bfseries
+}{}{0em}{}[\hrule \vspace{2pt}]
+
+% Bullet list formatting with spacious item separation
+\setlist[itemize]{leftmargin=0.18in, labelsep=4pt, itemsep=1.5pt, topsep=1.5pt, parsep=0pt}
+
+\begin{document}
+
+%=================== PAGE 1 ===================
+
+%----------HEADER----------
+\begin{center}
+    {\Huge \bfseries DARREL DANADYAKSA POLI} \\[5pt]
+    \small \textbf{Software Engineer $|$ AI Engineer $|$ AI Researcher} \\[3pt]
+    Depok, Indonesia \quad $|$ \quad 
+    \href{mailto:darrel.danadyaksa19@gmail.com}{darrel.danadyaksa19@gmail.com} \quad $|$ \quad 
+    \href{https://www.linkedin.com/in/darrel-danadyaksa-poli/}{linkedin.com/in/darrel-danadyaksa-poli}
+\end{center}
+\vspace{-4pt}
+
+\begin{center}
+    \parbox{0.96\textwidth}{\small \centering
+    Final Year Computer Science student with strong expertise across Software Engineering, Backend Architecture, and Artificial Intelligence. Experienced in AI research at \textbf{NVIDIA}, production speech model distillation at Meeting.ai, building scalable web and mobile applications (Django, Go, Laravel, Flutter), and leading software engineering teams.
+    }
+\end{center}
+\vspace{-4pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+\vspace{2pt}
+
+\noindent \textbf{\large University of Indonesia} \hfill \textbf{Depok, Indonesia} \\
+\textit{Undergraduate Computer Science} \hfill \textit{Aug 2022 -- Aug 2026}
+\begin{itemize}
+    \item \textbf{Focus Areas:} Software Engineering, Web \& Mobile Development, Deep Learning, Natural Language Processing, Computer Vision, Algorithms \& Complexity.
+    \item \textbf{Academic Mentorship:} Teaching Assistant for Software Engineering Project, Operating Systems, Calculus 1 (Regular \& International), and Calculus 2.
+    \item \textbf{Student Psychological Support:} Peer Counselor at Curhat Sama Panda, supporting student mental health at Faculty of Computer Science.
+\end{itemize}
+\vspace{3pt}
+
+%-----------AI RESEARCH & ENGINEERING EXPERIENCE-----------
+\section{AI Research \& Engineering Experience}
+\vspace{2pt}
+
+\noindent \textbf{\large NVIDIA} \hfill \textbf{Remote} \\
+\textit{\textbf{AI Research Intern}} \hfill \textit{Jan 2025 -- Jun 2025}
+\begin{itemize}
+    \item \textbf{Benchmarked Novel Architectures:} Evaluated Non-Transformer sequence model architectures (\textbf{RWKV}) against standard \textbf{Transformers} for formal regular language recognition tasks, delivering comparative insights to senior research supervisors.
+    \item \textbf{Sequence Architecture Analysis:} Investigated structural representations and formal language capacity across \textbf{Transformer}, \textbf{RNN}, \textbf{LSTM}, and \textbf{GRU} models.
+    \item \textbf{Research Dissemination:} Conducted monthly technical presentations detailing empirical findings, loss convergence dynamics, and theoretical trade-offs to guide architectural research directions.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large Meeting.ai} \hfill \textbf{Jakarta, Indonesia} \\
+\textit{AI Engineer Intern} \hfill \textit{Jul 2025 -- Dec 2025}
+\begin{itemize}
+    \item \textbf{ASR Performance Stress-Testing:} Benchmarked Automatic Speech Recognition (ASR) pipelines under high concurrency (10+ simultaneous sessions) to isolate latency bottlenecks and ensure deployment stability.
+    \item \textbf{Speaker Verification Optimization:} Compression-optimized a Speaker Verification model using knowledge distillation, significantly reducing parameter footprint while maintaining accuracy and achieving faster inference throughput.
+    \item \textbf{Active Learning Pipeline:} Architected a user-in-the-loop correction mechanism within the Speaker Verification pipeline to dynamically resolve clustering ambiguities and continuously improve downstream model accuracy.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large Intergalactic Science Kingdom} \hfill \textbf{Remote} \\
+\textit{AI Engineer \& Back End Engineer (Volunteer)} \hfill \textit{Jan 2026 -- Jul 2026}
+\begin{itemize}
+    \item \textbf{Marie Chan Full-Stack Architecture:} Architected and deployed \textit{Marie Chan}, an interactive AI system combining Go (Golang) and Django backends for real-time API performance and backend stability.
+    \item \textbf{Agentic AI \& BDD/TDD Workflows:} Applied Behavior-Driven Development (BDD) and Test-Driven Development (TDD) to guide and validate software engineering workflows powered by Agentic AI.
+    \item \textbf{LLM Pipeline Orchestration:} Integrated OpenRouter API for dynamic multi-model LLM routing, optimizing inference latency, context window management, and speech synthesis pipelines.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large Indonesia AI x OMDENA Forest Fire Project} \hfill \textbf{Indonesia} \\
+\textit{AI \& Data Science Contributor} \hfill \textit{Aug 2022 -- Sep 2022}
+\begin{itemize}
+    \item \textbf{Data Engineering:} Curated, preprocessed, and normalized multi-source environmental datasets to enhance training data quality for forest fire risk prediction models.
+    \item \textbf{Model Fine-Tuning:} Fine-tuned predictive algorithms to maximize early detection accuracy and support proactive community safety initiatives.
+\end{itemize}
+
+%=================== PAGE 2 ===================
+\newpage
+
+%-----------VOLUNTEERING & LEADERSHIP EXPERIENCE-----------
+\section{Volunteering \& Leadership Experience}
+\vspace{2pt}
+
+\noindent \textbf{\large Candidate College} \hfill \textbf{Indonesia} \\
+\textit{Back End Developer} \hfill \textit{Jun 2024 -- Oct 2024}
+\begin{itemize}
+    \item \textbf{RESTful API \& Database Engineering:} Developed and maintained server-side logic, databases, and RESTful APIs using Laravel, collaborating with front-end teams and stakeholders to ensure high performance.
+    \item \textbf{Database Modeling \& Architecture:} Created Entity-Relationship (EER) diagrams and database models aligned with business needs, enforcing clean code practices, design patterns, and scalable software architecture principles.
+    \item \textbf{API Documentation \& Leadership:} Led Swagger integration for automated API documentation as Co-Head of the Website Development Division, improving API accessibility for internal and external teams.
+    \item \textbf{DevOps \& Testing:} Implemented CI/CD pipelines and robust test suites to ensure code quality, maintainability, and streamlined deployments.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large SIKAP} \hfill \textbf{Indonesia} \\
+\textit{Software Engineer} \hfill \textit{Aug 2025 -- Nov 2025}
+\begin{itemize}
+    \item \textbf{Cross-Platform Engineering:} Engineered a cross-platform anti-bullying information system using Django for the backend and Flutter for the mobile interface, ensuring secure and anonymous reporting.
+    \item \textbf{UAT \& User-Centered Design:} Conducted User Acceptance Testing (UAT) across dozens of Indonesian schools, utilizing direct user feedback to refine features and improve system stability following ADDIE and UCD principles.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large Student Executive Board (BEM UI)} \hfill \textbf{Depok, Indonesia} \\
+\textit{Coordinator, Information Technology Division} \hfill \textit{Jul 2025 -- Jan 2026}
+\begin{itemize}
+    \item \textbf{Engineering Leadership:} Directed and reviewed software development workflows, applying industry-standard software engineering methodologies and architectural best practices.
+    \item \textbf{Technical Guidance \& Quality Control:} Provided hands-on technical guidance on system architecture, maintainability, and quality control mechanisms for ongoing IT projects across multiple divisions.
+\end{itemize}
+\vspace{3pt}
+
+\noindent \textbf{\large Rentang Jiwa} \hfill \textbf{Indonesia} \\
+\textit{Peer Counselor} \hfill \textit{Jan 2024 -- Jun 2024}
+\begin{itemize}
+    \item \textbf{Client Counseling:} Offered structured peer counseling and psychoeducation using counseling psychology best practices to build client rapport and facilitate psychological support.
+\end{itemize}
+\vspace{4pt}
+
+%-----------PROJECTS & ACHIEVEMENTS-----------
+\section{Projects \& Achievements}
+\vspace{2pt}
+
+\begin{itemize}[leftmargin=0.2in, itemsep=1.2pt]
+    \item \textbf{SafetyPin Startup (2025):} Co-founded SafetyPin, a social security startup leveraging technology and intelligent reporting systems to enhance personal safety solutions.
+    \item \textbf{Multimodal Emotion Detection (Satria Data 2025):} Engineered an end-to-end emotion detection system combining BERT for textual feature extraction, Whisper for speech representations, and VAD for noise filtering.
+    \item \textbf{Illegal Parking CV System (Gemastik 2024):} Designed and trained an object detection pipeline to identify illegal parking violations from surveillance feeds.
+    \item \textbf{BERT Clickbait Classification (Gemastik 2023):} Fine-tuned a BERT-based transformer model on Indonesian textual datasets to detect clickbait headlines.
+    \item \textbf{Garuda Hacks 4.0 Honorable Mention (2023):} Awarded Honorable Mention for building \textit{Tak Sendiri}, a conversational AI agent for preliminary depression screening.
+    \item \textbf{Certified Peer Counselor Training (2023):} Completed certified training in peer counseling and psychological support.
+\end{itemize}
+\vspace{4pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills \& Expertise}
+\vspace{2pt}
+
+\begin{itemize}[leftmargin=0.18in, itemsep=1.5pt]
+    \item \textbf{Software Engineering \& Backend:} RESTful APIs, System Architecture, Database Design (EER), Microservices, Agentic AI Workflows, Behavior-Driven Development (BDD), Test-Driven Development (TDD), CI/CD, DevOps.
+    \item \textbf{Programming Languages:} Python, Go (Golang), Java, PHP, Rust, Dart, SQL (PostgreSQL, MySQL).
+    \item \textbf{Frameworks \& Libraries:} Django, Spring Boot, Laravel, Flutter, PyTorch, TensorFlow, Keras, HuggingFace, OpenCV, Scikit-Learn, Pandas, NumPy.
+    \item \textbf{Developer Tools \& Cloud:} Docker, Git, GCP, Supabase, Postman, Linux/Unix, OpenRouter LLM APIs.
+    \item \textbf{Soft Skills \& Leadership:} Software Engineering Leadership, Code Review, Mentoring, Critical Thinking, Active Listening, Agile/Scrum.
+\end{itemize}
+
+\end{document}

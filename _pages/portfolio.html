@@ -1,14 +1,579 @@
 ---
-layout: archive
-title: "Portfolio"
+layout: single
+title: "Portfolio & Experience"
 permalink: /portfolio/
 author_profile: true
 ---
 
-{% include base_path %}
+<style>
+  /* Portfolio & Timeline Custom Design System */
+  .portfolio-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--global-text-color, #333);
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
 
+  /* Section Titles */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(120, 120, 120, 0.2);
+  }
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+  .section-header i {
+    color: #4a90e2;
+  }
 
+  /* NVIDIA Spotlight Hero Banner */
+  .nvidia-spotlight {
+    background: linear-gradient(135deg, rgba(118, 185, 0, 0.08) 0%, rgba(20, 25, 20, 0.6) 100%);
+    border: 2px solid #76B900;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 24px rgba(118, 185, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nvidia-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #76B900;
+    color: #000;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+  }
+
+  .nvidia-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    color: var(--global-text-color, #fff);
+  }
+
+  .nvidia-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #76B900;
+    margin-bottom: 1rem;
+  }
+
+  .nvidia-highlights {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .nvidia-highlights li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  .nvidia-highlights li::before {
+    content: "⚡";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* Tag Pills */
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag-pill {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(120, 120, 120, 0.15);
+    color: var(--global-text-color, #ccc);
+    border: 1px solid rgba(120, 120, 120, 0.25);
+  }
+
+  .tag-pill.nvidia-pill {
+    background: rgba(118, 185, 0, 0.15);
+    color: #76B900;
+    border-color: rgba(118, 185, 0, 0.4);
+  }
+
+  .tag-pill.ai-pill {
+    background: rgba(74, 144, 226, 0.15);
+    color: #4a90e2;
+    border-color: rgba(74, 144, 226, 0.4);
+  }
+
+  .tag-pill.backend-pill {
+    background: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    border-color: rgba(243, 156, 18, 0.4);
+  }
+
+  /* Timeline Styles */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.65rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 3px;
+    background: linear-gradient(180deg, #76B900 0%, #4a90e2 50%, #f39c12 100%);
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    background: rgba(120, 120, 120, 0.05);
+    border: 1px solid rgba(120, 120, 120, 0.15);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .timeline-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  .timeline-node {
+    position: absolute;
+    left: -2rem;
+    top: 1.25rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #4a90e2;
+    border: 3px solid var(--global-bg-color, #1e1e2e);
+    box-shadow: 0 0 0 2px #4a90e2;
+    transform: translateX(-35%);
+  }
+
+  .timeline-node.nvidia-node {
+    background: #76B900;
+    box-shadow: 0 0 0 2px #76B900;
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .timeline-company {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4a90e2;
+  }
+
+  .timeline-date {
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: rgba(120, 120, 120, 0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+  }
+
+  .timeline-body {
+    list-style: square;
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0.75rem 0;
+    font-size: 0.93rem;
+  }
+
+  .timeline-body li {
+    margin-bottom: 0.4rem;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .project-card {
+    background: rgba(120, 120, 120, 0.05);
+    border: 1px solid rgba(120, 120, 120, 0.15);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: #4a90e2;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project-award {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #f39c12;
+    color: #000;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+
+  /* Action Bar for HR */
+  .hr-action-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: rgba(74, 144, 226, 0.08);
+    border: 1px dashed rgba(74, 144, 226, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .hr-action-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .hr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #4a90e2;
+    color: #fff !important;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none !important;
+    transition: background 0.2s ease;
+  }
+
+  .hr-btn:hover {
+    background: #357abd;
+  }
+</style>
+
+<div class="portfolio-container">
+
+  <!-- HR Quick Action Banner -->
+  <div class="hr-action-bar">
+    <div class="hr-action-text">
+      <i class="fas fa-briefcase"></i> Looking for my full resume & CV details?
+    </div>
+    <div>
+      <a href="/cv/" class="hr-btn"><i class="fas fa-file-alt"></i> View Full CV</a>
+    </div>
+  </div>
+
+  <!-- NVIDIA SPOTLIGHT HERO BANNER -->
+  <div class="nvidia-spotlight">
+    <div class="nvidia-badge">
+      <i class="fab fa-nvidia"></i> Featured Research Experience
+    </div>
+    <div class="nvidia-title">AI Research Intern &mdash; NVIDIA</div>
+    <div class="nvidia-subtitle"><i class="fas fa-globe-americas"></i> Remote &nbsp;|&nbsp; <i class="far fa-calendar-alt"></i> Jan 2025 &ndash; Jun 2025</div>
+    
+    <ul class="nvidia-highlights">
+      <li><strong>Benchmarked Novel Sequence Architectures:</strong> Evaluated Non-Transformer sequence model architectures (<strong>RWKV</strong>) against standard <strong>Transformers</strong> for formal regular language recognition tasks, delivering comparative insights to senior research supervisors.</li>
+      <li><strong>Sequence Architecture Capacity Analysis:</strong> Investigated structural representations and formal language recognition capacity across <strong>Transformer</strong>, <strong>RNN</strong>, <strong>LSTM</strong>, and <strong>GRU</strong> models.</li>
+      <li><strong>Research Dissemination & Dynamics:</strong> Conducted monthly technical presentations detailing empirical findings, loss convergence dynamics, and theoretical trade-offs to guide architectural research directions.</li>
+    </ul>
+
+    <div class="tag-container">
+      <span class="tag-pill nvidia-pill">NVIDIA Research</span>
+      <span class="tag-pill nvidia-pill">RWKV</span>
+      <span class="tag-pill nvidia-pill">Transformers</span>
+      <span class="tag-pill nvidia-pill">Formal Languages</span>
+      <span class="tag-pill nvidia-pill">PyTorch</span>
+      <span class="tag-pill nvidia-pill">Loss Dynamics</span>
+      <span class="tag-pill nvidia-pill">Sequence Models</span>
+    </div>
+  </div>
+
+  <!-- CAREER & RESEARCH TIMELINE -->
+  <div class="section-header">
+    <i class="fas fa-history"></i> Career & Research Timeline
+  </div>
+
+  <div class="timeline">
+
+    <!-- NVIDIA Item in Timeline -->
+    <div class="timeline-item">
+      <div class="timeline-node nvidia-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">AI Research Intern</div>
+          <div class="timeline-company" style="color: #76B900;"><i class="fab fa-nvidia"></i> NVIDIA</div>
+        </div>
+        <div class="timeline-date">Jan 2025 &ndash; Jun 2025</div>
+      </div>
+      <ul class="timeline-body">
+        <li>Evaluated Non-Transformer sequence model architectures (<strong>RWKV</strong>) against standard <strong>Transformers</strong> for formal regular language recognition tasks.</li>
+        <li>Investigated structural representations and formal language capacity across <strong>Transformer</strong>, <strong>RNN</strong>, <strong>LSTM</strong>, and <strong>GRU</strong> models.</li>
+        <li>Delivered monthly technical presentations on empirical loss convergence dynamics and architectural trade-offs.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill nvidia-pill">RWKV</span>
+        <span class="tag-pill nvidia-pill">Transformers</span>
+        <span class="tag-pill nvidia-pill">PyTorch</span>
+        <span class="tag-pill nvidia-pill">Deep Learning</span>
+      </div>
+    </div>
+
+    <!-- Meeting.ai -->
+    <div class="timeline-item">
+      <div class="timeline-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">AI Engineer Intern</div>
+          <div class="timeline-company">Meeting.ai</div>
+        </div>
+        <div class="timeline-date">Jul 2025 &ndash; Dec 2025</div>
+      </div>
+      <ul class="timeline-body">
+        <li><strong>ASR Performance Stress-Testing:</strong> Benchmarked Automatic Speech Recognition (ASR) pipelines under high concurrency (10+ simultaneous sessions) to isolate latency bottlenecks and ensure deployment stability.</li>
+        <li><strong>Speaker Verification Optimization:</strong> Compression-optimized a Speaker Verification model using knowledge distillation, significantly reducing parameter footprint while accelerating inference throughput.</li>
+        <li><strong>Active Learning Pipeline:</strong> Architected a user-in-the-loop correction mechanism within the Speaker Verification pipeline to dynamically resolve clustering ambiguities and continuously improve accuracy.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">Speech ASR</span>
+        <span class="tag-pill ai-pill">Whisper</span>
+        <span class="tag-pill ai-pill">Knowledge Distillation</span>
+        <span class="tag-pill ai-pill">Active Learning</span>
+      </div>
+    </div>
+
+    <!-- Intergalactic Science Kingdom -->
+    <div class="timeline-item">
+      <div class="timeline-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">AI Engineer & Back End Engineer (Volunteer)</div>
+          <div class="timeline-company">Intergalactic Science Kingdom</div>
+        </div>
+        <div class="timeline-date">Jan 2026 &ndash; Jul 2026</div>
+      </div>
+      <ul class="timeline-body">
+        <li><strong>Marie Chan Full-Stack Architecture:</strong> Architected and deployed <em>Marie Chan</em>, combining Go (Golang) and Django backends for real-time API performance and backend stability.</li>
+        <li><strong>Agentic AI & BDD/TDD Workflows:</strong> Applied Behavior-Driven Development (BDD) and Test-Driven Development (TDD) to guide and validate software engineering workflows powered by Agentic AI.</li>
+        <li><strong>LLM Pipeline Orchestration:</strong> Integrated OpenRouter API for dynamic multi-model LLM routing, optimizing inference latency, context window management, and speech synthesis pipelines.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill backend-pill">Go (Golang)</span>
+        <span class="tag-pill backend-pill">Django</span>
+        <span class="tag-pill ai-pill">Agentic AI</span>
+        <span class="tag-pill ai-pill">OpenRouter API</span>
+      </div>
+    </div>
+
+    <!-- Candidate College -->
+    <div class="timeline-item">
+      <div class="timeline-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Back End Developer (Co-Head of Web Dev)</div>
+          <div class="timeline-company">Candidate College</div>
+        </div>
+        <div class="timeline-date">Jun 2024 &ndash; Oct 2024</div>
+      </div>
+      <ul class="timeline-body">
+        <li><strong>RESTful API & Database Engineering:</strong> Developed server-side logic, databases, and RESTful APIs using Laravel.</li>
+        <li><strong>Database Modeling & Architecture:</strong> Created Entity-Relationship (EER) diagrams and scalable database models.</li>
+        <li><strong>API Documentation & Leadership:</strong> Led Swagger integration for automated API documentation as Co-Head of Website Development Division.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill backend-pill">Laravel</span>
+        <span class="tag-pill backend-pill">PHP</span>
+        <span class="tag-pill backend-pill">MySQL</span>
+        <span class="tag-pill backend-pill">Swagger</span>
+        <span class="tag-pill backend-pill">CI/CD</span>
+      </div>
+    </div>
+
+    <!-- SIKAP -->
+    <div class="timeline-item">
+      <div class="timeline-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Software Engineer</div>
+          <div class="timeline-company">SIKAP</div>
+        </div>
+        <div class="timeline-date">Aug 2025 &ndash; Nov 2025</div>
+      </div>
+      <ul class="timeline-body">
+        <li><strong>Cross-Platform System:</strong> Engineered an anti-bullying information system using Django for backend and Flutter for mobile interface.</li>
+        <li><strong>UAT & Field Validation:</strong> Conducted User Acceptance Testing (UAT) across dozens of Indonesian schools following ADDIE and UCD principles.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill backend-pill">Django</span>
+        <span class="tag-pill backend-pill">Flutter</span>
+        <span class="tag-pill backend-pill">Dart</span>
+        <span class="tag-pill backend-pill">UCD / ADDIE</span>
+      </div>
+    </div>
+
+    <!-- BEM UI -->
+    <div class="timeline-item">
+      <div class="timeline-node"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Coordinator, Information Technology Division</div>
+          <div class="timeline-company">Student Executive Board (BEM UI)</div>
+        </div>
+        <div class="timeline-date">Jul 2025 &ndash; Jan 2026</div>
+      </div>
+      <ul class="timeline-body">
+        <li>Directed software development workflows and architectural best practices across multiple IT initiatives.</li>
+        <li>Provided hands-on technical guidance on system architecture, maintainability, and quality control.</li>
+      </ul>
+      <div class="tag-container">
+        <span class="tag-pill backend-pill">Engineering Leadership</span>
+        <span class="tag-pill backend-pill">System Architecture</span>
+        <span class="tag-pill backend-pill">Quality Control</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FEATURED PROJECTS GRID -->
+  <div class="section-header">
+    <i class="fas fa-rocket"></i> Key Projects & Innovation
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- SafetyPin Startup -->
+    <div class="project-card">
+      <div>
+        <div class="project-title">
+          SafetyPin Startup
+          <span class="project-award">Startup</span>
+        </div>
+        <div class="project-desc">Co-founded SafetyPin, a social security startup leveraging technology and intelligent reporting systems to enhance personal safety solutions.</div>
+      </div>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">Personal Safety</span>
+        <span class="tag-pill backend-pill">System Architecture</span>
+      </div>
+    </div>
+
+    <!-- Satria Data 2025 -->
+    <div class="project-card">
+      <div>
+        <div class="project-title">
+          Multimodal Emotion Detection
+          <span class="project-award">Satria Data 2025</span>
+        </div>
+        <div class="project-desc">Engineered an end-to-end emotion detection system combining BERT for textual features, Whisper for speech representations, and VAD for noise filtering.</div>
+      </div>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">BERT</span>
+        <span class="tag-pill ai-pill">Whisper ASR</span>
+        <span class="tag-pill ai-pill">Multimodal</span>
+      </div>
+    </div>
+
+    <!-- Gemastik 2024 -->
+    <div class="project-card">
+      <div>
+        <div class="project-title">
+          Illegal Parking CV System
+          <span class="project-award">Gemastik 2024</span>
+        </div>
+        <div class="project-desc">Designed and trained a Computer Vision object detection pipeline to automatically identify illegal parking violations from real-time surveillance feeds.</div>
+      </div>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">Computer Vision</span>
+        <span class="tag-pill ai-pill">PyTorch</span>
+        <span class="tag-pill ai-pill">OpenCV</span>
+      </div>
+    </div>
+
+    <!-- Garuda Hacks 4.0 -->
+    <div class="project-card">
+      <div>
+        <div class="project-title">
+          Tak Sendiri AI
+          <span class="project-award">Honorable Mention</span>
+        </div>
+        <div class="project-desc">Awarded Honorable Mention at Garuda Hacks 4.0 for building <em>Tak Sendiri</em>, a conversational AI agent for preliminary depression screening.</div>
+      </div>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">Conversational AI</span>
+        <span class="tag-pill ai-pill">Mental Health</span>
+        <span class="tag-pill ai-pill">LLM</span>
+      </div>
+    </div>
+
+    <!-- Gemastik 2023 -->
+    <div class="project-card">
+      <div>
+        <div class="project-title">
+          BERT Clickbait Classification
+          <span class="project-award">Gemastik 2023</span>
+        </div>
+        <div class="project-desc">Fine-tuned a BERT-based transformer model on Indonesian textual datasets to accurately detect and classify clickbait headlines.</div>
+      </div>
+      <div class="tag-container">
+        <span class="tag-pill ai-pill">BERT</span>
+        <span class="tag-pill ai-pill">Indonesian NLP</span>
+        <span class="tag-pill ai-pill">Transformers</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
