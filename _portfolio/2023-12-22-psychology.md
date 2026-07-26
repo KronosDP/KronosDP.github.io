@@ -23,7 +23,7 @@ My journey also involves deep engagement with communities, peer counseling, and 
 
 I've established a personal blog and contributed to my community's blog, featuring tutorials for middle and high school subjects and insights on psychology. Dive into my thoughts and opinions:
 
-- [Personal Blog](https://kronosdp.github.io/){:target="\_blank"}
+- [Personal Blog](/){:target="\_blank"}
 - [Psychology Blog](https://blog.sciencekingdom.gg/posts/Treshold-of-mental-ilness/){:target="\_blank"}
 - [Community Blog](https://blog.sciencekingdom.gg/){:target="\_blank"}
 
