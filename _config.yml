@@ -143,14 +143,17 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Social media default site image
-og_description           :  # Social media default site image description
+og_image                 : "profile.png" # Social media default site image
+og_description           : "Darrel Danadyaksa Poli — Software Engineer, AI Engineer @ Meeting.ai, Ex-NVIDIA AI Research Intern, and CS Student @ University of Indonesia." # Social media default site image description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : "Darrel Danadyaksa Poli" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
+    - "https://github.com/KronosDP"
+    - "https://www.linkedin.com/in/darrel-danadyaksa-poli/"
+    - "https://instagram.com/kronos_darrel"
 
 
 # Analytics

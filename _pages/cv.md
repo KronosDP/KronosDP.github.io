@@ -2,6 +2,8 @@
 layout: single
 title: "Curriculum Vitae"
 permalink: /cv/
+excerpt: "Official Curriculum Vitae of Darrel Danadyaksa Poli. Ex-NVIDIA AI Research Intern, AI Engineer @ Meeting.ai, Teaching Assistant @ University of Indonesia."
+description: "Official Curriculum Vitae of Darrel Danadyaksa Poli. Ex-NVIDIA AI Research Intern, AI Engineer @ Meeting.ai, Teaching Assistant @ University of Indonesia."
 author_profile: true
 redirect_from:
   - /resume

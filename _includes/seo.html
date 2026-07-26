@@ -89,10 +89,26 @@
 {% if site.social %}
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
+      "@context" : "https://schema.org",
       "@type" : "{% if site.social.type %}{{ site.social.type }}{% else %}Person{% endif %}",
       "name" : "{{ site.social.name | default: site.name }}",
       "url" : {{ seo_url | jsonify }},
+      "image" : "{{ seo_url }}/images/profile.png",
+      "jobTitle" : "AI Engineer & AI Researcher",
+      "worksFor" : [
+        {
+          "@type": "Organization",
+          "name": "NVIDIA"
+        },
+        {
+          "@type": "Organization",
+          "name": "Meeting.ai"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Indonesia"
+      },
       "sameAs" : {{ site.social.links | jsonify }}
     }
   </script>
