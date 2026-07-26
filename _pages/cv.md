@@ -187,6 +187,19 @@ AI Research & Engineering Experience
   </ul>
 </div>
 
+<div class="cv-item">
+  <div class="cv-item-header">
+    <div>
+      <span class="cv-company">Gemastik 2023</span> &mdash; <span class="cv-role">BERT Clickbait Classification Researcher</span>
+    </div>
+    <div class="cv-location-date">Indonesia &bull; Jul 2023 &ndash; Oct 2023</div>
+  </div>
+  <ul>
+    <li><strong>Transformer Fine-Tuning:</strong> Fine-tuned a BERT-based transformer model on Indonesian news and textual datasets to detect, classify, and filter clickbait headlines.</li>
+    <li><strong>Indonesian NLP & Tokenization:</strong> Implemented specialized Indonesian text tokenization, custom text pre-processing, and hyperparameter optimization for high-accuracy text classification.</li>
+  </ul>
+</div>
+
 Volunteering & Leadership Experience
 ======
 
