@@ -149,7 +149,7 @@ author_profile: true
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.25 ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
   .showcase-card:hover {
@@ -220,6 +220,7 @@ author_profile: true
     gap: 0.5rem;
     flex-wrap: wrap;
     margin-top: auto;
+  }
 
   .card-btn {
     display: inline-flex;
@@ -233,16 +234,6 @@ author_profile: true
     transition: all 0.2s ease;
   }
 
-  .btn-github {
-    background: rgba(120, 120, 120, 0.2);
-    color: var(--global-text-color, #eee) !important;
-    border: 1px solid rgba(120, 120, 120, 0.3);
-  }
-
-  .btn-github:hover {
-    background: rgba(120, 120, 120, 0.4);
-  }
-
   .btn-demo {
     background: #4a90e2;
     color: #fff !important;
@@ -251,16 +242,6 @@ author_profile: true
   .btn-demo:hover {
     background: #357abd;
   }
-
-  .btn-nvidia {
-    background: #76B900;
-    color: #000 !important;
-    font-weight: 700;
-  }
-
-  .btn-nvidia:hover {
-    background: #609600;
-  }
 </style>
 
 <div class="portfolio-wrapper">
@@ -268,7 +249,7 @@ author_profile: true
   <!-- Intro Banner -->
   <div class="portfolio-intro">
     <h2><i class="fas fa-cubes"></i> Featured Projects & Research Showcase</h2>
-    <p>Explore my latest AI research, full-stack systems, speech models, and award-winning projects with live repositories, key metrics, and architecture details.</p>
+    <p>Explore my latest AI research, full-stack systems, speech models, and award-winning projects with key metrics and architecture details.</p>
   </div>
 
   <!-- Interactive Filter Controls -->
@@ -319,8 +300,7 @@ author_profile: true
     </div>
 
     <div class="card-actions">
-      <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-nvidia"><i class="fab fa-github"></i> Research GitHub</a>
-      <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-file-alt"></i> View in CV</a>
+      <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-file-alt"></i> View Details in CV</a>
     </div>
   </div>
 
@@ -346,8 +326,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
-        <a href="/portfolio/" class="card-btn btn-demo"><i class="fas fa-external-link-alt"></i> Details</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -371,7 +350,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -394,7 +373,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-chart-line"></i> Benchmark Report</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-chart-line"></i> Benchmark Details in CV</a>
       </div>
     </div>
 
@@ -417,7 +396,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> Notebook</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -440,7 +419,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -462,7 +441,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -484,7 +463,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -508,7 +487,7 @@ author_profile: true
         </div>
       </div>
       <div class="card-actions">
-        <a href="https://github.com/KronosDP" target="_blank" class="card-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
       </div>
     </div>
 
@@ -524,7 +503,6 @@ author_profile: true
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        // Active button toggle
         filterBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
 
