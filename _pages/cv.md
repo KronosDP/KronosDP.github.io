@@ -97,8 +97,14 @@ redirect_from:
     <strong>Darrel Danadyaksa Poli</strong> &bull; Software Engineer | AI Engineer | AI Researcher
     <br><small><i class="fas fa-map-marker-alt"></i> Depok, Indonesia &nbsp;|&nbsp; <i class="fas fa-envelope"></i> darrel.danadyaksa19@gmail.com</small>
   </div>
-  <div>
-    <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" target="_blank" class="cv-download-btn">
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <a href="/cv/resume-ai.pdf" target="_blank" class="cv-download-btn">
+      <i class="fas fa-file-pdf"></i> Download PDF (AI / Research CV)
+    </a>
+    <a href="/cv/resume.pdf" target="_blank" class="cv-download-btn" style="background: #27ae60;">
+      <i class="fas fa-file-pdf"></i> Download PDF (Software Eng CV)
+    </a>
+    <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" target="_blank" class="cv-download-btn" style="background: #0077b5;">
       <i class="fab fa-linkedin"></i> LinkedIn Profile
     </a>
   </div>
