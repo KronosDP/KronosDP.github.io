@@ -1,5 +1,6 @@
 ---
 title: The Controversy of Operant Conditioning
+excerpt: "Exploring the intersection of Operant Conditioning in psychology and Reinforcement Learning in AI, along with its ethical controversies."
 date: 2023-12-23 10:35:30 +0700
 categories: [Thought, Psychology]
 tags: [
@@ -27,6 +28,8 @@ related: true
 ## Motivation
 
 My interest in operant conditioning was sparked when I delved into the realm of Artificial Intelligence (AI). In contemporary AI, reinforcement learning techniques are frequently employed to train models in acquiring new skills. The realization that reinforcement learning is rooted in psychological principles ignited my desire to delve deeper into this field.
+
+<!--more-->
 
 ## Reinforcement Learning
 

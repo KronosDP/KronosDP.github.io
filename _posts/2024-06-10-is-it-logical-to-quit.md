@@ -1,5 +1,6 @@
 ---
 title: Is it Logical to Quit?
+excerpt: "Is it Logical to Quit? is a question that I sometimes ask myself when I get tired working on things. Here are my thoughts on when to persevere vs take a step back."
 date: 2024-06-10 00:43:30 +0700
 categories: [Thoughts, Reflection]
 layout: single
@@ -14,6 +15,8 @@ related: true
 ## Background Story
 
 I've been watching Wirtual, a trackmania youtuber grinding a tower map. This is hard to do. He spend hundreds of hour hunting this map. And he fall everytime. This is depressing for him. The question is should he quit? Well, he made his video already so check it out if (you want to)[https://youtu.be/CxCzLV1pyUs?si=G3mBa8NIgQyvKAYk].
+
+<!--more-->
 
 ## Is it Tho?
 

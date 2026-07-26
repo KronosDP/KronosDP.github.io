@@ -1,5 +1,6 @@
 ---
 title: Seeing Light in the Middle of dark
+excerpt: "A personal reflection on finding hope, faith, and gratitude during dark or challenging moments in life."
 date: 2024-03-17 01:41:30 +0700
 categories: [Feelings]
 layout: single
@@ -20,6 +21,8 @@ Heck, maybe you're feeling like your life is just a piece of nothingness.
 Or even worse, you're feeling that life's not worth living.
 
 The fact is at some point in our life, we'll think about that. Eventually, the thought that we're nothing compared to this universe and all it's glory will make us think that nothing matters. Or simply, you come to this thought because you're having a series of bad things happening on your life, and you'd like to simple think about stuffs rationally. Well, in this post I just wanna share my thoughts on this matter. Because I've been there.
+
+<!--more-->
 
 ## Monologue
 

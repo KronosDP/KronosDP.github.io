@@ -1,5 +1,6 @@
 ---
 title: Are You Ready to Have Her as Your Girlfriend?
+excerpt: "A personal protocol and self-reflection on managing feelings, priorities, and criteria before entering a relationship."
 date: 2024-05-31 17:37:30 +0700
 categories: [Thoughts, Reflection]
 layout: single
@@ -14,6 +15,8 @@ related: true
 ## Introduction
 
 I am a person who can easily get lost in his feelings, especially if they are strong feelings. Sometimes, I just donâ€™t realize it, but bam! All of a sudden, my romantic feelings for someone consume me.
+
+<!--more-->
 
 When I think about it, itâ€™s pretty goodâ€¦ that is, if I can control it. The problem is: I canâ€™t. I often have this obsessive and compulsive behavior toward someone. My obsessive behavior is rooted in the fact that I put her as my priority all the time. Itâ€™s terrible because I have other things to do. Also, I must remember that God should be the focus of my life.
 

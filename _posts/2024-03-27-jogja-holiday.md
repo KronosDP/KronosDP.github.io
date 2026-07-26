@@ -1,5 +1,6 @@
 ---
 title: 2024 Jogja Holiday!
+excerpt: "Cerita perjalanan berlibur bersama teman-teman ke Yogyakarta pada tahun 2024."
 date: 2024-03-27 23:57:30 +0700
 categories: [Thought, Holiday]
 tags: [
@@ -26,6 +27,8 @@ related: true
 ## Latar Belakang
 
 Waktu itu kami sedang makan siang di kantik RIK. Kami becanda tentang berlibur ke Yogyakarta. Kemudian ide itu yang awalnya adalah candaan semata mati dan tidak pernah dibahas lagi. Tetapi suatu saat ketika kami sedang duduk santai di kantin Vokasi sambil makan es krim di sore hari, kami membahas tentang bagaimana jika ide yang awalnya candaan itu menjadi kenyataan. Bagaimana jika kami benar-benar pergi berlibur bersama ke Yogyakarta.
+
+<!--more-->
 
 ## Storm Before the Calm
 

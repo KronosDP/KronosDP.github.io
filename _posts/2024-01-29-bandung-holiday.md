@@ -1,5 +1,6 @@
 ---
 title: 2024 Bandung Holiday!
+excerpt: "The story of my adventure and experiences when I went to Bandung in early 2024."
 date: 2024-01-29 12:25:30 +0700
 categories: [Thought, Holiday]
 tags: [
@@ -26,6 +27,8 @@ related: true
 ## Introduction
 
 This is the story of my adventure when I went to Bandung. Some things happened there, so I want to tell you about it.
+
+<!--more-->
 
 ## The Journey
 

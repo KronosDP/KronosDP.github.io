@@ -1,5 +1,6 @@
 ---
 title: Lirik Teguhkan Mereka - Heidi Kabul
+excerpt: "Lirik dan pembahasan lagu 'Teguhkan Mereka' karya Heidi Kabul."
 date: 2024-05-16 22:48:30 +0700
 categories: [Lirik]
 layout: single
@@ -14,6 +15,8 @@ related: true
 ## Latar Belakang
 
 Suatu pagi ketika diriku sedang pergi ke kampus, tiba-tiba lagu ini diputar di spotify-ku. Pada awalnya yang sedang kudengarkan adalah lagu-lagu buatan [Heidijanti Kabul](https://heidikabul.com/), seorang mahasiswa yang sedang mengambil studi Master di Ministry in Music and Worship di Singapore Bible College. Selain itu, beliau juga membuat banyak arangsemen untuk [YKB TV GKI](https://www.youtube.com/playlist?list=PLgPHGTZ70vro4px9ox9Wi1NQQW83CpVHm). Salah satu lagu yang saya sukai dari channel tersebut adalah [Tuhan Betapa Banyaknya](https://www.youtube.com/watch?v=LwCf5QP2WwY&list=PLgPHGTZ70vro4px9ox9Wi1NQQW83CpVHm&index=21).
+
+<!--more-->
 
 ## Teguhkan Mereka
 

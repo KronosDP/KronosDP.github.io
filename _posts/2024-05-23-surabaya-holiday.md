@@ -1,5 +1,6 @@
 ---
 title: Surabaya Holiday
+excerpt: "A quick recap of a family trip to Surabaya during the Lebaran holiday."
 date: 2024-05-23 00:05:30 +0700
 categories: [holiday]
 layout: single
@@ -14,6 +15,8 @@ related: true
 ## Introduction
 
 Well it's not actually a holiday. Let's just say it's some family business thingy. But yeah, it was on the _lebaran_ holiday so why not call it a holiday right?
+
+<!--more-->
 
 At first, I actually told my parents that I don't want to join their holiday on Surabaya because I have lots of homework to do. But actually, after doing one of the homework, it's actually not that much (you'll see that I'm very wrong). Long story short, I reject their proposal that I'll join then to Surabaya to the fact that I'm on a train ride to Surabaya with them.
 

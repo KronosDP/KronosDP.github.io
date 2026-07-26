@@ -1,5 +1,6 @@
 ---
 title: Reflecting on Ourselves
+excerpt: "Reflecting on the pace of life, the external locus of control, and taking time to contemplate present and future goals."
 date: 2023-10-12 00:30:30 +0700
 categories: [Thoughts, Reflection]
 tags: [
@@ -26,6 +27,8 @@ related: true
 
 
 It's midnight on 12th October 2023. I am listening to Jasmine Nadya's cover of Don't Look Back in Anger on YouTube. I don't know why, but this song made me go into a whole conscious state of mind.
+
+<!--more-->
 
 That got me curious. What makes me go into that full conscious state of mind? Is the song triggering something inside my head? Is midnight a time for me to go into this state? Or maybe I'm tired, and my mind is asking me to take a step back and contemplate what I have done with my life recently.
 
