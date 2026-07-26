@@ -23,7 +23,7 @@ repository               : "KronosDP/KronosDP.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile.webp"
   name             : "Darrel Danadyaksa Poli"
   pronouns         : # example: "she/her"  
   bio              : "AI Research Intern @ NVIDIA | AI Engineer @ Meeting.ai | Final-Year CS @ UI"

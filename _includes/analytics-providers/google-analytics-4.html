@@ -5,4 +5,39 @@
   gtag('js', new Date());
 
   gtag('config', '{{site.analytics.google.tracking_id}}');
+
+  /* Recruiter Action Event Tracking */
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track PDF Resume Downloads
+    document.querySelectorAll('a[href*=".pdf"]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var pdfPath = btn.getAttribute('href');
+        gtag('event', 'download_pdf', {
+          'event_category': 'recruiter_action',
+          'event_label': pdfPath,
+          'value': 1
+        });
+      });
+    });
+
+    // Track Contact Clicks
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        gtag('event', 'contact_click', {
+          'event_category': 'recruiter_action',
+          'event_label': 'email'
+        });
+      });
+    });
+
+    // Track LinkedIn Profile Clicks
+    document.querySelectorAll('a[href*="linkedin.com"]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        gtag('event', 'linkedin_click', {
+          'event_category': 'recruiter_action',
+          'event_label': 'linkedin'
+        });
+      });
+    });
+  });
 </script>
