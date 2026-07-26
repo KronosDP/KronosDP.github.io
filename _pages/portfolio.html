@@ -51,12 +51,13 @@ author_profile: true
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    user-select: none;
   }
 
   .filter-btn:hover, .filter-btn.active {
-    background: #4a90e2;
+    background: #4a90e2 !important;
     color: #fff !important;
-    border-color: #4a90e2;
+    border-color: #4a90e2 !important;
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
   }
 
@@ -252,13 +253,13 @@ author_profile: true
     <p>Explore my latest AI research, full-stack systems, speech models, and award-winning projects with key metrics and architecture details.</p>
   </div>
 
-  <!-- Interactive Filter Controls -->
+  <!-- Interactive Filter Controls with inline onclick triggers -->
   <div class="filter-controls">
-    <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> All Projects</button>
-    <button class="filter-btn" data-filter="ai"><i class="fas fa-brain"></i> AI & Deep Learning</button>
-    <button class="filter-btn" data-filter="backend"><i class="fas fa-server"></i> Full-Stack & Backend</button>
-    <button class="filter-btn" data-filter="research"><i class="fas fa-flask"></i> Research & NLP</button>
-    <button class="filter-btn" data-filter="mobile"><i class="fas fa-mobile-alt"></i> Mobile & Web</button>
+    <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)"><i class="fas fa-th"></i> All Projects</button>
+    <button class="filter-btn" data-filter="ai" onclick="filterProjects('ai', this)"><i class="fas fa-brain"></i> AI & Deep Learning</button>
+    <button class="filter-btn" data-filter="backend" onclick="filterProjects('backend', this)"><i class="fas fa-server"></i> Full-Stack & Backend</button>
+    <button class="filter-btn" data-filter="research" onclick="filterProjects('research', this)"><i class="fas fa-flask"></i> Research & NLP</button>
+    <button class="filter-btn" data-filter="mobile" onclick="filterProjects('mobile', this)"><i class="fas fa-mobile-alt"></i> Mobile & Web</button>
   </div>
 
   <!-- FEATURED NVIDIA RESEARCH BANNER -->
@@ -497,29 +498,51 @@ author_profile: true
 
 <!-- Vanilla JS Filter Script -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
+  function filterProjects(category, btnElement) {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var projectItems = document.querySelectorAll('.project-item');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    filterBtns.forEach(function(b) {
+      b.classList.remove('active');
+    });
 
-        const filter = this.getAttribute('data-filter');
+    if (btnElement) {
+      btnElement.classList.add('active');
+    } else {
+      filterBtns.forEach(function(b) {
+        if (b.getAttribute('data-filter') === category) {
+          b.classList.add('active');
+        }
+      });
+    }
 
-        projectItems.forEach(item => {
-          const categories = item.getAttribute('data-category');
-          if (filter === 'all' || (categories && categories.includes(filter))) {
-            item.style.display = 'flex';
-            if (item.classList.contains('featured-nvidia-card')) {
-              item.style.display = 'block';
-            }
-          } else {
-            item.style.display = 'none';
-          }
-        });
+    projectItems.forEach(function(item) {
+      var categories = item.getAttribute('data-category');
+      if (category === 'all' || (categories && categories.indexOf(category) !== -1)) {
+        if (item.classList.contains('featured-nvidia-card')) {
+          item.style.setProperty('display', 'block', 'important');
+        } else {
+          item.style.setProperty('display', 'flex', 'important');
+        }
+      } else {
+        item.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
+
+  function initFilterListeners() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var cat = this.getAttribute('data-filter');
+        filterProjects(cat, this);
       });
     });
-  });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initFilterListeners();
+  } else {
+    document.addEventListener('DOMContentLoaded', initFilterListeners);
+  }
 </script>
