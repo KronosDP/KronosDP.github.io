@@ -9,12 +9,12 @@ redirect_from:
 
 <style>
   .hero-banner {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--card-surface-bg, #001E67);
+    border: 1px solid var(--card-surface-border, rgba(153, 182, 255, 0.25));
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
 
   .hero-title {
@@ -27,7 +27,7 @@ redirect_from:
   .hero-subtitle {
     font-size: 1.05rem;
     font-weight: 600;
-    color: #60a5fa;
+    color: var(--accent-sky, #99B6FF);
     margin-bottom: 1.25rem;
     letter-spacing: 0.3px;
   }
@@ -44,17 +44,17 @@ redirect_from:
     font-weight: 600;
     padding: 0.35rem 0.8rem;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--global-text-color, #e2e8f0);
+    background: rgba(82, 116, 204, 0.15);
+    border: 1px solid rgba(153, 182, 255, 0.25);
+    color: var(--global-text-color, #CCDAFF);
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
   }
 
   .role-badge.nvidia-badge {
-    background: rgba(134, 239, 172, 0.1);
-    border-color: rgba(134, 239, 172, 0.35);
+    background: rgba(134, 239, 172, 0.12);
+    border-color: rgba(134, 239, 172, 0.4);
     color: #86efac;
   }
 
@@ -66,8 +66,8 @@ redirect_from:
   }
 
   .highlight-card {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 22, 51, 0.4);
+    border: 1px solid rgba(153, 182, 255, 0.15);
     border-radius: 8px;
     padding: 1.1rem;
   }
@@ -84,7 +84,7 @@ redirect_from:
   .highlight-desc {
     font-size: 0.85rem;
     line-height: 1.5;
-    opacity: 0.85;
+    opacity: 0.9;
     margin: 0;
   }
 
@@ -107,25 +107,24 @@ redirect_from:
   }
 
   .cta-primary {
-    background: #3b82f6;
+    background: #5274CC;
     color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 14px rgba(82, 116, 204, 0.4);
   }
 
   .cta-primary:hover {
-    background: #2563eb;
+    background: #3b5cb3;
     transform: translateY(-1px);
   }
 
   .cta-secondary {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--global-text-color, #e2e8f0) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(153, 182, 255, 0.1);
+    color: var(--global-text-color, #CCDAFF) !important;
+    border: 1px solid rgba(153, 182, 255, 0.25);
   }
 
   .cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(153, 182, 255, 0.2);
   }
 
   .section-heading {
@@ -133,7 +132,7 @@ redirect_from:
     font-weight: 800;
     margin: 2rem 0 1rem 0;
     padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(153, 182, 255, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -157,12 +156,12 @@ redirect_from:
       <div class="highlight-title" style="color: #86efac;"><i class="fab fa-nvidia"></i> NVIDIA AI Research</div>
       <p class="highlight-desc">Benchmarked non-Transformer sequence models (RWKV) against Transformers for formal regular language capacity.</p>
     </div>
-    <div class="highlight-card" style="border-top: 2px solid #60a5fa;">
-      <div class="highlight-title" style="color: #60a5fa;"><i class="fas fa-microphone-alt"></i> Meeting.ai AI Engineer</div>
+    <div class="highlight-card" style="border-top: 2px solid #99B6FF;">
+      <div class="highlight-title" style="color: #99B6FF;"><i class="fas fa-microphone-alt"></i> Meeting.ai AI Engineer</div>
       <p class="highlight-desc">Stress-tested ASR under 10+ concurrent live streams & compressed speaker verification via knowledge distillation.</p>
     </div>
-    <div class="highlight-card" style="border-top: 2px solid #c084fc;">
-      <div class="highlight-title" style="color: #c084fc;"><i class="fas fa-graduation-cap"></i> TA @ Univ. of Indonesia</div>
+    <div class="highlight-card" style="border-top: 2px solid #CCDAFF;">
+      <div class="highlight-title" style="color: #CCDAFF;"><i class="fas fa-graduation-cap"></i> TA @ Univ. of Indonesia</div>
       <p class="highlight-desc">Teaching Assistant for Software Engineering Project, Operating Systems, and Calculus I & II.</p>
     </div>
   </div>

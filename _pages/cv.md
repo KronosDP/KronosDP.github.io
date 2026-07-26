@@ -12,17 +12,17 @@ redirect_from:
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--card-surface-bg, #001E67);
+    border: 1px solid var(--card-surface-border, rgba(153, 182, 255, 0.25));
     border-radius: 10px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
   .cv-download-btn {
-    background: #3b82f6;
+    background: #5274CC;
     color: #ffffff !important;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -33,18 +33,19 @@ redirect_from:
     align-items: center;
     gap: 0.4rem;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(82, 116, 204, 0.3);
   }
   .cv-download-btn:hover {
-    background: #2563eb;
+    background: #3b5cb3;
   }
   .cv-download-btn.secondary-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--global-text-color, #e2e8f0) !important;
+    background: rgba(153, 182, 255, 0.1);
+    border: 1px solid rgba(153, 182, 255, 0.25);
+    color: var(--global-text-color, #CCDAFF) !important;
+    box-shadow: none;
   }
   .cv-download-btn.secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(153, 182, 255, 0.2);
   }
   .cv-section-title {
     font-size: 1.35rem;
@@ -52,7 +53,7 @@ redirect_from:
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(153, 182, 255, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -73,7 +74,7 @@ redirect_from:
   }
   .cv-role {
     font-style: italic;
-    color: var(--global-text-color, #555);
+    color: var(--accent-sky, #99B6FF);
     font-weight: 600;
   }
   .cv-location-date {
@@ -82,7 +83,7 @@ redirect_from:
     opacity: 0.85;
   }
   .cv-nvidia-highlight {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--card-surface-bg, #001E67);
     border: 1px solid rgba(134, 239, 172, 0.35);
     border-left: 4px solid #86efac;
     padding: 1rem 1.25rem;
@@ -95,12 +96,15 @@ redirect_from:
     font-weight: 600;
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(153, 182, 255, 0.1);
+    border: 1px solid rgba(153, 182, 255, 0.2);
+    color: #CCDAFF;
     margin-right: 0.3rem;
     margin-top: 0.3rem;
   }
   .cv-tag.nvidia-tag {
-    background: rgba(134, 239, 172, 0.15);
+    background: rgba(134, 239, 172, 0.12);
+    border-color: rgba(134, 239, 172, 0.35);
     color: #86efac;
   }
 </style>

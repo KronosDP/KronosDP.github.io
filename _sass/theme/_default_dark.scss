@@ -3,30 +3,30 @@
     ========================================================================== */
 
 /* Color codes used for the theme */
-$primary-color              : #0ea1c5;
-$gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%);
-$darker-gray                : mix(#000, $gray, 60%);
-$light-gray                 : mix(#fff, $gray, 50%);
+$primary-color              : #5274CC;
+$gray                       : #5274CC;
+$dark-gray                  : #0A1633;
+$darker-gray                : #001E67;
+$light-gray                 : #99B6FF;
 
-$background                 : #474747;
-$background-light           : mix(#fff, $background, 80%);
-$background-lighter         : mix(#fff, $background, 90%);
+$background                 : #0A1633;
+$background-light           : #001E67;
+$background-lighter         : #001E67;
 $text                       : #ffffff;
-$link                       : #0ea1c5;
-$link-dark                  : mix(#000, $link, 25%);
-$link-light                 : mix(#fff, $link, 25%);
+$link                       : #99B6FF;
+$link-dark                  : #CCDAFF;
+$link-light                 : #99B6FF;
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
-$notice-color               : #7a8288;
+$info-color                 : #5274CC;
+$notice-color               : #5274CC;
 $success-color              : #62c462;
 $warning-color              : #f89406;
 
 /* Other basic settings for the template */
-$border-radius              : 4px;
-$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
+$border-radius              : 6px;
+$box-shadow                 : 0 4px 20px rgba(0, 0, 0, 0.25);
 $global-transition          : all 0.2s ease-in-out;
 $masthead-height            : 70px;
 $navicon-width              : 28px;
@@ -34,23 +34,29 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
-/* Dark theme for the site */
+/* Dark theme for the site using custom blue palette */
 html[data-theme="dark"] {
-    --global-base-color                 : #{$primary-color};
-    --global-bg-color                   : #{$background};
-    --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
-    --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : #{$light-gray};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
-    --global-link-color-visited         : #{$link-light};
-    --global-masthead-link-color        : #{$text};
-    --global-masthead-link-color-hover  : #{$primary-color};
-    --global-text-color                 : #{$text};
-    --global-text-color-light           : #f3f3f3;
-    --global-thead-color                : #{$background-lighter};
+    --global-base-color                 : #5274CC;
+    --global-bg-color                   : #0A1633;
+    --global-footer-bg-color            : #001E67;
+    --global-border-color               : rgba(82, 116, 204, 0.3);
+    --global-dark-border-color          : #001E67;
+    --global-code-background-color      : #001E67;
+    --global-code-text-color            : #CCDAFF;
+    --global-fig-caption-color          : #99B6FF;
+    --global-link-color                 : #99B6FF;
+    --global-link-color-hover           : #CCDAFF;
+    --global-link-color-visited         : #99B6FF;
+    --global-masthead-link-color        : #ffffff;
+    --global-masthead-link-color-hover  : #99B6FF;
+    --global-text-color                 : #ffffff;
+    --global-text-color-light           : #CCDAFF;
+    --global-thead-color                : #001E67;
+
+    --card-surface-bg                   : #001E67;
+    --card-surface-border               : rgba(153, 182, 255, 0.2);
+    --accent-cobalt                     : #5274CC;
+    --accent-sky                        : #99B6FF;
+    --accent-pastel                     : #CCDAFF;
 }
 
