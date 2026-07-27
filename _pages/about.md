@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Welcome"
+title: "Software Engineer & AI Researcher"
 author_profile: true
 redirect_from: 
   - /about/
@@ -157,7 +157,7 @@ redirect_from:
       <p class="highlight-desc">Benchmarked RWKV-v7 vs Transformers for formal regular languages (L<sub>1</sub>&ndash;L<sub>4</sub>) using custom WKV CUDA C++ kernels and 1&ndash;3 edit near-miss hard negative sampling.</p>
     </div>
     <div class="highlight-card" style="border-top: 2px solid #99B6FF;">
-      <div class="highlight-title" style="color: #99B6FF;"><i class="fas fa-microphone-alt"></i> Meeting.ai AI Engineer</div>
+      <div class="highlight-title" style="color: #99B6FF;"><i class="fas fa-microphone-alt"></i> Ex-Meeting.ai AI Engineer</div>
       <p class="highlight-desc">Stress-tested ASR under 10+ concurrent live streams & compressed speaker verification via knowledge distillation.</p>
     </div>
     <div class="highlight-card" style="border-top: 2px solid #CCDAFF;">
