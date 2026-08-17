@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSGE601012 Kalkulus 1 SP 2026 - Latihan PR</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- TikZJax Styling & Script -->
+    <link rel="stylesheet" href="https://tikzjax.com/v1/tikzjax.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEnvironments: true,
+                processRefs: true,
+                macros: {
+                    R: '{\\mathbb{R}}',
+                    N: '{\\mathbb{N}}',
+                    Z: '{\\mathbb{Z}}',
+                    Q: '{\\mathbb{Q}}',
+                    dx: '{\\,\\mathrm{d}x}',
+                    dy: '{\\,\\mathrm{d}y}',
+                    dt: '{\\,\\mathrm{d}t}',
+                    du: '{\\,\\mathrm{d}u}',
+                    df: ['{\\frac{\\mathrm{d}#1}{\\mathrm{d}#2}}', 2],
+                    pdun: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+                    limit: ['{\\lim\\limits_{#1 \\to #2}}', 2]
+                }
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="tex2jax_ignore dark-mode">
+    <div class="app-container">
+        <!-- Mobile Header with Hamburger -->
+        <header class="mobile-header">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="mobile-title-container">
+                <span class="course-code-badge">CSGE601012</span>
+                <span class="mobile-app-title">Kalkulus 1</span>
+            </div>
+            <button id="theme-toggle-mobile" class="theme-toggle-btn" aria-label="Toggle theme">🌓</button>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <a href="/teaching/" class="back-to-teaching-link" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #a1a1aa; text-decoration: none; margin-bottom: 12px; font-weight: 500; transition: color 0.2s ease;">
+                    <span style="font-size: 1rem;">←</span> Kembali ke Teaching Hub
+                </a>
+                <div class="brand">
+                    <span class="course-code">CSGE601012</span>
+                    <h1 class="brand-title">Kalkulus 1</h1>
+                    <p class="brand-subtitle">SP 2026 Homework Portal</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Daftar Pekerjaan Rumah</div>
+                <ul id="pr-list" class="pr-list">
+                    <!-- Dynamic PR list items go here -->
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle-desktop" class="sidebar-action-btn theme-toggle-btn">
+                    <span class="btn-icon">🌓</span>
+                    <span class="btn-text">Ganti Tema</span>
+                </button>
+                <div class="footer-info">
+                    <p>Dibuat untuk persiapan Kuis, UTS, dan UAS Kalkulus 1 SP 2026</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Backdrop Overlay -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Panel -->
+            <header class="content-header">
+                <div class="header-text">
+                    <h2 id="active-pr-title" class="active-pr-title">Memuat data...</h2>
+                    <p id="active-pr-subtitle" class="active-pr-subtitle">Silakan pilih PR di bilah samping</p>
+                </div>
+                <div class="header-actions">
+                    <a id="download-problem-pdf" href="#" class="pdf-btn" target="_blank">
+                        <span class="pdf-icon">📄</span> Soal PDF
+                    </a>
+                    <a id="download-solution-pdf" href="#" class="pdf-btn sol-pdf" target="_blank">
+                        <span class="pdf-icon">📑</span> Solusi PDF
+                    </a>
+                </div>
+            </header>
+
+            <!-- Control Bar (Modes, Search, Filters) -->
+            <section class="control-bar">
+                <div class="mode-selector-container">
+                    <span class="control-label">Mode Latihan:</span>
+                    <div class="mode-switch">
+                        <button id="mode-inline" class="mode-btn active" data-mode="inline">
+                            <span class="mode-icon">👁️‍🗨️</span>
+                            <span class="mode-text">Satu Halaman (Reveal)</span>
+                        </button>
+                        <button id="mode-separate" class="mode-btn" data-mode="separate">
+                            <span class="mode-icon">📚</span>
+                            <span class="mode-text">Halaman Terpisah</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Cari topik atau soal..." aria-label="Search problems">
+                    <button id="clear-search" class="clear-search-btn" style="display: none;">&times;</button>
+                </div>
+            </section>
+
+            <!-- Separate Mode Sub-navigation (only visible when separate mode is active) -->
+            <div id="separate-tabs" class="separate-tabs" style="display: none;">
+                <button id="tab-problems" class="tab-btn active" data-tab="problems">Daftar Soal</button>
+                <button id="tab-solutions" class="tab-btn" data-tab="solutions">Daftar Solusi</button>
+            </div>
+
+            <!-- Problems and Solutions Container -->
+            <section id="content-display" class="content-display tex2jax_process">
+                <!-- Dynamically populated topics, problems, and solutions -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Memuat dan merender soal matematika...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
