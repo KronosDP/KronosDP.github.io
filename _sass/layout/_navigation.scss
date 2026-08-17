@@ -13,7 +13,7 @@
   margin-bottom: 0;
   padding-left: 2em;
   padding-right: 2em;
-  font-family: $sans-serif;
+  font-family: var(--font-body);
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
   -webkit-animation-delay: 0.30s;
@@ -48,6 +48,7 @@
 
   .current {
     font-weight: bold;
+    color: var(--text);
   }
 }
 
@@ -66,7 +67,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
-    font-family: $sans-serif;
+    font-family: var(--font-body);
   }
 
   li {
@@ -77,27 +78,30 @@
     a {
       margin-bottom: 0.25em;
       padding: 0.5em 1em;
-      font-family: $sans-serif;
-      font-size: 14px;
-      font-weight: bold;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 500;
       line-height: 1.5;
       text-align: center;
       text-decoration: none;
-      color: var(--global-text-color-light);
-      border: 1px solid var(--global-border-color);
+      color: var(--text-muted);
+      border: 1px solid var(--line);
       border-radius: 0;
+      transition: color 0.2s ease, border-color 0.2s ease;
 
       &:hover {
-        color: var(--global-link-color-hover);
+        color: var(--accent);
+        border-color: var(--accent-dim);
       }
 
       &.current {
-        color: #fff;
-        background: var(--global-base-color);
+        color: var(--ink);
+        background: var(--accent);
+        border-color: var(--accent);
       }
 
       &.disabled {
-        color: var(--global-text-color-light);
+        color: var(--text-muted);
         pointer-events: none;
         cursor: not-allowed;
       }
@@ -107,15 +111,17 @@
       margin-left: 0;
 
       a {
-        border-top-left-radius: $border-radius;
-        border-bottom-left-radius: $border-radius;
+        border-top-left-radius: var(--radius-pill);
+        border-bottom-left-radius: var(--radius-pill);
+        padding-left: 1.15em;
       }
     }
 
     &:last-child {
       a {
-        border-top-right-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
+        border-top-right-radius: var(--radius-pill);
+        border-bottom-right-radius: var(--radius-pill);
+        padding-right: 1.15em;
       }
     }
   }
@@ -126,17 +132,18 @@
     padding: 1em 2em;
     float: left;
     width: 50%;
-    font-family: $sans-serif;
-    font-size: $type-size-5;
-    font-weight: bold;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
     text-align: center;
     text-decoration: none;
-    color: var(--global-text-color-light);
-    border: 1px solid var(--global-border-color);
-    border-radius: $border-radius;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
 
     &:hover {
-      color: var(--global-link-color-hover);
+      color: var(--accent);
+      border-color: var(--accent-dim);
     }
 
     &:first-child {
@@ -151,7 +158,7 @@
     }
 
     &.disabled {
-      color: var(--global-text-color-light);
+      color: var(--text-muted);
       pointer-events: none;
       cursor: not-allowed;
     }
@@ -164,42 +171,52 @@
 .page__comments + .pagination {
   margin-top: 2em;
   padding-top: 2em;
-  border-top: 1px solid var(--global-border-color);
+  border-top: 1px solid var(--line);
 }
 
 
 /*
-   Priority plus navigation
+   Priority plus navigation (masthead)
    ========================================================================== */
 
 .greedy-nav {
   position: relative;
-  min-width: 250px;
-  background: var(--global-bg-color);
+  min-width: 0;
+  background: transparent;
 
   a {
     display: block;
-    margin: 0 1rem;
-    padding: 0.5rem 0;
+    margin: 0 2px;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 500;
     color: var(--global-masthead-link-color);
     text-decoration: none;
+    -webkit-transition: color 0.2s ease, background-color 0.2s ease;
+            transition: color 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-      color: var(--global-masthead-link-color-hover);
+      color: var(--accent);
+      background-color: var(--surface-2);
     }
   }
 
   button {
     position: absolute;
-    height: 2.5rem;
+    top: 50%;
     right: 0;
+    height: 2.5rem;
     padding: 0 0.5rem;
     border: 0;
     outline: none;
-    background-color: var(--global-bg-color);
-    color: var(--global-text-color);
+    background-color: transparent;
+    color: var(--text);
     cursor: pointer;
     z-index: 100;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
   }
 
   .visible-links {
@@ -208,77 +225,47 @@
     li {
       display: table-cell;
       vertical-align: middle;
-
-      &:first-child {
-        font-weight: bold;
-        text-wrap: wrap;
-
-        a {
-          margin-left: 0;
-        }
-      }
-
-      &:last-child {
-        a {
-          margin-right: 0;
-        }
-      }
     }
+  }
 
-    #theme-toggle {
-      a {
-        width: 25px;
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-      }
+  /* the wordmark is flush with the container edge, not inset like a pill */
+  .masthead__menu-item--lg > a {
+    margin-left: 0;
+    padding-left: 0;
+
+    &:hover {
+      background-color: transparent;
     }
+  }
 
-    a {
-      position: relative;
-
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 4px;
-        background: var(--global-border-color);
-        width: 100%;
-        -webkit-transition: $global-transition;
-        transition: $global-transition;
-        -webkit-transform: scaleX(0);
-            -ms-transform: scaleX(0);
-                transform: scaleX(0); /* hide*/
-      }
-
-      &:hover:before {
-        -webkit-transform: scaleX(1);
-            -ms-transform: scaleX(1);
-                transform: scaleX(1); /* reveal*/
-      }
-    }
+  /* the selected page reads in the accent, quietly -- no sliding underline */
+  .masthead__menu-item.selected > a:not(.masthead__brand) {
+    color: var(--accent);
+    background-color: transparent;
+    pointer-events: none;
+    cursor: default;
   }
 
   .hidden-links {
     position: absolute;
     top: 100%;
     right: 0;
-    margin-top: 15px;
-    padding: 5px;
-    border: 1px solid var(--global-border-color);
-    border-radius: $border-radius;
-    background: var(--global-bg-color);
-    box-shadow: 0 0 10px rgba(#000, 0.25);
+    margin-top: 14px;
+    padding: var(--space-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: $box-shadow;
 
     a {
       margin: 0;
-      padding: 10px 20px;
-      font-size: $type-size-5;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
 
       &:hover {
-        color: var(--global-masthead-link-color-hover);
-        background: var(--global-border-color);
+        color: var(--accent);
+        background: var(--surface-2);
       }
     }
 
@@ -286,11 +273,11 @@
       content: "";
       position: absolute;
       top: -11px;
-      right: 10px;
+      right: 12px;
       width: 0;
       border-style: solid;
       border-width: 0 10px 10px;
-      border-color: var(--global-border-color) transparent;
+      border-color: var(--line) transparent;
       display: block;
       z-index: 0;
     }
@@ -299,18 +286,17 @@
       content: "";
       position: absolute;
       top: -10px;
-      right: 10px;
+      right: 12px;
       width: 0;
       border-style: solid;
       border-width: 0 10px 10px;
-      border-color: var(--global-bg-color) transparent;
+      border-color: var(--surface) transparent;
       display: block;
       z-index: 1;
     }
 
     li {
       display: block;
-      border-bottom: 1px solid var(--global-border-color);
 
       &:last-child {
         border-bottom: none;
@@ -321,58 +307,46 @@
 
 
 /*
-   Navigation list
+   Navigation list -- structural reset only.
+   The pill treatment lives in _sass/layout/_sidebar.scss, which is the only
+   consumer of this markup.
    ========================================================================== */
 
 .nav__list {
-  font-size: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
 
   ul {
-    margin-bottom: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   a {
-    display: block;
-    padding: 0.125em 0;
     color: inherit;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .active {
-    margin-left: -0.5em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    color: #fff;
-    font-weight: bold;
-    background: var(--global-base-color);
-    border-radius: $border-radius;
-
-    &:hover {
-      color: #fff;
-    }
+    text-decoration: none;
   }
 }
 
 .nav__title {
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-family: $sans-serif-narrow;
-  font-size: $type-size-5;
-  font-weight: bold;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.nav__sub-title {
+.nav__group {
   display: block;
-  margin: 0.5rem 0;
-  padding: 0.5rem 0;
-  font-family: $sans-serif-narrow;
-  font-size: $type-size-6;
-  font-weight: bold;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--global-border-color);
+  color: var(--text-muted);
 }
 
 
@@ -381,21 +355,17 @@
    ========================================================================== */
 
 .toc {
-  font-family: $sans-serif-narrow;
-  color: var(--global-text-color-light);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background-color: #fff;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
+  font-family: var(--font-display);
+  color: var(--text-muted);
+  background-color: var(--global-toc-bg-color);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
   box-shadow: $box-shadow;
 
   .nav__title {
-    color: #fff;
-    font-size: $type-size-6;
-    background: var(--global-base-color);
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    color: var(--text);
+    font-size: 0.6875rem;
+    background: transparent;
   }
 }
 
@@ -408,17 +378,17 @@
 
   a {
     display: block;
-    padding: 0.5rem 1rem;
-    color: var(--global-code-text-color);
+    padding: 0.4rem 1rem;
+    color: var(--text-muted);
     font-size: $type-size-7;
-    font-weight: bold;
+    font-weight: 500;
     line-height: 1.5;
-    border-bottom: 1px solid var(--global-border-color);
+    border-bottom: 1px solid var(--line);
     text-decoration-line: none !important;
 
     &:hover {
-      color: #000;
-      background: var(--global-link-color-hover);
+      color: var(--accent);
+      background: var(--surface-2);
     }
   }
 

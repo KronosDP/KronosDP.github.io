@@ -6,6 +6,8 @@
    TYPOGRAPHY
    ========================================================================== */
 
+/* JetBrains Mono (display) + IBM Plex Sans (body) are loaded in
+   _includes/head.html. Roboto stays as a local fallback only. */
 @font-face {
   font-family: 'Roboto';
   src: url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
@@ -23,8 +25,8 @@ $indent-var                 : 1.3em;
 
 /* System typefaces */
 $serif                      : Georgia, Times, serif;
-$sans-serif                 : -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace                  : Monaco, Consolas, "Lucida Console", monospace;
+$sans-serif                 : "IBM Plex Sans", -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$monospace                  : "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Lucida Console", monospace;
 
 /* Sans serif typefaces */
 $sans-serif-narrow          : $sans-serif;
@@ -48,8 +50,8 @@ $type-size-7                : 0.6875em; // ~11px
 $type-size-8                : 0.625em;  // ~10px
 
 $global-font-family         : $sans-serif;
-$header-font-family         : $sans-serif;
-$caption-font-family        : $serif;
+$header-font-family         : $monospace;  // mono display face
+$caption-font-family        : $monospace;
 
 /* ==========================================================================
    Breakpoints

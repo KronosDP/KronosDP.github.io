@@ -1,37 +1,66 @@
 /* ==========================================================================
    MASTHEAD
+
+   Wordmark left, greedy nav in the middle, a filled pill CTA pinned right.
+   The CTA is a sibling of #site-nav so the greedy navigation can never move
+   it into the overflow menu.
    ========================================================================== */
 
 .masthead {
   position: fixed;
-  background: var(--global-bg-color);
-  height: fit-content;
   top: 0;
   width: 100%;
+  z-index: 20;
+  /* Translucent so the page gradient reads through the bar instead of being
+     cut off by a solid band across the top. The opaque colour is the fallback
+     for browsers without backdrop-filter. */
+  background-color: var(--ink);
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    background-color: rgba(11, 17, 32, 0.72);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+            backdrop-filter: blur(14px) saturate(140%);
+  }
 
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s;
-  z-index: 20;
 
+  /* hairline under the bar */
   &::after {
     content: "";
     position: absolute;
+    left: 0;
     bottom: 0;
     height: 1px;
-    background: var(--global-border-color);
     width: 100%;
+    background-color: var(--line);
   }
 
   &__inner-wrap {
     @include container;
-    @include clearfix;
-    padding: 0.5em 1em;
-    font-family: $sans-serif-narrow;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: $masthead-height;
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-body);
+
+    /* the horizontal padding tracks #main so the bar sits on the page grid */
+    @include breakpoint($large) {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
 
     @include breakpoint($x-large) {
       max-width: $x-large;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+
+    /* the inherited clearfix pseudo-element must not become a flex item */
+    &::after {
+      display: none;
     }
 
     nav {
@@ -45,6 +74,8 @@
 }
 
 .masthead__menu {
+  flex: 1 1 auto;
+  min-width: 0;
 
   ul {
     margin: 0;
@@ -55,27 +86,64 @@
 }
 
 .masthead__menu-item {
-  background-color: var(--global-bg-color);
   display: block;
   list-style-type: none;
   white-space: nowrap;
 
+  /* the wordmark cell: never truncated, allowed to wrap on very small screens */
   &--lg {
-    padding-right: 2em;
-    font-weight: 700;
+    padding-right: var(--space-3);
+    white-space: normal;
   }
 }
 
-.masthead__menu-item.selected a {
-  color: var(--global-text-color);
+/* --------------------------------------------------------------------------
+   Wordmark -- display face, tight tracking, accent full stop
+   -------------------------------------------------------------------------- */
+.masthead a.masthead__brand {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
   font-weight: 700;
-  border-bottom: 2px solid var(--global-text-color);
-  pointer-events: none; /* Move this here */
-  cursor: default; /* Move this here too */
+  letter-spacing: -0.02em;
+  color: var(--text);
+
+  @include breakpoint($medium) {
+    font-size: 0.9375rem;
+  }
+
+  &:hover {
+    color: var(--text);
+    background-color: transparent;
+  }
 }
 
-.masthead__menu-item.selected a:hover {
-  color: var(--global-text-color);
-  border-bottom: 2px solid var(--global-text-color);
-  /* No need to repeat pointer-events and cursor here */
+.masthead__brand-dot {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Trailing call to action
+   -------------------------------------------------------------------------- */
+.masthead__cta {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+
+  @include breakpoint($small) {
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+/* Icon-only below 600px so the bar can never force a horizontal scrollbar */
+.masthead__cta-label {
+  display: none;
+
+  @include breakpoint($small) {
+    display: inline;
+  }
 }

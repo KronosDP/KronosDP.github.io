@@ -15,6 +15,18 @@ layout: default
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
+    {% unless page.header.overlay_color or page.header.overlay_image %}
+      {% if page.eyebrow or page.title %}
+        <header class="archive__header">
+          {% if page.eyebrow %}<span class="eyebrow">{{ page.eyebrow }}</span>{% endif %}
+          {% if page.title and page.hide_title != true %}
+            <h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>
+          {% endif %}
+          {% if page.excerpt %}<p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>{% endif %}
+        </header>
+      {% endif %}
+    {% endunless %}
+
     <section class="page__content" itemprop="text">
       {{ content }}
     </section>

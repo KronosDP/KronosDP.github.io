@@ -7,10 +7,25 @@ author_profile: false
   {% include sidebar.html %}
 
   <div class="archive">
-    <h1 class="page__title">{{ page.title }}</h1>
+    <header class="archive__header">
+      <span class="eyebrow">{{ page.taxonomy | default: "archive" }}</span>
+      <h1 class="page__title">{{ page.title }}</h1>
+      <p class="archive__intro">
+        {{ page.posts | size }} {% if page.posts.size == 1 %}entry{% else %}entries{% endif %} filed under this term.
+      </p>
+    </header>
+
     {% include base_path %}
-    {% for post in page.posts %}
-      {% include archive-single.html %}
-    {% endfor %}
+
+    {% if page.posts.size == 0 %}
+      <div class="empty-state">
+        <p class="empty-state__title">Nothing here yet</p>
+        <p>No entries carry this term right now. Try the <a href="{{ base_path }}/year-archive/">full post archive</a> instead.</p>
+      </div>
+    {% else %}
+      {% for post in page.posts %}
+        {% include archive-single.html %}
+      {% endfor %}
+    {% endif %}
   </div>
 </div>

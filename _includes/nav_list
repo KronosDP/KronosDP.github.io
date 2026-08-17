@@ -1,29 +1,36 @@
 {% include base_path %}
 {% assign navigation = site.data.navigation[include.nav] %}
 
-<nav class="nav__list">
-  {% if page.sidebar.title %}<header><h4 class="nav__title" style="padding: 0;">{{ page.sidebar.title }}</h4></header>{% endif %}
-  <ul>
+<nav class="nav__list" aria-label="Section">
+  {% if page.sidebar.title %}<header><h4 class="nav__title">{{ page.sidebar.title }}</h4></header>{% endif %}
+  <ul class="nav__items">
     {% for nav in navigation %}
-      <li>
+      <li class="nav__item{% if nav.children != null %} nav__item--parent{% endif %}">
         {% if nav.url %}
           {% comment %}internal/external URL check{% endcomment %}
-          {% if nav.url contains "://" %}
+          {% if nav.url contains "://" or nav.url contains "mailto:" or nav.url contains "tel:" %}
             {% assign domain = "" %}
           {% else %}
             {% assign domain = base_path %}
           {% endif %}
 
-          <a href="{{ domain }}{{ nav.url }}"><span class="nav__sub-title">{{ nav.title }}</span></a>
+          {% comment %}set "active" class on the current page, top level included{% endcomment %}
+          {% if nav.url == page.url %}
+            {% assign active = "active" %}
+          {% else %}
+            {% assign active = "" %}
+          {% endif %}
+
+          <a href="{{ domain }}{{ nav.url }}" class="nav__link {{ active }}"{% if active == "active" %} aria-current="page"{% endif %}><span class="nav__label">{{ nav.title }}</span></a>
         {% else %}
-          <span class="nav__sub-title">{{ nav.title }}</span>
+          <span class="nav__group">{{ nav.title }}</span>
         {% endif %}
 
         {% if nav.children != null %}
-        <ul>
+        <ul class="nav__children">
           {% for child in nav.children %}
             {% comment %}internal/external URL check{% endcomment %}
-            {% if child.url contains "://" %}
+            {% if child.url contains "://" or child.url contains "mailto:" or child.url contains "tel:" %}
               {% assign domain = "" %}
             {% else %}
               {% assign domain = base_path %}
@@ -36,7 +43,7 @@
               {% assign active = "" %}
             {% endif %}
 
-            <li><a href="{{ domain }}{{ child.url }}" class="{{ active }}">{{ child.title }}</a></li>
+            <li class="nav__child"><a href="{{ domain }}{{ child.url }}" class="nav__link nav__link--child {{ active }}"{% if active == "active" %} aria-current="page"{% endif %}><span class="nav__label">{{ child.title }}</span></a></li>
           {% endfor %}
         </ul>
         {% endif %}

@@ -5,7 +5,14 @@ modified: 2016-06-06
 ---
 
 {% include base_path %}
+
+<p class="eyebrow">legal</p>
+
 {% include toc %}
+
+**Short version.** I never share your email address or any other personal information
+with anyone without your direct consent.
+{: .notice}
 
 ## Privacy Policy
 
@@ -37,3 +44,8 @@ If you wish to disable cookies, you may do so through your web browser options. 
 #### Google Analytics
 
 Google Analytics is a web analytics tool I use to help understand how visitors engage with this website. It reports website trends using cookies and web beacons without identifying individual visitors. You can read [Google Analytics Privacy Policy](https://www.google.com/analytics/learn/privacy.html).
+
+## Questions
+
+If anything here is unclear, or you would like information about you removed, email
+me at [{{ site.author.email }}](mailto:{{ site.author.email }}).

@@ -1,5 +1,10 @@
 /* ==========================================================================
    ARCHIVE
+
+   Every listing on the site -- posts, portfolio, teaching, talks, taxonomy
+   pages, the sitemap -- renders through here. List rows are hairline cards
+   (.surface-card--hover, from layout/_components.scss); dates and read time
+   are mono; categories and tags are .tag-chip.
    ========================================================================== */
 
 .archive {
@@ -9,78 +14,360 @@
     @include span(12 of 12);
   }
 
+  /* Same span as `.page` in layout/_page.scss so that an archive page
+     (/teaching/) and a single page (/portfolio/) start at the same x. */
   @include breakpoint($large) {
-    @include span(10 of 12 last);
+    @include span(9.5 of 12 last);
     @include prefix(0.5 of 12);
   }
 
+  /* prose links inside an archive page keep the underline ... */
   a {
     text-decoration: underline;
+    text-decoration-color: var(--accent-dim);
+    text-underline-offset: 0.18em;
 
     &:hover {
-      text-decoration: underline;
-
-      img {
-        box-shadow: 0 0 10px rgba(#000, 0.25);
-      }
+      text-decoration-color: currentColor;
     }
+  }
+
+  /* ... but component links never do */
+  .archive__item-title a,
+  .archive__item-links a,
+  a.tag-chip,
+  a.pill-btn,
+  a.btn,
+  a.page__taxonomy-item {
+    text-decoration: none;
   }
 }
 
+/*
+   Archive header
+   ========================================================================== */
+
+.archive__header {
+  margin-bottom: var(--space-6);
+
+  .page__title {
+    margin-bottom: var(--space-2);
+  }
+}
+
+.archive__intro {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* Prose written straight into an archive page (sitemap, talkmap, the proof
+   sheet) gets the same readable measure as .page__content prose. Anything the
+   author has classed is a layout element and is left alone. */
+.archive {
+  > p:not([class]),
+  > ul:not([class]),
+  > ol:not([class]),
+  > dl:not([class]),
+  > blockquote:not([class]) {
+    max-width: 72ch;
+  }
+
+  > h2 {
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+
+  > h2.archive__subtitle {
+    padding-bottom: var(--space-3);
+  }
+}
+
+/* Chip row that jumps to a group heading further down the page */
+.archive__jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+
+  a.tag-chip:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+}
+
+.archive__jump-count {
+  font-size: 0.9em;
+  color: var(--accent-dim);
+
+  &:before {
+    content: "\00b7";
+    margin-right: 0.3em;
+  }
+}
+
+/* "11 entries" -- a small mono count under the header */
+.archive__count {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* A row of pill CTAs above a listing */
+.archive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-5);
+}
+
+/* Empty-state refinements. .empty-state lives in layout/_components.scss and
+   resets every `p` margin to 0, so these selectors carry an extra class to
+   win on specificity rather than fighting the import order. */
+.empty-state .empty-state__title {
+  margin: 0 0 var(--space-2);
+}
+
+.empty-state p:not([class]) {
+  max-width: 54ch;
+  margin: 0 auto;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.empty-state .empty-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* Group divider: "2025", a category name, a collection label */
 .archive__subtitle {
-  margin: 1.414em 0 0;
-  padding-bottom: 0.5em;
-  font-size: $type-size-5;
-  color: var(--global-text-color-light);
-  border-bottom: 1px solid var(--global-border-color);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-7) 0 var(--space-4);
+  padding: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--line);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:before {
+    content: "//";
+    opacity: 0.5;
+  }
 
   + .list__item .archive__item-title {
-    margin-top: 0.5em;
+    margin-top: 0;
+  }
+}
+
+/* the archive layout drops the group headings straight into .page__content
+   on a few pages (sitemap, publications) -- keep them consistent */
+.page__content .archive__subtitle {
+  border-bottom: 1px solid var(--line);
+}
+
+/*
+   Card row
+   ========================================================================== */
+
+.archive__item {
+  position: relative;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover .archive__item-title a {
+    color: var(--accent);
   }
 }
 
 .archive__item-title {
-  margin-bottom: 0.25em;
-  font-family: $sans-serif-narrow;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text);
 
+  a {
+    color: inherit;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  /* the small permalink icon next to an external-link title */
   a + a {
-    opacity: 0.5;
+    margin-left: 0.35em;
+    font-size: 0.75em;
+    color: var(--text-muted);
+    opacity: 1;
+
+    &:hover {
+      color: var(--accent);
+    }
   }
 }
 
-/* remove border*/
+/* remove the prose border on titles rendered inside .page__content */
 .page__content {
 
   .archive__item-title {
-    margin-top: 1em;
+    margin-top: 0;
+    padding-bottom: 0;
     border-bottom: none;
   }
 }
 
+/* Dates, read time, venue -- one mono line, dot separated */
+.archive__item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  > span + span:before {
+    content: "\00b7";
+    margin-right: 0.35em;
+    color: var(--accent-dim);
+  }
+
+  .fa,
+  .fas,
+  .far {
+    color: var(--accent-dim);
+    font-size: 0.9em;
+  }
+
+  em,
+  i {
+    font-style: normal;
+    color: var(--text);
+  }
+}
+
 .archive__item-excerpt {
-  margin-top: 0;
-  font-size: $type-size-6;
+  max-width: 72ch;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+
+  p {
+    margin: 0 0 var(--space-2);
+    font-size: inherit;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   & + p {
     text-indent: 0;
   }
 }
 
+/* Tag / category chip row */
+.archive__item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+/* A very long tag must wrap inside its pill rather than push the card wider
+   than the column (.tag-chip is nowrap by default). */
+.archive__item-tags .tag-chip,
+.archive__jump .tag-chip {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+/* Download-paper / citation footer inside a card */
+.archive__item-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: var(--space-3) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  a {
+    color: var(--accent);
+
+    &:hover {
+      color: var(--accent-hover);
+    }
+  }
+}
+
+.archive__item-citation {
+  max-width: 72ch;
+  margin: 0 0 var(--space-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 .archive__item-teaser {
-  border-radius: $border-radius;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   overflow: hidden;
+
   img {
+    display: block;
     width: 100%;
   }
 }
 
 .archive__item:hover {
   .archive__item-teaser {
-    box-shadow: 0 0 10px rgba(#000, 0.25);
-  }
-
-  .archive__item-title {
-    text-decoration: underline;
+    border-color: var(--accent-dim);
   }
 }
 
@@ -90,81 +377,71 @@
    ========================================================================== */
 
 .list__item {
-  @include breakpoint($medium) {
-    padding-right: $right-sidebar-width-narrow;
-  }
-
-  @include breakpoint($large) {
-    padding-right: $right-sidebar-width;
-  }
-
-  @include breakpoint($x-large) {
-    padding-right: $right-sidebar-width-wide;
-  }
+  margin-bottom: var(--space-4);
 
   .page__meta {
-    margin: 0 0 4px;
+    margin: 0 0 var(--space-3);
   }
 }
 
 
 /*
-   Grid view
+   Grid view -- related posts, teaser grids
    ========================================================================== */
 
+.grid__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
 .grid__item {
-  margin-bottom: 2em;
+  margin-bottom: 0;
 
   .page__meta {
-    margin: 0 0 4px;
+    margin: 0 0 var(--space-2);
+  }
+
+  .archive__item {
+    height: 100%;
   }
 
   .archive__item-title {
-    margin-top: 0.5em;
-    font-size: $type-size-5;
+    margin-top: 0;
+    font-size: 0.9375rem;
+  }
+
+  .archive__item-teaser {
+    max-height: 160px;
   }
 
   .archive__item-excerpt {
     display: none;
   }
 
-  @include breakpoint($small) {
-    @include gallery(5 of 10);
-    .archive__item-teaser {
-      max-height: 200px;
-    }
-  }
-
   @include breakpoint($medium) {
-    margin-left: 0; /* reset before mixin does its thing*/
-    margin-right: 0; /* reset before mixin does its thing*/
-    @include gallery(2.5 of 10);
-
-    .archive__item-teaser {
-      max-height: 120px;
-    }
-
     .archive__item-excerpt {
       display: block;
-      font-size: $type-size-6;
+      font-size: 0.8125rem;
     }
   }
 }
 
 
 /*
-   Features
+   Features -- the feature_row include
    ========================================================================== */
 
 .feature__wrapper {
   @include clearfix();
-  margin-bottom: 2em;
+  margin-bottom: var(--space-7);
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--global-border-color);
 }
 
 .feature__item {
   margin-bottom: 2em;
-  font-size: 1.25rem;
+  font-size: 1rem;
 
   @include breakpoint($small) {
     margin-bottom: 0;
@@ -178,7 +455,7 @@
 
   &--left {
     @include full();
-    font-size: 1.25rem;
+    font-size: 1rem;
 
     .archive__item-teaser {
       margin-bottom: 2em;
@@ -199,7 +476,7 @@
 
   &--right {
     @include full();
-    font-size: 1.25rem;
+    font-size: 1rem;
 
     .archive__item-teaser {
       margin-bottom: 2em;
@@ -222,7 +499,7 @@
 
   &--center {
     @include full();
-    font-size: 1.25rem;
+    font-size: 1rem;
 
     .archive__item-teaser {
       margin-bottom: 2em;

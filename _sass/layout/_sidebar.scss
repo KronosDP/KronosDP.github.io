@@ -1,39 +1,32 @@
 /* ==========================================================================
    SIDEBAR
-   ========================================================================== */
 
-/*
-   Default
+   One breakpoint governs the sidebar: Susy's $large (925px), which matches
+   `scssLarge` in assets/js/_main.js. Above it the sidebar is a sticky rail of
+   pill links; below it the same list becomes a single horizontally scrolling
+   row so it never pushes the page content down.
    ========================================================================== */
 
 .sidebar {
-  -webkit-transform: translate3d(0, 0 , 0);
-          transform: translate3d(0, 0 , 0);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 
   @include clearfix();
-  margin-bottom: 1em;
+  margin-bottom: var(--space-5);
 
   @media (orientation: portrait) {
-    margin-top: 1em;
+    margin-top: var(--space-4);
   }
 
-  @media screen and (min-width: $sidebar-screen-min-width) {
+  /* Sticky rail. height/max-height/overflow stay unconstrained on purpose --
+     constraining them is what used to produce an inner scrollbar. */
+  @include breakpoint($large) {
+    @include span(2 of 12);
     height: auto;
     max-height: none;
     overflow: visible;
     position: sticky;
     top: 5rem;
-  }
-
-  @include breakpoint($large) {
-    @include span(2 of 12);
-    opacity: 1;
-    -webkit-transition: opacity 0.2s ease-in-out;
-            transition: opacity 0.2s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 
   @include breakpoint($x-large) {
@@ -43,7 +36,7 @@
 
   h2, h3, h4, h5, h6 {
     margin-bottom: 0;
-    font-family: $sans-serif-narrow;
+    font-family: var(--font-display);
   }
 
   h3, h4 {
@@ -51,13 +44,14 @@
   }
 
   p, li {
-    font-family: $sans-serif;
+    font-family: var(--font-body);
     font-size: $type-size-6;
     line-height: 1.5;
   }
 
   img {
     width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -79,19 +73,178 @@
 
 
 /*
+   Pill navigation
+   ========================================================================== */
+
+.sidebar .nav__list {
+  font-family: var(--font-display);
+
+  /* ---- Mobile / tablet: one scrolling row of pills ---- */
+  .nav__items {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0 0 var(--space-3);
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--line);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .nav__item,
+  .nav__child {
+    flex: 0 0 auto;
+    margin: 0;
+    font-family: var(--font-display);
+  }
+
+  /* groups flatten into the same row, their label is redundant here */
+  .nav__item--parent,
+  .nav__children {
+    display: contents;
+  }
+
+  .nav__group {
+    display: none;
+  }
+
+  /* ---- The pill itself ---- */
+  a.nav__link {
+    display: block;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    -webkit-transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+            transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus {
+      background-color: var(--surface-2);
+      border-color: var(--accent-dim);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--ink);
+      font-weight: 700;
+
+      &:hover,
+      &:focus {
+        background-color: var(--accent-hover);
+        border-color: var(--accent-hover);
+        color: var(--ink);
+      }
+    }
+  }
+
+  /* ---- Desktop rail: stacked pills, grouped children behind a chevron ---- */
+  @include breakpoint($large) {
+    .nav__items {
+      display: block;
+      padding: 0;
+      overflow: visible;
+      border-bottom: 0;
+    }
+
+    .nav__item {
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    .nav__item--parent,
+    .nav__children {
+      display: block;
+    }
+
+    .nav__children {
+      margin: var(--space-1) 0 var(--space-3);
+      padding-left: var(--space-3);
+      border-left: 1px solid var(--line);
+    }
+
+    .nav__child {
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    /* group heading + chevron affordance */
+    .nav__group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: var(--space-4) 0 var(--space-2);
+      padding: 0 0.85rem;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        margin-top: -0.2rem;
+        border-right: 1px solid var(--accent-dim);
+        border-bottom: 1px solid var(--accent-dim);
+        -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+      }
+    }
+
+    a.nav__link {
+      display: block;
+      border-color: transparent;
+      font-size: 0.8125rem;
+
+      &:hover,
+      &:focus {
+        border-color: transparent;
+      }
+
+      &.active {
+        border-color: var(--accent);
+      }
+    }
+
+    a.nav__link--child {
+      font-size: 0.75rem;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+    }
+  }
+}
+
+
+/*
    Table of contents
    ========================================================================== */
 
 .toc {
   background-color: var(--global-toc-bg-color);
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
   box-shadow: $box-shadow;
-  padding: 1em;
+  padding: var(--space-4);
 
   .nav__title {
-    color: var(--global-text-color);
-    font-size: $type-size-6;
+    color: var(--text);
+    font-size: 0.6875rem;
     background: transparent;
     border: 0;
     padding: 0;
@@ -107,19 +260,23 @@
     a {
       display: block;
       padding: 0.25rem 0;
-      color: var(--global-text-color);
+      color: var(--text-muted);
       font-size: $type-size-7;
       font-weight: normal;
       line-height: 1.5;
       border-bottom: 0;
+      background: transparent;
 
       &:hover {
+        color: var(--accent);
+        background: transparent;
         text-decoration: underline;
       }
     }
 
     > li > a {
-      font-weight: bold;
+      font-weight: 500;
+      color: var(--text);
     }
 
     li ul > li a {
@@ -137,16 +294,19 @@
   }
 }
 
+
 /*
    Author profile and links
+
+   author-profile.html is no longer part of the sidebar, but the styles are
+   kept (token-based) so the include still renders correctly wherever a page
+   opts into it.
    ========================================================================== */
 
 .author__avatar {
   display: table-cell;
   vertical-align: top;
   width: 36px;
-  // set width only, for non-square avatars
-  // height: 36px;
 
   @include breakpoint($large) {
     display: block;
@@ -166,7 +326,7 @@
 
     @include breakpoint($large) {
       padding: 5px;
-      border: 1px solid var(--global-border-color);
+      border: 1px solid var(--line);
     }
   }
 }
@@ -194,14 +354,16 @@
     margin-bottom: 10px;
   }
 }
+
 .sidebar .author__name {
-  font-family: $sans-serif;
+  font-family: var(--font-display);
   font-size: $type-size-5;
 }
 
 .sidebar .author__desktop {
   display: none;
-  @media screen and (min-width: 1024px) {
+
+  @include breakpoint($large) {
     display: block;
   }
 }
@@ -217,6 +379,7 @@
 
 .author__bio {
   margin: 0;
+  color: var(--text-muted);
 
   @include breakpoint($large) {
     margin-top: 10px;
@@ -228,9 +391,8 @@
   position: relative;
   display: table-cell;
   vertical-align: middle;
-  font-family: $sans-serif;
+  font-family: var(--font-body);
   z-index: 10;
-  position: relative;
   cursor: pointer;
 
   li:last-child {
@@ -242,73 +404,13 @@
   @include breakpoint($large) {
     display: block;
   }
-
-  button {
-    margin-bottom: 0;
-
-    @include breakpoint($large) {
-      display: none;
-    }
-  }
 }
 
 .author__urls {
-  display: none;
-  position: absolute;
-  right: 0;
-  margin-top: 15px;
-  padding: 10px;
+  display: block;
+  margin: 0;
+  padding: 0;
   list-style-type: none;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  background: var(--global-bg-color);
-  z-index: -1;
-  box-shadow: 0 0 10px rgba(#000, 0.25);
-  cursor: default;
-
-  @include breakpoint($large) {
-    display: block;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  &:before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: -11px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: var(--global-border-color) transparent;
-    z-index: 0;
-
-    @include breakpoint($large) {
-      display: none;
-    }
-  }
-
-  &:after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: #fff transparent;
-    z-index: 1;
-
-    @include breakpoint($large) {
-      display: none;
-    }
-  }
 
   li {
     white-space: nowrap;
@@ -320,12 +422,12 @@
     padding-right: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
-    color: inherit;
-    font-size: $type-size-5;
+    color: var(--text-muted);
+    font-size: $type-size-6;
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
+      color: var(--accent);
     }
   }
 }

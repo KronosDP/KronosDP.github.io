@@ -1,37 +1,55 @@
 ---
 layout: archive
 title: "Sitemap"
+eyebrow: "index"
+intro: "Every page, post and collection item on this site in one list. There is also an [XML version](/sitemap.xml) for crawlers."
 permalink: /sitemap/
 author_profile: true
 ---
 
+{% comment %}
+Kramdown turns anything indented four spaces or more into a code block, so the
+Liquid and HTML in this file deliberately stays flush left.
+{% endcomment %}
 {% include base_path %}
+{% assign listed_pages = site.pages | where_exp: "item", "item.title" %}
 
-A list of all the posts and pages found on the site. For you robots out there, there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
-
-<h2>Pages</h2>
-{% for post in site.pages %}
-  {% include archive-single.html %}
+<h2 id="pages" class="archive__subtitle">Pages</h2>
+{% if listed_pages.size == 0 %}
+<div class="empty-state">
+<p class="empty-state__title">Nothing here yet</p>
+<p>No titled pages were found while building the site.</p>
+</div>
+{% else %}
+{% for post in listed_pages %}
+{% include archive-single.html %}
 {% endfor %}
+{% endif %}
 
-<h2>Posts</h2>
+<h2 id="posts" class="archive__subtitle">Posts</h2>
+{% if site.posts.size == 0 %}
+<div class="empty-state">
+<p class="empty-state__title">Nothing here yet</p>
+<p>No posts have been published.</p>
+</div>
+{% else %}
 {% for post in site.posts %}
-  {% include archive-single.html %}
+{% include archive-single.html %}
 {% endfor %}
-
-{% capture written_label %}'None'{% endcapture %}
+{% endif %}
 
 {% for collection in site.collections %}
 {% unless collection.output == false or collection.label == "posts" %}
-  {% capture label %}{{ collection.label }}{% endcapture %}
-  {% if label != written_label %}
-  <h2>{{ label }}</h2>
-  {% capture written_label %}{{ label }}{% endcapture %}
-  {% endif %}
-{% endunless %}
+<h2 id="{{ collection.label | slugify }}" class="archive__subtitle">{{ collection.label }}</h2>
+{% if collection.docs.size == 0 %}
+<div class="empty-state">
+<p class="empty-state__title">Nothing here yet</p>
+<p>The <em>{{ collection.label }}</em> collection has no entries at the moment.</p>
+</div>
+{% else %}
 {% for post in collection.docs %}
-  {% unless collection.output == false or collection.label == "posts" %}
-  {% include archive-single.html %}
-  {% endunless %}
+{% include archive-single.html %}
 {% endfor %}
+{% endif %}
+{% endunless %}
 {% endfor %}

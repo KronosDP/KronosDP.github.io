@@ -7,6 +7,12 @@ redirect_from:
   - /markdown.html
 ---
 
+<p class="eyebrow">reference</p>
+
+<p class="page__lead">Authoring notes for this site: where things live, which markdown
+flavour is in use, and how MathJax, Mermaid and Plotly are wired in. It doubles as a
+proof sheet for every element the stylesheet covers.</p>
+
 {% include toc %}
 
 ## Locations of key files/directories
@@ -251,8 +257,7 @@ Single line blockquote:
 | Header1 | Header2 | Header3 |
 |:--------|:-------:|--------:|
 | cell1   | cell2   | cell3   |
-| cell4   | ce
-ll5   | cell6   |
+| cell4   | cell5   | cell6   |
 |-----------------------------|
 | cell1   | cell2   | cell3   |
 | cell4   | cell5   | cell6   |
@@ -305,7 +310,25 @@ Do It Live
 
 ## Buttons
 
-Make any link standout more when applying the `.btn` class.
+Any link can be turned into a pill button. `.pill-btn` (with `--filled` or `--ghost`) is
+the current component; `.btn` and its variants are the legacy aliases and are skinned to
+match.
+
+<p class="btn-row">
+  <a href="#buttons" class="pill-btn pill-btn--filled">Filled pill</a>
+  <a href="#buttons" class="pill-btn pill-btn--ghost">Ghost pill</a>
+  <a href="#buttons" class="btn">Legacy .btn</a>
+  <a href="#buttons" class="btn btn--inverse">.btn--inverse</a>
+  <a href="#buttons" class="btn btn--small btn--success">.btn--success</a>
+</p>
+
+Tag chips share the same vocabulary at a smaller scale:
+
+<p class="btn-row">
+  <span class="tag-chip tag-chip--accent">category</span>
+  <span class="tag-chip">tag</span>
+  <span class="tag-chip">another tag</span>
+</p>
 
 ## Notices
 
@@ -316,10 +339,25 @@ Basic notices or call-outs are supported using the following syntax:
 {: .notice}
 ```
 
-which wil render as:
+which will render as:
 
 **Watch out!** You can also add notices by appending `{: .notice}` to the line following paragraph.
 {: .notice}
+
+The tinted variants `.notice--info`, `.notice--success`, `.notice--warning` and
+`.notice--danger` carry the hue on the leading rail only:
+
+**Info.** Something worth knowing.
+{: .notice--info}
+
+**Success.** Something worked.
+{: .notice--success}
+
+**Warning.** Something needs attention.
+{: .notice--warning}
+
+**Danger.** Something will break.
+{: .notice--danger}
 
 ### Footnotes
 

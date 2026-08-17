@@ -1,9 +1,24 @@
 ---
 layout: archive
 title: "Talk map"
+eyebrow: "speaking"
+intro: "Every location I have given a talk in, plotted on one map."
 permalink: /talkmap.html
 author_profile: true
 ---
 
-<p>This map is generated from a Jupyter Notebook file in <a href="https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb">talkmap.ipynb</a>, which mines the location fields in the .md files in _talks/.</p>
-<iframe src="/talkmap/map.html" height="700" width="850" style="border:none;"></iframe>
+{% include base_path %}
+
+<div class="talkmap">
+  <div class="talkmap__frame embed-frame">
+    <iframe src="{{ base_path }}/talkmap/map.html"
+            title="Map of every location where I have given a talk"
+            loading="lazy"></iframe>
+  </div>
+
+  <p class="talkmap__note">
+    The map is generated from the location fields of the files in <code>_talks/</code> by
+    <a href="https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb">talkmap.ipynb</a>.
+    <a href="{{ base_path }}/talks/">Back to the talk list</a>.
+  </p>
+</div>

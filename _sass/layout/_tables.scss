@@ -1,38 +1,115 @@
 /* ==========================================================================
    TABLES
+
+   Hairline rows, --surface heads, mono column labels.
+
+   Kramdown gives us no wrapper element around a markdown table, and there is
+   no JS wrapper either, so the table itself becomes its own scroll container
+   (display: block + overflow-x: auto). A wide table therefore scrolls inside
+   the content column instead of widening the page on a phone. Authors who want
+   an explicit wrapper can use .table-scroll.
    ========================================================================== */
 
-table {
-  margin-bottom: 1em;
-  width: 100%;
-  font-family: $global-font-family;
-  font-size: $type-size-6;
-  border-collapse: collapse;
-  border: 1px solid var(--global-border-color);
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
-  & + table {
-    margin-top: 1em;
+  table {
+    display: table;
+    min-width: 100%;
   }
 }
 
+table {
+  /* Phone: the table is its own scroll container, so a wide one scrolls
+     instead of pushing the page sideways. */
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  margin: 2em 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-collapse: collapse;
+  border: 1px solid var(--global-border-color);
+  border-radius: var(--radius-sm);
+
+  /* Tablet and up: a real full-width table again. Cells wrap rather than
+     forcing the column wider than the content area. */
+  @include breakpoint($medium) {
+    display: table;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  & + table {
+    margin-top: 2em;
+  }
+}
+
+th, td {
+  overflow-wrap: break-word;
+}
+
+caption {
+  padding-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--text-muted);
+}
+
 thead {
-  background-color: var(--global-border-color);
+  background-color: var(--global-thead-color);
   border-bottom: 1px solid var(--global-border-color);
 }
 
 th {
-  padding: 0.5em;
-  font-weight: bold;
+  padding: 0.7em 0.9em;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-align: left;
-  border-right: 1px solid var(--global-border-color);
+  color: var(--text);
+  border-bottom: 1px solid var(--global-border-color);
 }
 
 td {
-  padding: 0.5em;
+  padding: 0.7em 0.9em;
+  color: var(--text-muted);
   border-bottom: 1px solid var(--global-border-color);
-  border-right: 1px solid var(--global-border-color);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover td {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+tfoot {
+  background-color: var(--surface);
+
+  td {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text);
+  }
 }
 
 tr, td, th {
   vertical-align: middle;
 }
+
+/* numeric / right-aligned kramdown columns keep their alignment */
+th[align="center"], td[align="center"] { text-align: center; }
+th[align="right"],  td[align="right"]  { text-align: right; }

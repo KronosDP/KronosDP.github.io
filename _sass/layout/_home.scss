@@ -1,0 +1,243 @@
+/* ==========================================================================
+   HOMEPAGE
+   Owned by the homepage pass. Use tokens and the shared components in
+   _sass/layout/_components.scss -- no raw hex values.
+
+   Scope: every rule below is nested under `.homepage` (the wrapper in
+   _pages/about.md) or targets `#main:has(.homepage)`, so nothing here can
+   leak into other pages.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Full-bleed column
+   `_sass/layout/_page.scss` floats `.page` into a 9.5-of-12 Susy column to
+   leave room for the author sidebar. The homepage sets `author_profile:
+   false`, so that column is undoing its own purpose -- reclaim it.
+   `_page.scss` is off limits, so the override lives here, keyed off the
+   homepage wrapper. Without `:has()` support the page simply keeps the
+   narrower column; nothing breaks and nothing overflows.
+   -------------------------------------------------------------------------- */
+#main:has(.homepage) > .page {
+  float: none;
+  clear: both;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* `_layouts/single.html` still emits the <header> that used to hold
+   `.page__title` and the taxonomy <footer>. On the homepage both render
+   nothing but whitespace (hide_title is set, and there are no tags, dates or
+   read time), so `:empty` will not match them -- hide them outright.
+   Matched on the bare tag names rather than `.page__meta`, which other rules
+   `@extend`; extending would drag unrelated selectors into this rule. */
+#main:has(.homepage) > .page > .page__inner-wrap > header,
+#main:has(.homepage) > .page > .page__inner-wrap > footer {
+  display: none;
+}
+
+.homepage {
+  /* `.page__content h2` gets a bottom rule sitewide; the design uses an
+     eyebrow + hairline-free title instead. */
+  .section-title {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  /* Buttons and icon links are anchors, and `.page__content a` underlines
+     every anchor. Keep the underline for prose links only. */
+  .pill-btn,
+  .social-rail__links a {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  /* Section 3 prose: comfortable measure rather than the full 1280px. */
+  .homepage__about p {
+    max-width: 68ch;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .homepage__about p strong {
+    color: var(--text);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section 1 -- Hero
+   Bleeds past the `#main` gutters (2rem / 3rem at >=925px / 4rem at
+   >=1280px) with matching negative margins so the glow reaches the edge of
+   the content column. `.hero-glow` already sets `overflow: hidden`, so the
+   bleed can never introduce a horizontal scrollbar.
+   -------------------------------------------------------------------------- */
+/* No background, border or bleed of its own any more. The gradient is a fixed
+   full-viewport layer on `body:before` (see _components.scss), so the hero is
+   just centred content sitting on the page wash -- nothing to give it the
+   edges that made it look like a pasted-in image. `position: relative` stays
+   because the decorative .dot-grid marks are absolutely positioned to it. */
+.homepage__hero {
+  position: relative;
+  margin: 0 0 var(--space-7);
+  padding: var(--space-7) 0 var(--space-8);
+  text-align: center;
+
+  @include breakpoint($large) {
+    padding-top: var(--space-8);
+  }
+}
+
+.homepage__hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Decorative dot lattices, one per corner. */
+.homepage__dots--bl {
+  left: var(--space-2);
+  bottom: var(--space-4);
+}
+
+.homepage__dots--mr {
+  display: none;
+
+  @include breakpoint($large) {
+    display: block;
+    right: var(--space-8);
+    top: 18%;
+  }
+}
+
+.homepage__avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+  object-fit: cover;
+  object-position: 50% 20%;
+  margin: 0 0 var(--space-4);
+  box-shadow: none;
+}
+
+/* Also a <p>, so it needs the same specificity bump as .homepage__lede or
+   `.page__content p` reinstates a 1.3em bottom margin under it. */
+.homepage .homepage__kicker {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Three dots then a short rule, as in the reference. */
+.homepage__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.homepage__divider-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--accent-dim);
+}
+
+.homepage__divider-rule {
+  width: 3rem;
+  height: 1px;
+  background-color: var(--line);
+}
+
+.homepage__title {
+  font-family: var(--font-display);
+  /* 375px viewport leaves ~311px of content box; the longer line is 22
+     characters, so the lower bound has to stay under ~1.5rem to hold two
+     lines without wrapping. */
+  font-size: clamp(1.5rem, 5.6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  color: var(--text);
+  margin: 0;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.homepage__title-line {
+  display: block;
+}
+
+/* Scoped under .homepage on purpose: this is a <p>, and `.page__content p`
+   sets `margin: 0 0 1.3em` at (0,1,1), which outranks a lone class at (0,1,0)
+   and flattens the gap under the headline. The extra class wins it back. */
+.homepage .homepage__lede {
+  max-width: 58ch;
+  margin: var(--space-5) auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.homepage__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   Section 3 -- About anchor offset
+   `.masthead` is `position: fixed` and $masthead-height tall, so the hero's
+   "About me" link needs that much headroom or the eyebrow lands under it.
+   -------------------------------------------------------------------------- */
+.homepage__about {
+  scroll-margin-top: calc(#{$masthead-height} + var(--space-4));
+}
+
+/* --------------------------------------------------------------------------
+   Motion -- hero load-in stagger (CSS only, no JS)
+   -------------------------------------------------------------------------- */
+@keyframes homepage-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.homepage__rise {
+  animation: homepage-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.homepage__rise--1 { animation-delay: 0.08s; }
+.homepage__rise--2 { animation-delay: 0.16s; }
+.homepage__rise--3 { animation-delay: 0.24s; }
+.homepage__rise--4 { animation-delay: 0.32s; }
+.homepage__rise--5 { animation-delay: 0.40s; }
+
+/* The global reduced-motion block shortens durations but not delays, which
+   would still hide the hero for ~0.4s. Drop the animation outright. */
+@media (prefers-reduced-motion: reduce) {
+  .homepage__rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

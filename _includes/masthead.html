@@ -2,11 +2,11 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><span class="navicon"></span></button>
+      <nav id="site-nav" class="greedy-nav" aria-label="Main">
+        <button type="button" aria-label="Toggle menu"><span class="navicon"></span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+            <a class="masthead__brand" href="{{ base_path }}/">{{ site.title }}<span class="masthead__brand-dot" aria-hidden="true">.</span></a>
           </li>
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
@@ -22,5 +22,15 @@
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
+
+    {% comment %}
+      The CTA deliberately lives OUTSIDE #site-nav: the greedy navigation moves
+      the last non-.persist <li> of .visible-links into .hidden-links whenever
+      the bar overflows, so anything inside the nav can be swallowed.
+    {% endcomment %}
+    <a class="pill-btn pill-btn--filled masthead__cta" href="{{ base_path }}/cv/resume-ai.pdf" aria-label="Download CV (PDF)">
+      <i class="fas fa-download" aria-hidden="true"></i>
+      <span class="masthead__cta-label">Download CV</span>
+    </a>
   </div>
 </div>

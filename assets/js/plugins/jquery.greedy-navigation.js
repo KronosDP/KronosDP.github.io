@@ -58,14 +58,17 @@ function updateNav() {
   // Keep counter updated
   $btn.attr("count", breaks.length);
 
-  // update masthead height and the body/sidebar top padding
-  var mastheadHeight = $('.masthead').height();
+  // Keep the body clear of the fixed masthead, and publish the measured height
+  // so CSS can stay in step with it (the bar grows when the wordmark wraps).
+  var mastheadHeight = $('.masthead').outerHeight();
   $('body').css('padding-top', mastheadHeight + 'px');
-  if ($(".author__urls-wrapper button").is(":visible")) {
-    $(".sidebar").css("padding-top", "");
-  } else {
-    $(".sidebar").css("padding-top", mastheadHeight + "px");
-  }
+  document.documentElement.style.setProperty('--masthead-height', mastheadHeight + 'px');
+
+  // The sidebar is now a pill nav: a sticky rail at >= 925px (offset handled by
+  // `top` in _sass/layout/_sidebar.scss) and a horizontal row in normal flow
+  // below that, so it needs no JS applied masthead offset. Clear any stale
+  // inline padding left over from the old author-profile markup.
+  $('.sidebar').css('padding-top', '');
 
 }
 

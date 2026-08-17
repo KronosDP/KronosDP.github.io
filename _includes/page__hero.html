@@ -1,3 +1,12 @@
+{% comment %}
+  Page hero. No page currently sets `header:` front matter, but the include is
+  kept working for when one does.
+
+  The only inline style left is the pair of custom properties that carry the
+  per-page overlay colour and image -- the same `style="--token: value"`
+  pattern the rest of the site uses. All actual CSS lives in
+  _sass/layout/_page.scss under .page__hero--overlay.
+{% endcomment %}
 {% include base_path %}
 
 {% if page.header.image contains "://" %}
@@ -24,11 +33,14 @@
   {% capture overlay_filter %}rgba(0, 0, 0, {{ page.header.overlay_filter }}){% endcapture %}
 {% endif %}
 
+{% capture hero_vars %}{% if page.header.overlay_color %}--hero-ground: {{ page.header.overlay_color }};{% endif %}{% if overlay_img_path %}--hero-image: {% if overlay_filter %}linear-gradient({{ overlay_filter }}, {{ overlay_filter }}), {% endif %}url('{{ overlay_img_path }}');{% endif %}{% endcapture %}
+
 <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
-  style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if overlay_img_path %}background-image: {% if overlay_filter %}linear-gradient({{ overlay_filter }}, {{ overlay_filter }}), {% endif %}url('{{ overlay_img_path }}');{% endif %}"
+  {% if hero_vars != "" %}style="{{ hero_vars }}"{% endif %}
 >
   {% if page.header.overlay_color or page.header.overlay_image %}
     <div class="wrapper">
+      {% if page.eyebrow %}<span class="eyebrow">{{ page.eyebrow }}</span>{% endif %}
       <h1 class="page__title" itemprop="headline">
         {% if paginator %}
           {{ site.title }}{% unless paginator.page == 1 %} {{ site.data.ui-text[site.locale].page | default: "Page" }} {{ paginator.page }}{% endunless %}
@@ -43,7 +55,7 @@
         <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
       {% endif %}
       {% if page.header.cta_url %}
-        <p><a href="{{ cta_path }}" class="btn btn--light-outline btn--large">{{ page.header.cta_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
+        <p class="page__hero-cta"><a href="{{ cta_path }}" class="pill-btn pill-btn--filled">{{ page.header.cta_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
       {% endif %}
     </div>
   {% else %}

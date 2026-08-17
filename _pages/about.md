@@ -1,184 +1,182 @@
 ---
 permalink: /
 title: "Software Engineer & AI Researcher"
-author_profile: true
+hide_title: true
+author_profile: false
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-<style>
-  .hero-banner {
-    background: var(--card-surface-bg, #001E67);
-    border: 1px solid var(--card-surface-border, rgba(153, 182, 255, 0.25));
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  }
+{% include base_path %}
 
-  .hero-title {
-    font-size: 1.9rem;
-    font-weight: 800;
-    margin: 0 0 0.4rem 0;
-    color: var(--global-text-color, #ffffff);
-  }
+<div class="homepage">
 
-  .hero-subtitle {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--accent-sky, #99B6FF);
-    margin-bottom: 1.25rem;
-    letter-spacing: 0.3px;
-  }
+  <!-- ===================== 1. HERO ===================== -->
+  <section class="homepage__hero">
+    <span class="dot-grid homepage__dots homepage__dots--bl" aria-hidden="true"></span>
+    <span class="dot-grid homepage__dots homepage__dots--mr" aria-hidden="true"></span>
 
-  .target-roles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
+    <div class="homepage__hero-inner">
+      <img
+        class="homepage__avatar homepage__rise homepage__rise--1"
+        src="{{ site.author.avatar | prepend: "/images/" | prepend: base_path }}"
+        alt="Darrel Danadyaksa Poli"
+        width="76" height="76" loading="eager" decoding="async">
 
-  .role-badge {
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.35rem 0.8rem;
-    border-radius: 20px;
-    background: rgba(82, 116, 204, 0.15);
-    border: 1px solid rgba(153, 182, 255, 0.25);
-    color: var(--global-text-color, #CCDAFF);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
+      <p class="homepage__kicker homepage__rise homepage__rise--2">Hi, I&rsquo;m Darrel Danadyaksa Poli</p>
 
-  .role-badge.nvidia-badge {
-    background: rgba(134, 239, 172, 0.12);
-    border-color: rgba(134, 239, 172, 0.4);
-    color: #86efac;
-  }
+      <span class="homepage__divider homepage__rise homepage__rise--2" aria-hidden="true">
+        <span class="homepage__divider-dot"></span>
+        <span class="homepage__divider-dot"></span>
+        <span class="homepage__divider-dot"></span>
+        <span class="homepage__divider-rule"></span>
+      </span>
 
-  .hero-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-  }
+      <h1 class="homepage__title homepage__rise homepage__rise--3">
+        <span class="homepage__title-line">Research That Ships,</span>
+        <span class="homepage__title-line">Software That <span class="brace">{Scales}</span></span>
+      </h1>
 
-  .highlight-card {
-    background: rgba(10, 22, 51, 0.4);
-    border: 1px solid rgba(153, 182, 255, 0.15);
-    border-radius: 8px;
-    padding: 1.1rem;
-  }
+      <p class="homepage__lede homepage__rise homepage__rise--4">Final-year Computer Science student at the University of Indonesia. AI research at NVIDIA, production speech models at Meeting.ai, and backends in Django, Go and Laravel.</p>
 
-  .highlight-title {
-    font-size: 0.92rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .highlight-desc {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    opacity: 0.9;
-    margin: 0;
-  }
-
-  .hero-cta-wrap {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.55rem 1.25rem;
-    border-radius: 6px;
-    text-decoration: none !important;
-    transition: all 0.2s ease;
-  }
-
-  .cta-primary {
-    background: #5274CC;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(82, 116, 204, 0.4);
-  }
-
-  .cta-primary:hover {
-    background: #3b5cb3;
-    transform: translateY(-1px);
-  }
-
-  .cta-secondary {
-    background: rgba(153, 182, 255, 0.1);
-    color: var(--global-text-color, #CCDAFF) !important;
-    border: 1px solid rgba(153, 182, 255, 0.25);
-  }
-
-  .cta-secondary:hover {
-    background: rgba(153, 182, 255, 0.2);
-  }
-
-  .section-heading {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin: 2rem 0 1rem 0;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba(153, 182, 255, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-</style>
-
-<!-- RECRUITER HERO LANDING BANNER -->
-<div class="hero-banner">
-  <h1 class="hero-title">Darrel Danadyaksa Poli</h1>
-  <div class="hero-subtitle">Software Engineer &bull; AI Engineer &bull; AI Researcher</div>
-
-  <div class="target-roles">
-    <span class="role-badge nvidia-badge"><i class="fab fa-nvidia"></i> Ex-NVIDIA AI Research Intern</span>
-    <span class="role-badge"><i class="fas fa-brain"></i> AI & Deep Learning</span>
-    <span class="role-badge"><i class="fas fa-tachometer-alt"></i> Speech ASR & Distillation</span>
-    <span class="role-badge"><i class="fas fa-server"></i> Go & Django Backend Architecture</span>
-  </div>
-
-  <div class="hero-highlights">
-    <div class="highlight-card" style="border-top: 2px solid #86efac;">
-      <div class="highlight-title" style="color: #86efac;"><i class="fab fa-nvidia"></i> NVIDIA AI Research</div>
-      <p class="highlight-desc">Benchmarked RWKV-v7 vs Transformers for formal regular languages (L<sub>1</sub>&ndash;L<sub>4</sub>) using custom WKV CUDA C++ kernels and 1&ndash;3 edit near-miss hard negative sampling.</p>
+      <div class="homepage__cta homepage__rise homepage__rise--5">
+        <a class="pill-btn pill-btn--filled" href="#about">About me</a>
+        <a class="pill-btn pill-btn--ghost" href="mailto:darrel.danadyaksa19@gmail.com">Let&rsquo;s talk <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </div>
-    <div class="highlight-card" style="border-top: 2px solid #99B6FF;">
-      <div class="highlight-title" style="color: #99B6FF;"><i class="fas fa-microphone-alt"></i> Ex-Meeting.ai AI Engineer</div>
-      <p class="highlight-desc">Stress-tested ASR under 10+ concurrent live streams & compressed speaker verification via knowledge distillation.</p>
-    </div>
-    <div class="highlight-card" style="border-top: 2px solid #CCDAFF;">
-      <div class="highlight-title" style="color: #CCDAFF;"><i class="fas fa-graduation-cap"></i> TA @ Univ. of Indonesia</div>
-      <p class="highlight-desc">Teaching Assistant for Software Engineering Project, Operating Systems, and Calculus I & II.</p>
-    </div>
-  </div>
 
-  <div class="hero-cta-wrap">
-    <a href="/portfolio/" class="cta-btn cta-primary"><i class="fas fa-cubes"></i> View Portfolio Showcase</a>
-    <a href="/cv/" class="cta-btn cta-secondary"><i class="fas fa-file-alt"></i> Full Resume & CV</a>
-    <a href="mailto:darrel.danadyaksa19@gmail.com" class="cta-btn cta-secondary"><i class="fas fa-envelope"></i> Contact Me</a>
-  </div>
+    <div class="social-rail">
+      <span class="social-rail__label">Follow me</span>
+      <span class="social-rail__line" aria-hidden="true"></span>
+      <ul class="social-rail__links">
+        <li><a href="https://github.com/KronosDP" aria-label="GitHub" rel="me noopener" target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" aria-label="LinkedIn" rel="me noopener" target="_blank"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+        <li><a href="https://instagram.com/kronos_darrel" aria-label="Instagram" rel="me noopener" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 2. STATS ===================== -->
+  <section class="stack" aria-label="Highlights">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-card__num">NVIDIA</span>
+        <span class="stat-card__label">AI Research Intern, Jan&ndash;Jun 2025</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__num">99.7<span class="stat-card__unit">%</span></span>
+        <span class="stat-card__label">Satria Data 2025 leaderboard accuracy</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__num">Top 10</span>
+        <span class="stat-card__label">Gemastik 2023 national finalist</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__num">5</span>
+        <span class="stat-card__label">courses taught as Teaching Assistant at UI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. ABOUT ===================== -->
+  <section class="stack homepage__about" id="about">
+    <span class="eyebrow">about</span>
+    <h2 class="section-title">Engineer first, researcher by habit</h2>
+
+    <p>Hello! I&rsquo;m <strong>Darrel Danadyaksa Poli</strong>, a final-year Computer Science student at the <strong>University of Indonesia (UI)</strong> specializing in <strong>Software Engineering</strong>, <strong>Backend Architecture</strong>, and <strong>Artificial Intelligence</strong>.</p>
+
+    <p>My technical journey spans deep learning research at <strong>NVIDIA</strong> (sequence model capacity &amp; formal language recognition), production speech engineering at <strong>Meeting.ai</strong> (ASR stress-testing &amp; knowledge distillation), full-stack development (<strong>Go</strong>, <strong>Django</strong>, <strong>Laravel</strong>, <strong>Flutter</strong>), and co-founding social technology startups (<strong>SafetyPin</strong>).</p>
+
+    <p>Beyond engineering and AI research, I have served as a <strong>Peer Counselor</strong> at Faculty of Computer Science UI (<em>Curhat Sama Panda</em>), supporting student mental health and psychological well-being. In my free time, I enjoy aviation simulation (virtual piloting), music theory, philosophy, and cooking.</p>
+
+    <p>Feel free to explore my interactive <a href="{{ base_path }}/portfolio/">Portfolio</a> or review my complete <a href="{{ base_path }}/cv/">Curriculum Vitae</a>.</p>
+  </section>
+
+  <!-- ===================== 4. WHAT I DO ===================== -->
+  <section class="stack">
+    <span class="eyebrow">what i do</span>
+    <h2 class="section-title">Four things I keep coming back to</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card__icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+        <h3 class="feature-card__title">AI Research</h3>
+        <p class="feature-card__body">Benchmarked RWKV-v7 against Transformers on formal regular languages (L<sub>1</sub>&ndash;L<sub>4</sub>) at NVIDIA, with a custom PyTorch WKV CUDA C++ operator and 1&ndash;3 edit-distance hard negatives.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon"><i class="fas fa-microphone-lines" aria-hidden="true"></i></div>
+        <h3 class="feature-card__title">Production Speech AI</h3>
+        <p class="feature-card__body">Stress-tested ASR under 10+ concurrent live streams at Meeting.ai and compressed speaker verification through knowledge distillation.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon"><i class="fas fa-server" aria-hidden="true"></i></div>
+        <h3 class="feature-card__title">Backend &amp; Platform</h3>
+        <p class="feature-card__body">REST APIs and system architecture in Go, Django, Laravel and Flutter, with CI/CD, BDD and TDD workflows.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+        <h3 class="feature-card__title">Teaching &amp; Mentoring</h3>
+        <p class="feature-card__body">Teaching Assistant for AI &amp; Data Science, Software Engineering Project, Operating Systems, and Calculus I &amp; II.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. TOOLKIT ===================== -->
+  <section class="stack">
+    <span class="eyebrow">toolkit</span>
+    <h2 class="section-title">Tools, grouped by how often I reach for them</h2>
+
+    <div class="skill-list">
+      <div class="skill-row" style="--fill: 100%">
+        <span class="skill-row__label">Python</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">daily</span>
+      </div>
+      <div class="skill-row" style="--fill: 100%">
+        <span class="skill-row__label">PyTorch</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">daily</span>
+      </div>
+      <div class="skill-row" style="--fill: 70%">
+        <span class="skill-row__label">Go</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">production</span>
+      </div>
+      <div class="skill-row" style="--fill: 70%">
+        <span class="skill-row__label">Django</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">production</span>
+      </div>
+      <div class="skill-row" style="--fill: 70%">
+        <span class="skill-row__label">Docker</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">production</span>
+      </div>
+      <div class="skill-row" style="--fill: 70%">
+        <span class="skill-row__label">Flutter</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">production</span>
+      </div>
+      <div class="skill-row" style="--fill: 40%">
+        <span class="skill-row__label">Rust</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">familiar</span>
+      </div>
+      <div class="skill-row" style="--fill: 40%">
+        <span class="skill-row__label">Laravel</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">familiar</span>
+      </div>
+      <div class="skill-row" style="--fill: 40%">
+        <span class="skill-row__label">Spring Boot</span>
+        <span class="skill-track"><span class="skill-fill"></span></span>
+        <span class="skill-row__tier">familiar</span>
+      </div>
+    </div>
+  </section>
+
 </div>
-
-<div class="section-heading"><i class="fas fa-user"></i> About Me</div>
-
-Hello! I'm **Darrel Danadyaksa Poli**, a final-year Computer Science student at the **University of Indonesia (UI)** specializing in **Software Engineering**, **Backend Architecture**, and **Artificial Intelligence**.
-
-My technical journey spans deep learning research at **NVIDIA** (sequence model capacity & formal language recognition), production speech engineering at **Meeting.ai** (ASR stress-testing & knowledge distillation), full-stack development (**Go**, **Django**, **Laravel**, **Flutter**), and co-founding social technology startups (**SafetyPin**).
-
-Beyond engineering and AI research, I have served as a **Peer Counselor** at Faculty of Computer Science UI (*Curhat Sama Panda*), supporting student mental health and psychological well-being. In my free time, I enjoy aviation simulation (virtual piloting), music theory, philosophy, and cooking.
-
-Feel free to explore my interactive [Portfolio](/portfolio/) or review my complete [Curriculum Vitae](/cv/).

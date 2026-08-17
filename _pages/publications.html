@@ -1,36 +1,52 @@
 ---
 layout: archive
 title: "Publications"
+eyebrow: "research"
+intro: "Papers, preprints and write-ups, newest first."
 permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+{% if site.author.googlescholar and site.publications.size > 0 %}
+  <p class="archive__actions">
+    <a href="{{ site.author.googlescholar }}" class="pill-btn pill-btn--ghost">
+      <i class="fa fa-graduation-cap" aria-hidden="true"></i> Also on Google Scholar
+    </a>
+  </p>
 {% endif %}
 
-
-
+{% if site.publications.size == 0 %}
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing here yet</p>
+    <p>No papers are published under my name yet. Research work in progress lives in the project showcase for now, and anything peer-reviewed will be listed here with its citation and PDF.</p>
+    <p class="empty-state__actions">
+      {% if site.author.googlescholar %}
+        <a href="{{ site.author.googlescholar }}" class="pill-btn pill-btn--ghost">Google Scholar profile</a>
+      {% endif %}
+      <a href="{{ base_path }}/portfolio/" class="pill-btn pill-btn--ghost">See research projects</a>
+    </p>
+  </div>
+{% else %}
+  {% comment %}Grouped rendering when publication categories are configured.{% endcomment %}
+  {% if site.publication_category %}
+    {% for category in site.publication_category %}
+      {% assign title_shown = false %}
+      {% for post in site.publications reversed %}
+        {% if post.category != category[0] %}
+          {% continue %}
+        {% endif %}
+        {% unless title_shown %}
+          <h2 class="archive__subtitle" id="{{ category[1].title | slugify }}">{{ category[1].title }}</h2>
+          {% assign title_shown = true %}
+        {% endunless %}
+        {% include archive-single.html %}
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    {% for post in site.publications reversed %}
+      {% include archive-single.html %}
+    {% endfor %}
+  {% endif %}
+{% endif %}

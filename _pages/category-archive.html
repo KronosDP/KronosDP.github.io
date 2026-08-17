@@ -1,17 +1,32 @@
 ---
 layout: archive
 permalink: /categories/
-title: "Posts by Category"
+title: "Posts by category"
+eyebrow: "categories"
+intro: "Every post grouped by the category it was filed under."
 author_profile: true
 ---
 
 {% include base_path %}
 {% include group-by-array collection=site.posts field="categories" %}
 
-{% for category in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
+{% if group_names.size == 0 %}
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing here yet</p>
+    <p>No posts carry a category. Once posts are filed, each category gets its own section on this page.</p>
+  </div>
+{% else %}
+  <nav class="archive__jump" aria-label="Jump to a category">
+    {% for category in group_names %}
+      <a class="tag-chip tag-chip--accent" href="#{{ category | slugify }}">{{ category }} <span class="archive__jump-count">{{ group_items[forloop.index0] | size }}</span></a>
+    {% endfor %}
+  </nav>
+
+  {% for category in group_names %}
+    {% assign posts = group_items[forloop.index0] %}
+    <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+    {% for post in posts %}
+      {% include archive-single.html %}
+    {% endfor %}
   {% endfor %}
-{% endfor %}
+{% endif %}

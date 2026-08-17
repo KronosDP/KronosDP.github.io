@@ -125,7 +125,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true      # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
 
 
@@ -169,6 +169,13 @@ include:
   - _pages
   - files
 exclude:
+  - _posts
+  - _pages/year-archive.html
+  - _pages/category-archive.html
+  - _pages/tag-archive.html
+  - _pages/page-archive.html
+  - _pages/collection-archive.html
+  - _pages/archive-layout-with-content.md
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
@@ -251,6 +258,7 @@ defaults:
       comments: true
       share: true
       related: true
+      published: false
   # _pages
   - scope:
       path: ""

@@ -1,12 +1,23 @@
 ---
 layout: archive
 title: "Teaching"
+eyebrow: "teaching"
+intro: "Course material, tutorials and problem walkthroughs written while working as a teaching assistant at the University of Indonesia."
 permalink: /teaching/
 author_profile: true
 ---
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-{% include archive-single.html %}
-{% endfor %}
+{% if site.teaching.size == 0 %}
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing here yet</p>
+    <p>Teaching material has not been published to this section. Notes and course handouts will show up here as they are written.</p>
+  </div>
+{% else %}
+  <p class="archive__count">{{ site.teaching.size }} {% if site.teaching.size == 1 %}entry{% else %}entries{% endif %}</p>
+
+  {% for post in site.teaching reversed %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endif %}

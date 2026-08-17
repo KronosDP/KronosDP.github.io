@@ -1,6 +1,19 @@
 /* ==========================================================================
    BASE ELEMENTS
+
+   The global type foundation. Everything else in the site builds on top of
+   this file, so it stays deliberately plain: element selectors only, tokens
+   only, no component classes.
+
+   Display face  : var(--font-display)  JetBrains Mono   400 / 500 / 700
+   Body face     : var(--font-body)     IBM Plex Sans    400 / 500 / 600
+   Mono/data     : var(--font-mono)     JetBrains Mono
+
+   Only the weights listed above are actually loaded (see _includes/head.html),
+   so never ask for a weight outside those sets -- the browser would synthesise
+   a fake bold, which is what the old single-weight Roboto build was doing.
    ========================================================================== */
+
 html {
   /* sticky footer fix */
   position: relative;
@@ -8,15 +21,25 @@ html {
 }
 
 body {
-  /* Set via _themes.scss */
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
 
   margin: 0;
   padding: $masthead-height 0 0;
   padding-bottom: 9em;
-  font-family: $global-font-family;
-  line-height: 1.5;
+
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0;
+
+  /* long URLs and code-ish words must never widen the page */
+  overflow-wrap: break-word;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: none;
 
   &.overflow--hidden {
     /* when primary navigation is visible, the content in the background won't scroll */
@@ -24,36 +47,65 @@ body {
   }
 }
 
+/*
+   Headings
+   --------------------------------------------------------------------------
+   Mono display face. Tracking tightens as the size grows so the large sizes
+   do not read as spaced-out monospace.
+   ========================================================================== */
+
 h1, h2, h3, h4, h5, h6 {
   margin: 2em 0 0.5em;
+  font-family: var(--font-display);
+  font-weight: 700;
   line-height: 1.2;
-  font-family: $header-font-family;
-  font-weight: bold;
+  color: var(--text);
 }
 
 h1 {
   margin-top: 0;
   font-size: $type-size-3;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
 }
 
 h2 {
   font-size: $type-size-4;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 h3 {
   font-size: $type-size-5;
+  letter-spacing: -0.01em;
 }
 
 h4 {
   font-size: $type-size-6;
+  letter-spacing: 0;
 }
 
 h5 {
   font-size: $type-size-6;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 h6 {
   font-size: $type-size-6;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Real weights, not faux bold */
+strong, b {
+  font-weight: 600;
+}
+
+em, i, dfn {
+  font-style: italic;
 }
 
 small, .small {
@@ -61,13 +113,14 @@ small, .small {
 }
 
 p {
-  margin-bottom: 1.3em;
+  margin: 0 0 1.3em;
 }
 
 u,
 ins {
   text-decoration: none;
-  border-bottom: 1px solid var(--global-text-color);
+  border-bottom: 1px solid var(--accent-dim);
+
   a {
     color: inherit;
   }
@@ -90,20 +143,72 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: none;
   cursor: help;
-  border-bottom: 1px dotted var(--global-text-color);
+  border-bottom: 1px dotted var(--accent-dim);
+}
+
+/* address, cite, q, kbd, var */
+
+address {
+  margin: 0 0 1.3em;
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+cite {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+q {
+  font-style: italic;
+}
+
+var {
+  font-family: var(--font-mono);
+  font-style: normal;
+  color: var(--accent);
+}
+
+kbd {
+  display: inline-block;
+  padding: 0.1em 0.45em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--text);
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+}
+
+mark {
+  padding: 0.05em 0.25em;
+  color: var(--ink);
+  background-color: var(--accent);
+  border-radius: 3px;
 }
 
 /* blockquotes */
 
 blockquote {
-  margin: 2em 1em 2em 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  font-style: italic;
-  border-left: 0.25em solid var(--global-border-color);
+  margin: 2em 0;
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  color: var(--text-muted);
+  font-style: normal;
+  border-left: 2px solid var(--accent-dim);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 
   cite {
-    font-style: italic;
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-style: normal;
+    letter-spacing: 0.02em;
 
     &:before {
       content: "\2014";
@@ -115,6 +220,14 @@ blockquote {
 /* links */
 
 a {
+  color: var(--global-link-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+
+  &:hover {
+    color: var(--global-link-color-hover);
+  }
+
   &:focus {
     @extend %tab-focus;
   }
@@ -128,48 +241,59 @@ a {
 /* code */
 
 tt, code, kbd, samp, pre {
-  font-family: $monospace;
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
 }
 
 pre {
-  overflow-x: auto; /* add scrollbars to wide code blocks*/
+  max-width: 100%;
+  overflow-x: auto; /* add scrollbars to wide code blocks */
+  -webkit-overflow-scrolling: touch;
 }
 
 a > code,
 figcaption > code,
 li > code,
 p > code,
-td > code {
+td > code,
+dd > code,
+h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
   color: var(--global-code-text-color);
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  font-size: $type-size-6;
+  padding: 0.12rem 0.35rem;
+  font-size: 0.875em;
   background: var(--global-code-background-color);
-  border: 1px solid var(--global-thead-color);
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-
-  &:before, &:after {
-    letter-spacing: -0.2em;
-    content: "\00a0"; /* non-breaking space*/
-  }
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
 }
 
 a > code {
-    color: inherit;
+  color: inherit;
 }
 
 pre > code {
   color: var(--global-code-text-color);
 }
 
+/* a bare <pre> (no Rouge wrapper) still reads as a code surface */
+pre:not([class]) {
+  margin: 2em 0;
+  padding: var(--space-4);
+  font-size: $type-size-6;
+  line-height: 1.7;
+  color: var(--global-code-text-color);
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
 /* horizontal rule */
 
 hr {
   display: block;
-  margin: 1em 0;
+  height: 1px;
+  margin: var(--space-6) 0;
   border: 0;
-  border-top: 1px solid var(--global-border-color);
+  background-color: var(--line);
 }
 
 /* lists */
@@ -182,6 +306,48 @@ ol li {
 li ul,
 li ol {
   margin-top: 0.5em;
+}
+
+/* description lists */
+
+dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+}
+
+dd {
+  color: var(--text-muted);
+}
+
+/* details / summary */
+
+details {
+  margin: 2em 0;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+
+  > summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  > summary + * {
+    margin-top: var(--space-3);
+  }
 }
 
 /*
@@ -208,7 +374,8 @@ figure {
 
   img {
     width: 100%;
-    border-radius: $border-radius;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
     -webkit-transition: $global-transition;
     transition: $global-transition;
   }
@@ -249,23 +416,32 @@ figure {
 figcaption {
   margin-bottom: 0.5em;
   color: var(--global-fig-caption-color);
-  font-family: $caption-font-family;
+  font-family: var(--font-mono);
   font-size: $type-size-6;
+  line-height: 1.5;
 
   a {
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid var(--global-border-color );
+    border-bottom: 1px solid var(--line);
     -webkit-transition: $global-transition;
     transition: $global-transition;
 
     &:hover {
-      color: #000;
-      border-bottom-color: #000;
+      color: var(--accent);
+      border-bottom-color: var(--accent);
     }
   }
 }
 
+/* Wide embeds must scroll inside themselves, never widen the page */
+
+iframe,
+embed,
+object,
+video {
+  max-width: 100%;
+}
 
 /* Fix IE9 SVG bug */
 
@@ -280,15 +456,6 @@ svg:not(:root) {
 
 /**
  * Removes margins, padding, and bullet points from navigation lists
- *
- * Example usage:
- * <nav>
- *    <ul>
- *      <li><a href="#link-1">Link 1</a></li>
- *      <li><a href="#link-2">Link 2</a></li>
- *      <li><a href="#link-3">Link 3</a></li>
- *    </ul>
- *  </nav>
  */
 
 nav {
@@ -321,23 +488,15 @@ nav {
    ANIMATIONS
    ========================================================================== */
 
-   @-webkit-keyframes intro {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes intro {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+@-webkit-keyframes intro {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes intro {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 /* Global animation transition */
 b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a, tr, td, form button, input[type="submit"], .btn, .highlight, .archive__item-teaser {
@@ -349,17 +508,13 @@ b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a,
    PRINT STYLES
    ========================================================================== */
 
-/*
-   Hide the following elements on print
-   ========================================================================== */
-
-   @media print {
-    .masthead,
-    .toc,
-    .page__share,
-    .page__related,
-    .ads,
-    .page__footer {
-      display: none;
-    }
+@media print {
+  .masthead,
+  .toc,
+  .page__share,
+  .page__related,
+  .ads,
+  .page__footer {
+    display: none;
   }
+}

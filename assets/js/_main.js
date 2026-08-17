@@ -55,7 +55,9 @@ if (plotlyElements.length > 0) {
    ========================================================================== */
 
 $(document).ready(function () {
-  // SCSS SETTINGS - These should be the same as the settings in the relevant files 
+  // SCSS SETTINGS - These should be the same as the settings in the relevant files
+  // scssLarge is the single sidebar/nav breakpoint: $large in /_sass/_themes.scss,
+  // used via @include breakpoint($large) in /_sass/layout/_sidebar.scss.
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)
 
@@ -81,18 +83,59 @@ $(document).ready(function () {
   // FitVids init
   fitvids();
 
-  // Follow menu drop down
-  $(".author__urls-wrapper button").on("click", function () {
-    $(".author__urls").fadeToggle("fast", function () { });
-    $(".author__urls-wrapper button").toggleClass("open");
-  });
+  // The old "Follow" dropdown (.author__urls-wrapper button) and its resize
+  // restore handler are gone: the sidebar is a pill nav now, and the only
+  // mobile nav affordance is the masthead hamburger, which is wired up in
+  // assets/js/plugins/jquery.greedy-navigation.js.
 
-  // Restore the follow menu if toggled on a window resize
-  jQuery(window).on('resize', function () {
-    if ($('.author__urls.social-icons').css('display') == 'none' && $(window).width() >= scssLarge) {
-      $(".author__urls").css('display', 'block')
+  // Animate the skill bars in as they scroll into view.
+  //
+  // A bar's real width is its CSS default; only rows we park with .is-pending
+  // start at zero (see _sass/layout/_components.scss). That direction matters:
+  // an empty bar reads as "no skill at all", so a missed reveal must degrade to
+  // "no animation", never to a wrong value. Anything still pending gets swept
+  // clear below.
+  var skillRows = document.querySelectorAll(".skill-row");
+  if (skillRows.length > 0) {
+    var revealRow = function (row) {
+      row.classList.remove("is-pending");
+    };
+    var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion && "IntersectionObserver" in window) {
+      Array.prototype.forEach.call(skillRows, function (row) {
+        row.classList.add("is-pending");
+      });
+
+      var skillObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            revealRow(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0 });
+
+      Array.prototype.forEach.call(skillRows, function (row) {
+        skillObserver.observe(row);
+      });
+
+      // Safety sweep: reveal any row that is at or above the fold but still
+      // pending. Rows genuinely below the fold are left to the observer so
+      // they keep their scroll-in animation.
+      var sweepSkillRows = function () {
+        Array.prototype.forEach.call(skillRows, function (row) {
+          if (row.classList.contains("is-pending") &&
+              row.getBoundingClientRect().top < window.innerHeight) {
+            revealRow(row);
+            skillObserver.unobserve(row);
+          }
+        });
+      };
+      $(window).on("load", sweepSkillRows);
+      setTimeout(sweepSkillRows, 1200);
     }
-  });
+  }
 
   // Init smooth scroll, this needs to be slightly more than then fixed masthead height
   $("a").smoothScroll({

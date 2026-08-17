@@ -1,107 +1,110 @@
 /* ==========================================================================
    BUTTONS
-   ========================================================================== */
 
-/*
-   Default button
+   `.btn` is emitted by theme internals (page__hero, social-share, the Google
+   search form, `{: .btn}` in markdown), so it has to keep existing. It is
+   re-skinned here to match `.pill-btn` from layout/_components.scss rather
+   than redefining that component: same radius, same padding rhythm, same
+   focus behaviour. Use `.pill-btn` in new markup; `.btn` is the legacy alias.
    ========================================================================== */
 
 .btn {
-  /* default button */
-  display: inline-block;
-  margin-bottom: 0.25em;
-  padding: 0.5em 1em;
-  color: #fff !important;
-  font-family: $sans-serif;
-  font-size: $type-size-6;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0 0.35em 0.5em 0;
+  padding: 0.6rem 1.35rem;
+
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  background-color: var(--global-base-color);
-  border: 0 !important;
-  border-radius: $border-radius;
-  cursor: pointer;
 
-  &:hover {
-    background-color: mix(white, #000, 20%);
+  color: var(--ink) !important;
+  background-color: var(--accent);
+  border: 1px solid transparent !important;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--ink) !important;
+    background-color: var(--accent-hover);
+    text-decoration: none;
   }
 
   .icon {
-    margin-right: 0.5em;
+    margin-right: 0;
   }
 
   .icon + .hidden {
-    margin-left: -0.5em; /* override for hidden text*/
+    margin-left: 0; /* the gap already handles spacing */
   }
 
   /* fills width of parent container */
 
   &--block {
-    display: block;
+    display: flex;
     width: 100%;
 
     + .btn--block {
-      margin-top: 0.25em;
+      margin-top: 0.5em;
     }
   }
 
-  /* for dark backgrounds */
+  /* primary == the default filled pill (kept as an explicit alias because
+     theme internals and markdown authors both reach for it) */
 
-  &--inverse {
-    color: var(--global-text-color-light) !important;
-    border: 1px solid var(--global-border-color) !important; /* override*/
-    background-color: var(--global-bg-color);
+  &--primary {
+    color: var(--ink) !important;
+    background-color: var(--accent);
+    border-color: transparent !important;
 
-    &:hover {
-      color: #fff !important;
-      border-color: var(--global-text-color-light);
+    &:hover,
+    &:focus {
+      background-color: var(--accent-hover);
     }
   }
 
-  /* light outline */
+  /* outlined variants -- the ghost pill */
 
+  &--inverse,
   &--light-outline {
-    border: 1px solid #fff !important; /* override*/
+    color: var(--text) !important;
     background-color: transparent;
-  }
+    border: 1px solid var(--line) !important;
 
-  /* information */
-
-  &--info {
-    background-color: $info-color;
-
-    &:hover {
-      background-color: mix(#000, $info-color, 20%);
+    &:hover,
+    &:focus {
+      color: var(--accent) !important;
+      background-color: transparent;
+      border-color: var(--accent) !important;
     }
   }
 
-  /* warning */
+  /* semantic variants -- tinted outline so periwinkle stays the only fill */
 
-  &--warning {
-    background-color: $warning-color;
+  @each $name, $color in
+    (info,    $info-color),
+    (warning, $warning-color),
+    (success, $success-color),
+    (danger,  $danger-color)
+  {
+    &--#{$name} {
+      color: $color !important;
+      background-color: transparent;
+      border: 1px solid rgba($color, 0.5) !important;
 
-    &:hover {
-      background-color: mix(#000, $warning-color, 20%);
-    }
-  }
-
-  /* success */
-
-  &--success {
-    background-color: $success-color;
-
-    &:hover {
-      background-color: mix(#000, $success-color, 20%);
-    }
-  }
-
-  /* danger */
-
-  &--danger {
-    background-color: $danger-color;
-
-    &:hover {
-      background-color: mix(#000, $danger-color, 20%);
+      &:hover,
+      &:focus {
+        color: $color !important;
+        background-color: rgba($color, 0.12);
+        border-color: $color !important;
+      }
     }
   }
 
@@ -110,12 +113,12 @@
   &--disabled {
     pointer-events: none;
     cursor: not-allowed;
-    filter: alpha(opacity=65);
     box-shadow: none;
-    opacity: 0.65;
+    opacity: 0.5;
   }
 
-  /* social buttons */
+  /* social buttons -- brand colour reduced to the outline, so the row of
+     share buttons reads as one set instead of five loud pills */
 
   $social:
   (bluesky, $bluesky-color),
@@ -123,33 +126,54 @@
   (google-plus, $google-plus-color),
   (linkedin, $linkedin-color),
   (mastodon, $mastodon-color),
-  (twitter, $twitter-color); 
+  (twitter, $twitter-color),
+  (x, $primary-color);
 
   @each $socialnetwork, $color in $social {
     &--#{$socialnetwork} {
-      background-color: $color;
+      color: var(--text) !important;
+      background-color: transparent;
+      border: 1px solid var(--line) !important;
 
-      &:hover {
-        background-color: mix(#000, $color, 20%);
+      i {
+        color: $color;
+      }
+
+      &:hover,
+      &:focus {
+        color: var(--text) !important;
+        background-color: var(--surface);
+        border-color: rgba($color, 0.7) !important;
       }
     }
   }
 
-  /* extra large button */
+  /* sizes */
 
   &--x-large {
-    font-size: $type-size-4;
+    padding: 0.85rem 1.9rem;
+    font-size: 1rem;
   }
-
-  /* large button */
 
   &--large {
-    font-size: $type-size-5;
+    padding: 0.7rem 1.6rem;
+    font-size: 0.9375rem;
   }
 
-  /* small button */
-
   &--small {
-    font-size: $type-size-7;
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* A row of buttons should not need per-button margins to look spaced */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+
+  .btn,
+  .pill-btn {
+    margin: 0;
   }
 }

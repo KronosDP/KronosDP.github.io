@@ -1,17 +1,32 @@
 ---
 layout: archive
 permalink: /tags/
-title: "Posts by Tags"
+title: "Posts by tag"
+eyebrow: "tags"
+intro: "Every post grouped by tag. Use the chips to jump straight to one."
 author_profile: true
 ---
 
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
-{% for tag in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
+{% if group_names.size == 0 %}
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing here yet</p>
+    <p>No posts are tagged. Once posts carry tags, each tag gets its own section on this page.</p>
+  </div>
+{% else %}
+  <nav class="archive__jump" aria-label="Jump to a tag">
+    {% for tag in group_names %}
+      <a class="tag-chip" href="#{{ tag | slugify }}">{{ tag }} <span class="archive__jump-count">{{ group_items[forloop.index0] | size }}</span></a>
+    {% endfor %}
+  </nav>
+
+  {% for tag in group_names %}
+    {% assign posts = group_items[forloop.index0] %}
+    <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
+    {% for post in posts %}
+      {% include archive-single.html %}
+    {% endfor %}
   {% endfor %}
-{% endfor %}
+{% endif %}

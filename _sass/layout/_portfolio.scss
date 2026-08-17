@@ -1,0 +1,371 @@
+/* ==========================================================================
+   PORTFOLIO (/portfolio/)
+   Owned by the portfolio pass. Use tokens and the shared components in
+   _sass/layout/_components.scss -- no raw hex values.
+
+   All of this used to live in a ~240 line inline <style> block inside
+   _pages/portfolio.html.
+   ========================================================================== */
+
+.portfolio-page {
+  font-family: var(--font-body);
+  color: var(--text);
+
+  /* The theme underlines every link inside .page__content; pill buttons and
+     card links opt out. */
+  a.pill-btn {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section header
+   -------------------------------------------------------------------------- */
+.portfolio-head {
+  margin: var(--space-4) 0 var(--space-6);
+
+  /* This .section-title is the page's <h1> now (the layout's own page__title
+     is suppressed via `hide_title` so the page isn't topped by two competing
+     headings), so it carries page-title weight rather than section weight.
+     The border reset is because `.page__content h2` rules a line under
+     headings sitewide. */
+  .section-title {
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-size: 1.75rem;
+    line-height: 1.2;
+
+    @include breakpoint($medium) {
+      font-size: 2.25rem;
+    }
+  }
+}
+
+/* The lede, metrics, descriptions and the empty state are all <p> elements,
+   and .page__content p sets font-size/margin at the same-or-higher
+   specificity -- hence the .portfolio-page prefix on those rules. */
+.portfolio-page .portfolio-head__lede {
+  max-width: 60ch;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Category filters -- pill toggles
+   -------------------------------------------------------------------------- */
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  i {
+    font-size: 0.8em;
+  }
+
+  &:hover {
+    border-color: var(--accent-dim);
+    color: var(--text);
+  }
+
+  &.is-active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Showcase grid -- the featured card spans every column
+   -------------------------------------------------------------------------- */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+  align-items: stretch;
+}
+
+.project-item.is-filtered-out {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Featured project -- full-width, accent-bordered, roomier padding
+   -------------------------------------------------------------------------- */
+.project-featured {
+  grid-column: 1 / -1;
+  position: relative;
+  padding: var(--space-5);
+  border-color: var(--accent-dim);
+  border-top-width: 2px;
+  border-top-color: var(--accent);
+
+  @include breakpoint($medium) {
+    padding: var(--space-6);
+  }
+}
+
+.project-featured__badge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.project-featured__badge-text {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Text wordmark. FA6 Free has no `fa-nvidia` glyph, so the brand is set
+   in the display face instead of rendering an empty icon box. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-2);
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.project-featured__title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0 0 var(--space-2);
+
+  @include breakpoint($medium) {
+    font-size: 1.375rem;
+  }
+}
+
+.portfolio-page .project-featured__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-4);
+}
+
+.portfolio-page .project-featured__desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-5);
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+}
+
+.project-featured__metrics {
+  margin-bottom: var(--space-5);
+
+  /* Nested inside a --surface card, so lift the inner tier one step. */
+  .feature-card {
+    background-color: var(--surface-2);
+    padding: var(--space-4);
+  }
+
+  .feature-card__title {
+    font-size: 0.8125rem;
+    color: var(--accent);
+  }
+
+  .feature-card__body {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Project cards
+   -------------------------------------------------------------------------- */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.project-card__body {
+  min-width: 0;
+}
+
+.project-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text);
+  margin: 0;
+}
+
+.project-card__badge {
+  flex-shrink: 0;
+}
+
+.portfolio-page .project-card__metric {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--accent);
+  margin: 0 0 var(--space-3);
+
+  i {
+    flex-shrink: 0;
+  }
+}
+
+.portfolio-page .project-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Tags + actions (shared by the featured card and the grid cards)
+   -------------------------------------------------------------------------- */
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+/* Safety net: a few tech tags are long enough to out-run a 375px column,
+   and .tag-chip is nowrap by default. Let them wrap rather than scroll. */
+@media screen and (max-width: 30em) {
+  .tags-wrap .tag-chip {
+    white-space: normal;
+    text-align: left;
+  }
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.project-card .card-actions .pill-btn {
+  padding: 0.45rem 1rem;
+  font-size: 0.8125rem;
+}
+
+.portfolio-page .portfolio-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Print: browsers drop background colours, so the near-white body text would
+   vanish. Rebind the tokens to their dark counterparts for the printed page
+   instead of hard-coding print colours.
+   -------------------------------------------------------------------------- */
+@media print {
+  .portfolio-page {
+    --surface: transparent;
+    --surface-2: transparent;
+    --text: var(--ink);
+    --text-muted: var(--accent-dim);
+    --accent: var(--accent-dim);
+    --line: var(--accent-dim);
+
+    color: var(--ink);
+  }
+
+  .portfolio-filters,
+  .portfolio-empty,
+  .card-actions {
+    display: none;
+  }
+
+  .showcase-grid {
+    display: block;
+  }
+
+  .project-item {
+    margin-bottom: var(--space-4);
+    page-break-inside: avoid;
+  }
+
+  .project-item.is-filtered-out {
+    display: block;
+  }
+}

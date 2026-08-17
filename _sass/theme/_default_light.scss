@@ -1,24 +1,31 @@
 /* ==========================================================================
     DEFAULT THEME - LIGHT VERSION
+
+    Intentionally carries the SAME token values as the dark file. The site is
+    dark-only (_layouts/default.html hardcodes data-theme="dark"), and keeping
+    :root in lockstep with html[data-theme="dark"] means anything rendered
+    outside that attribute selector still gets the dark palette.
+    Keep both files in sync when changing tokens.
     ========================================================================== */
+
 /* Color codes used for the theme */
-$primary-color              : #2f7f93;
-$gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%);
-$darker-gray                : mix(#000, $gray, 60%);
-$light-gray                 : mix(#fff, $gray, 50%);
-$lighter-gray               : mix(#fff, $gray, 90%);
+$primary-color              : #7C9CE8;
+$gray                       : #4B63A8;
+$dark-gray                  : #121A2B;
+$darker-gray                : #0B1120;
+$light-gray                 : #93A0BC;
+$lighter-gray               : #C3D0EE;
 
 /* Color codes used for the site */
-$danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
-$notice-color               : #7a8288;
-$success-color              : #62c462;
-$warning-color              : #f89406;
+$danger-color               : #E8798A;
+$info-color                 : #7C9CE8;
+$notice-color               : #7C9CE8;
+$success-color              : #6FCF97;
+$warning-color              : #E8B267;
 
 /* Other basic settings for the template */
-$border-radius              : 4px;
-$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
+$border-radius              : 14px;
+$box-shadow                 : 0 4px 20px rgba(0, 0, 0, 0.25);
 $global-transition          : all 0.2s ease-in-out;
 $masthead-height            : 70px;
 $navicon-width              : 28px;
@@ -26,29 +33,69 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
-/* Default light theme for the site using soft baby blue palette */
 :root {
-    --global-base-color                 : #5274CC;
-    --global-bg-color                   : #0F172A;
-    --global-footer-bg-color            : #1E293B;
-    --global-border-color               : rgba(153, 182, 255, 0.2);
-    --global-dark-border-color          : #334155;
-    --global-code-background-color      : #1E293B;
-    --global-code-text-color            : #CCDAFF;
-    --global-fig-caption-color          : #99B6FF;
-    --global-link-color                 : #99B6FF;
-    --global-link-color-hover           : #CCDAFF;
-    --global-link-color-visited         : #99B6FF;
-    --global-masthead-link-color        : #F8FAFC;
-    --global-masthead-link-color-hover  : #99B6FF;
-    --global-text-color                 : #F8FAFC;
-    --global-text-color-light           : #CCDAFF;
-    --global-thead-color                : #1E293B;
+    /* ---- Core palette ---- */
+    --ink                               : #0B1120;
+    --surface                           : #121A2B;
+    --surface-2                         : #18223A;
+    --line                              : #22314F;
+    --accent                            : #7C9CE8;
+    --accent-hover                      : #A8BFF2;
+    --accent-dim                        : #4B63A8;
+    --text                              : #E8ECF6;
+    --text-muted                        : #93A0BC;
 
-    --card-surface-bg                   : #1E293B;
-    --card-surface-border               : rgba(153, 182, 255, 0.2);
-    --accent-cobalt                     : #5274CC;
-    --accent-sky                        : #99B6FF;
-    --accent-pastel                     : #CCDAFF;
+    /* Ambient page wash, painted on a fixed layer behind everything by
+       body:before in _sass/layout/_components.scss. Stronger than a
+       hero-sized glow needed to be, because it is now spread across the
+       whole viewport rather than concentrated in one box. */
+    --glow-a                            : rgba(46, 68, 158, 0.90);
+    --glow-b                            : rgba(97, 60, 152, 0.70);
+
+    /* ---- Typography ---- */
+    --font-display                      : "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --font-body                         : "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono                         : "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* ---- Shape ---- */
+    --radius-sm                         : 8px;
+    --radius-md                         : 14px;
+    --radius-lg                         : 20px;
+    --radius-pill                       : 999px;
+
+    /* ---- Spacing scale ---- */
+    --space-1                           : 0.25rem;
+    --space-2                           : 0.5rem;
+    --space-3                           : 0.75rem;
+    --space-4                           : 1rem;
+    --space-5                           : 1.5rem;
+    --space-6                           : 2rem;
+    --space-7                           : 3rem;
+    --space-8                           : 4.5rem;
+
+    /* ---- Legacy aliases: kept so the 20+ existing partials keep working ---- */
+    --global-base-color                 : var(--accent);
+    --global-bg-color                   : var(--ink);
+    --global-footer-bg-color            : var(--surface);
+    --global-border-color               : var(--line);
+    --global-dark-border-color          : var(--line);
+    --global-code-background-color      : var(--surface-2);
+    --global-code-text-color            : #CBD5F0;
+    --global-fig-caption-color          : var(--text-muted);
+    --global-link-color                 : var(--accent);
+    --global-link-color-hover           : var(--accent-hover);
+    --global-link-color-visited         : var(--accent);
+    --global-masthead-link-color        : var(--text);
+    --global-masthead-link-color-hover  : var(--accent);
+    --global-text-color                 : var(--text);
+    --global-text-color-light           : var(--text-muted);
+    --global-thead-color                : var(--surface-2);
+    /* Was referenced by _sass/layout/_sidebar.scss but never defined */
+    --global-toc-bg-color               : var(--surface);
+
+    --card-surface-bg                   : var(--surface);
+    --card-surface-border               : var(--line);
+    --accent-cobalt                     : var(--accent-dim);
+    --accent-sky                        : var(--accent);
+    --accent-pastel                     : #C3D0EE;
 }
-

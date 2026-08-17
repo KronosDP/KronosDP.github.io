@@ -5,574 +5,333 @@ permalink: /portfolio/
 excerpt: "Interactive portfolio of Darrel Danadyaksa Poli — Ex-NVIDIA AI Research Intern, Ex-Meeting.ai AI Engineer. Featuring deep learning, speech ASR, NLP, and full-stack projects."
 description: "Interactive portfolio of Darrel Danadyaksa Poli — Ex-NVIDIA AI Research Intern, Ex-Meeting.ai AI Engineer. Featuring deep learning, speech ASR, NLP, and full-stack projects."
 author_profile: true
+# The page owns its own heading in .portfolio-head below, so suppress the
+# layout's <h1 class="page__title">. Without this the page shows two competing
+# titles ("Project Showcase & Portfolio" then "Featured Projects & Research
+# Showcase"). The front-matter title still drives <title> and the OG tags.
+hide_title: true
 ---
 
-<style>
-  .portfolio-wrapper {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--global-text-color, #ffffff);
-    margin-top: 1rem;
-  }
+<div class="portfolio-page">
 
-  /* Header Bar */
-  .portfolio-intro {
-    background: var(--card-surface-bg, #001E67);
-    border: 1px solid var(--card-surface-border, rgba(153, 182, 255, 0.25));
-    border-left: 4px solid #5274CC;
-    padding: 1.25rem 1.5rem;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 2rem;
-  }
+  <!-- Section header -->
+  <header class="portfolio-head">
+    <span class="eyebrow">portfolio</span>
+    <h1 class="section-title">Featured Projects <span class="brace">&amp;</span> Research Showcase</h1>
+    <p class="portfolio-head__lede">Explore my latest AI research, full-stack systems, speech models, and award-winning projects with key metrics and architecture details.</p>
+  </header>
 
-  .portfolio-intro h2 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.3rem;
-    font-weight: 700;
-  }
-
-  .portfolio-intro p {
-    margin: 0;
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-
-  /* Filter Controls */
-  .filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .filter-btn {
-    background: rgba(153, 182, 255, 0.1);
-    border: 1px solid rgba(153, 182, 255, 0.25);
-    color: var(--global-text-color, #CCDAFF);
-    padding: 0.45rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-  }
-
-  .filter-btn:hover, .filter-btn.active {
-    background: #5274CC !important;
-    color: #ffffff !important;
-    border-color: #5274CC !important;
-    box-shadow: 0 4px 14px rgba(82, 116, 204, 0.4);
-  }
-
-  /* NVIDIA Featured Spotlight */
-  .featured-nvidia-card {
-    background: var(--card-surface-bg, #001E67);
-    border: 1px solid rgba(134, 239, 172, 0.35);
-    border-top: 3px solid #86efac;
-    border-radius: 12px;
-    padding: 1.75rem;
-    margin-bottom: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .featured-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(134, 239, 172, 0.12);
-    border: 1px solid rgba(134, 239, 172, 0.4);
-    color: #86efac;
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-  }
-
-  .featured-title {
-    font-size: 1.45rem;
-    font-weight: 800;
-    margin: 0 0 0.4rem 0;
-    color: var(--global-text-color, #fff);
-  }
-
-  .featured-meta {
-    font-size: 0.95rem;
-    color: #86efac;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .featured-desc {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.6;
-  }
-
-  .metric-box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .metric-box {
-    background: rgba(10, 22, 51, 0.5);
-    border: 1px solid rgba(134, 239, 172, 0.25);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-  }
-
-  .metric-value {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #86efac;
-  }
-
-  .metric-label {
-    font-size: 0.78rem;
-    opacity: 0.9;
-    font-weight: 600;
-  }
-
-  /* Projects Showcase Grid */
-  .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .showcase-card {
-    background: var(--card-surface-bg, #001E67);
-    border: 1px solid var(--card-surface-border, rgba(153, 182, 255, 0.2));
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-
-  .showcase-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    border-color: #5274CC;
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin: 0;
-  }
-
-  .award-chip {
-    font-size: 0.72rem;
-    font-weight: 700;
-    background: #f39c12;
-    color: #000;
-    padding: 0.2rem 0.55rem;
-    border-radius: 12px;
-    white-space: nowrap;
-  }
-
-  .card-metric {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #4a90e2;
-    margin-bottom: 0.6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .card-desc {
-    font-size: 0.92rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.5;
-    opacity: 0.9;
-  }
-
-  .tags-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .project-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
-    background: rgba(120, 120, 120, 0.15);
-    border: 1px solid rgba(120, 120, 120, 0.25);
-  }
-
-  .card-actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: auto;
-  }
-
-  .card-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.35rem 0.8rem;
-    border-radius: 6px;
-    text-decoration: none !important;
-    transition: all 0.2s ease;
-  }
-
-  .btn-demo {
-    background: #4a90e2;
-    color: #fff !important;
-  }
-
-  .btn-demo:hover {
-    background: #357abd;
-  }
-</style>
-
-<div class="portfolio-wrapper">
-
-  <!-- Intro Banner -->
-  <div class="portfolio-intro">
-    <h2><i class="fas fa-cubes"></i> Featured Projects & Research Showcase</h2>
-    <p>Explore my latest AI research, full-stack systems, speech models, and award-winning projects with key metrics and architecture details.</p>
+  <!-- Category filters -->
+  <div class="portfolio-filters" role="group" aria-label="Filter projects by category">
+    <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true"><i class="fas fa-th" aria-hidden="true"></i> All Projects</button>
+    <button type="button" class="filter-btn" data-filter="ai" aria-pressed="false"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Deep Learning</button>
+    <button type="button" class="filter-btn" data-filter="backend" aria-pressed="false"><i class="fas fa-server" aria-hidden="true"></i> Full-Stack &amp; Backend</button>
+    <button type="button" class="filter-btn" data-filter="research" aria-pressed="false"><i class="fas fa-flask" aria-hidden="true"></i> Research &amp; NLP</button>
+    <button type="button" class="filter-btn" data-filter="mobile" aria-pressed="false"><i class="fas fa-mobile-alt" aria-hidden="true"></i> Mobile &amp; Web</button>
   </div>
 
-  <!-- Interactive Filter Controls with inline onclick triggers -->
-  <div class="filter-controls">
-    <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)"><i class="fas fa-th"></i> All Projects</button>
-    <button class="filter-btn" data-filter="ai" onclick="filterProjects('ai', this)"><i class="fas fa-brain"></i> AI & Deep Learning</button>
-    <button class="filter-btn" data-filter="backend" onclick="filterProjects('backend', this)"><i class="fas fa-server"></i> Full-Stack & Backend</button>
-    <button class="filter-btn" data-filter="research" onclick="filterProjects('research', this)"><i class="fas fa-flask"></i> Research & NLP</button>
-    <button class="filter-btn" data-filter="mobile" onclick="filterProjects('mobile', this)"><i class="fas fa-mobile-alt"></i> Mobile & Web</button>
-  </div>
-
-  <!-- FEATURED NVIDIA RESEARCH BANNER -->
-  <div class="featured-nvidia-card project-item" data-category="ai research">
-    <div class="featured-badge">
-      <i class="fab fa-nvidia"></i> Flagship AI Research Spotlight
-    </div>
-    <h3 class="featured-title">Sequence Model Capacity: RWKV-v7 vs. Transformers &mdash; NVIDIA</h3>
-    <div class="featured-meta">
-      <i class="fas fa-building"></i> NVIDIA AI Research &bull; Remote &bull; Jan 2025 &ndash; Jun 2025
-    </div>
-    
-    <p class="featured-desc">
-      Evaluated non-Transformer recurrent sequence model architectures (<strong>RWKV-v4 & RWKV-v7</strong>) against standard <strong>Transformers</strong>, <strong>LSTMs</strong>, and <strong>GRUs</strong> for formal regular language expressivity. Designed synthetic language datasets (<strong>L<sub>1</sub> Alternating Patterns</strong>, <strong>L<sub>2</sub> Parity Counting</strong>, <strong>L<sub>3</sub> Substring Matching</strong>, <strong>L<sub>4</sub> Language Unions</strong>) paired with 1&ndash;3 edit-distance near-miss hard negative perturbations to stress-test model decision boundaries. Implemented a custom <strong>PyTorch CUDA C++ WKV Operator</strong> (<code>wkv_kernel.cu</code>) for accelerated state transitions.
-    </p>
-
-    <div class="metric-box-container">
-      <div class="metric-box">
-        <div class="metric-value">RWKV-v7 & CUDA Kernel</div>
-        <div class="metric-label">Custom PyTorch WKV Operator (wkv_kernel.cu)</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-value">Formal Languages L1&ndash;L4</div>
-        <div class="metric-label">Parity, Substring & Union Language Verification</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-value">1&ndash;3 Edit Near-Misses</div>
-        <div class="metric-label">Hard Negative Boundary Stress Testing</div>
-      </div>
-    </div>
-
-    <div class="tags-wrap">
-      <span class="project-tag" style="color: #86efac; border-color: rgba(134, 239, 172, 0.4); background: rgba(134, 239, 172, 0.12);">NVIDIA AI Research</span>
-      <span class="project-tag" style="color: #86efac; border-color: rgba(134, 239, 172, 0.4); background: rgba(134, 239, 172, 0.12);">RWKV-v7</span>
-      <span class="project-tag">Transformers vs RNN</span>
-      <span class="project-tag">Custom CUDA C++</span>
-      <span class="project-tag">PyTorch</span>
-      <span class="project-tag">Formal Regular Languages</span>
-      <span class="project-tag">Hard Negative Boundary Sampling</span>
-    </div>
-
-    <div class="card-actions">
-      <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-file-alt"></i> View Research Details in CV</a>
-    </div>
-  </div>
-
-  <!-- PROJECTS SHOWCASE GRID -->
+  <!-- Showcase grid: the featured research card spans the full grid width -->
   <div class="showcase-grid">
 
+    <!-- FEATURED: NVIDIA RWKV-v7 research -->
+    <article class="project-item project-featured surface-card" data-category="ai research">
+      <div class="project-featured__badge">
+        <span class="wordmark">NVIDIA</span>
+        <span class="project-featured__badge-text">Flagship AI Research Spotlight</span>
+      </div>
+
+      <h3 class="project-featured__title">Sequence Model Capacity: RWKV-v7 vs. Transformers &mdash; NVIDIA</h3>
+      <p class="project-featured__meta">
+        <i class="fas fa-building" aria-hidden="true"></i> NVIDIA AI Research &bull; Remote &bull; Jan 2025 &ndash; Jun 2025
+      </p>
+
+      <p class="project-featured__desc">
+        Evaluated non-Transformer recurrent sequence model architectures (<strong>RWKV-v4 &amp; RWKV-v7</strong>) against standard <strong>Transformers</strong>, <strong>LSTMs</strong>, and <strong>GRUs</strong> for formal regular language expressivity. Designed synthetic language datasets (<strong>L<sub>1</sub> Alternating Patterns</strong>, <strong>L<sub>2</sub> Parity Counting</strong>, <strong>L<sub>3</sub> Substring Matching</strong>, <strong>L<sub>4</sub> Language Unions</strong>) paired with 1&ndash;3 edit-distance near-miss hard negative perturbations to stress-test model decision boundaries. Implemented a custom <strong>PyTorch CUDA C++ WKV Operator</strong> (<code>wkv_kernel.cu</code>) for accelerated state transitions.
+      </p>
+
+      <div class="feature-grid project-featured__metrics">
+        <div class="feature-card">
+          <h4 class="feature-card__title">RWKV-v7 &amp; CUDA Kernel</h4>
+          <p class="feature-card__body">Custom PyTorch WKV Operator (wkv_kernel.cu)</p>
+        </div>
+        <div class="feature-card">
+          <h4 class="feature-card__title">Formal Languages L1&ndash;L4</h4>
+          <p class="feature-card__body">Parity, Substring &amp; Union Language Verification</p>
+        </div>
+        <div class="feature-card">
+          <h4 class="feature-card__title">1&ndash;3 Edit Near-Misses</h4>
+          <p class="feature-card__body">Hard Negative Boundary Stress Testing</p>
+        </div>
+      </div>
+
+      <ul class="tags-wrap">
+        <li><span class="tag-chip tag-chip--accent">NVIDIA AI Research</span></li>
+        <li><span class="tag-chip tag-chip--accent">RWKV-v7</span></li>
+        <li><span class="tag-chip">Transformers vs RNN</span></li>
+        <li><span class="tag-chip">Custom CUDA C++</span></li>
+        <li><span class="tag-chip">PyTorch</span></li>
+        <li><span class="tag-chip">Formal Regular Languages</span></li>
+        <li><span class="tag-chip">Hard Negative Boundary Sampling</span></li>
+      </ul>
+
+      <div class="card-actions">
+        <a href="/cv/" class="pill-btn pill-btn--filled"><i class="fas fa-file-alt" aria-hidden="true"></i> View Research Details in CV</a>
+      </div>
+    </article>
+
     <!-- SafetyPin Startup -->
-    <div class="showcase-card project-item" data-category="backend mobile">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">SafetyPin Startup</h4>
-          <span class="award-chip">Startup 2025</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="backend mobile">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">SafetyPin Startup</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Startup 2025</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-shield-alt"></i> Intelligent Personal Safety & Reporting
-        </div>
-        <p class="card-desc">Co-founded SafetyPin, a social security startup leveraging technology and intelligent reporting systems to enhance personal safety solutions.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Personal Safety</span>
-          <span class="project-tag">Django</span>
-          <span class="project-tag">Flutter</span>
-          <span class="project-tag">System Architecture</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i> Intelligent Personal Safety &amp; Reporting
+        </p>
+        <p class="project-card__desc">Co-founded SafetyPin, a social security startup leveraging technology and intelligent reporting systems to enhance personal safety solutions.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Personal Safety</span></li>
+          <li><span class="tag-chip">Django</span></li>
+          <li><span class="tag-chip">Flutter</span></li>
+          <li><span class="tag-chip">System Architecture</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Marie Chan AI System -->
-    <div class="showcase-card project-item" data-category="ai backend">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Marie Chan AI System</h4>
-          <span class="award-chip" style="background:#4a90e2; color:#fff;">Agentic AI</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai backend">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Marie Chan AI System</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Agentic AI</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-bolt"></i> Go (Golang) + Django Dual Backend
-        </div>
-        <p class="card-desc">Architected and deployed an interactive AI system combining Go and Django backends. Integrated OpenRouter API for multi-model LLM routing and speech synthesis.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Go (Golang)</span>
-          <span class="project-tag">Django</span>
-          <span class="project-tag">Agentic AI</span>
-          <span class="project-tag">OpenRouter API</span>
-          <span class="project-tag">BDD/TDD</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-bolt" aria-hidden="true"></i> Go (Golang) + Django Dual Backend
+        </p>
+        <p class="project-card__desc">Architected and deployed an interactive AI system combining Go and Django backends. Integrated OpenRouter API for multi-model LLM routing and speech synthesis.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Go (Golang)</span></li>
+          <li><span class="tag-chip">Django</span></li>
+          <li><span class="tag-chip">Agentic AI</span></li>
+          <li><span class="tag-chip">OpenRouter API</span></li>
+          <li><span class="tag-chip">BDD/TDD</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Meeting.ai ASR & Speaker Verification -->
-    <div class="showcase-card project-item" data-category="ai research">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Meeting.ai ASR Pipeline</h4>
-          <span class="award-chip" style="background:#27ae60; color:#fff;">Speech AI</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai research">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Meeting.ai ASR Pipeline</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Speech AI</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-tachometer-alt"></i> 10+ Concurrent Sessions &bull; Knowledge Distillation
-        </div>
-        <p class="card-desc">Benchmarked speech recognition under high concurrency. Compression-optimized Speaker Verification model via knowledge distillation and built active learning pipelines.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Speech ASR</span>
-          <span class="project-tag">Whisper</span>
-          <span class="project-tag">Distillation</span>
-          <span class="project-tag">Active Learning</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-tachometer-alt" aria-hidden="true"></i> 10+ Concurrent Sessions &bull; Knowledge Distillation
+        </p>
+        <p class="project-card__desc">Benchmarked speech recognition under high concurrency. Compression-optimized Speaker Verification model via knowledge distillation and built active learning pipelines.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Speech ASR</span></li>
+          <li><span class="tag-chip">Whisper</span></li>
+          <li><span class="tag-chip">Distillation</span></li>
+          <li><span class="tag-chip">Active Learning</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-chart-line"></i> Benchmark Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-chart-line" aria-hidden="true"></i> Benchmark Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Multimodal Emotion Detection -->
-    <div class="showcase-card project-item" data-category="ai research">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Multimodal Emotion AI</h4>
-          <span class="award-chip">Satria Data 2025</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai research">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Multimodal Emotion AI</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Satria Data 2025</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-microphone-alt"></i> BERT Text + Whisper Speech + VAD
-        </div>
-        <p class="card-desc">Engineered an end-to-end multimodal emotion detection system combining BERT for textual features, Whisper for speech representations, and VAD for noise filtering.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">BERT</span>
-          <span class="project-tag">Whisper</span>
-          <span class="project-tag">VAD</span>
-          <span class="project-tag">PyTorch</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-microphone-alt" aria-hidden="true"></i> BERT Text + Whisper Speech + VAD
+        </p>
+        <p class="project-card__desc">Engineered an end-to-end multimodal emotion detection system combining BERT for textual features, Whisper for speech representations, and VAD for noise filtering.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">BERT</span></li>
+          <li><span class="tag-chip">Whisper</span></li>
+          <li><span class="tag-chip">VAD</span></li>
+          <li><span class="tag-chip">PyTorch</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- SIKAP Anti-Bullying Platform -->
-    <div class="showcase-card project-item" data-category="backend mobile">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">SIKAP Anti-Bullying</h4>
-          <span class="award-chip" style="background:#9b59b6; color:#fff;">Field Tested</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="backend mobile">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">SIKAP Anti-Bullying</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Field Tested</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-school"></i> Deployed & Tested across 10+ Schools
-        </div>
-        <p class="card-desc">Engineered a cross-platform anti-bullying information system using Django for backend and Flutter for mobile interface. Conducted UAT following ADDIE & UCD principles.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Django</span>
-          <span class="project-tag">Flutter</span>
-          <span class="project-tag">Dart</span>
-          <span class="project-tag">UCD/ADDIE</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-school" aria-hidden="true"></i> Deployed &amp; Tested across 10+ Schools
+        </p>
+        <p class="project-card__desc">Engineered a cross-platform anti-bullying information system using Django for backend and Flutter for mobile interface. Conducted UAT following ADDIE &amp; UCD principles.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Django</span></li>
+          <li><span class="tag-chip">Flutter</span></li>
+          <li><span class="tag-chip">Dart</span></li>
+          <li><span class="tag-chip">UCD/ADDIE</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Tak Sendiri AI Agent -->
-    <div class="showcase-card project-item" data-category="ai research">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Tak Sendiri AI Agent</h4>
-          <span class="award-chip">Garuda Hacks 4.0</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai research">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Tak Sendiri AI Agent</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Garuda Hacks 4.0</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-trophy"></i> Honorable Mention Award
-        </div>
-        <p class="card-desc">Awarded Honorable Mention at Garuda Hacks 4.0 for building <em>Tak Sendiri</em>, a conversational AI agent for preliminary depression screening and mental health support.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Conversational AI</span>
-          <span class="project-tag">LLM</span>
-          <span class="project-tag">Mental Health</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-trophy" aria-hidden="true"></i> Honorable Mention Award
+        </p>
+        <p class="project-card__desc">Awarded Honorable Mention at Garuda Hacks 4.0 for building <em>Tak Sendiri</em>, a conversational AI agent for preliminary depression screening and mental health support.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Conversational AI</span></li>
+          <li><span class="tag-chip">LLM</span></li>
+          <li><span class="tag-chip">Mental Health</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Illegal Parking CV System -->
-    <div class="showcase-card project-item" data-category="ai">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Illegal Parking CV Pipeline</h4>
-          <span class="award-chip">Gemastik 2024</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Illegal Parking CV Pipeline</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Gemastik 2024</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-video"></i> Real-time Surveillance Object Detection
-        </div>
-        <p class="card-desc">Designed and trained an object detection computer vision pipeline to identify illegal parking violations from live surveillance camera feeds.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Computer Vision</span>
-          <span class="project-tag">PyTorch</span>
-          <span class="project-tag">OpenCV</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-video" aria-hidden="true"></i> Real-time Surveillance Object Detection
+        </p>
+        <p class="project-card__desc">Designed and trained an object detection computer vision pipeline to identify illegal parking violations from live surveillance camera feeds.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Computer Vision</span></li>
+          <li><span class="tag-chip">PyTorch</span></li>
+          <li><span class="tag-chip">OpenCV</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- BERT Clickbait Classifier (Gemastik 2023) -->
-    <div class="showcase-card project-item" data-category="ai research">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">BERT Clickbait Classifier</h4>
-          <span class="award-chip" style="background:#e74c3c; color:#fff;">Gemastik 2023</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="ai research">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">BERT Clickbait Classifier</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Gemastik 2023</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-filter"></i> Indonesian NLP & Transformer Fine-Tuning
-        </div>
-        <p class="card-desc">Fine-tuned a BERT-based transformer model on Indonesian news and text datasets to accurately detect, classify, and filter clickbait headlines.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">BERT</span>
-          <span class="project-tag">Transformers</span>
-          <span class="project-tag">Indonesian NLP</span>
-          <span class="project-tag">PyTorch</span>
-          <span class="project-tag">Text Classification</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-filter" aria-hidden="true"></i> Indonesian NLP &amp; Transformer Fine-Tuning
+        </p>
+        <p class="project-card__desc">Fine-tuned a BERT-based transformer model on Indonesian news and text datasets to accurately detect, classify, and filter clickbait headlines.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">BERT</span></li>
+          <li><span class="tag-chip">Transformers</span></li>
+          <li><span class="tag-chip">Indonesian NLP</span></li>
+          <li><span class="tag-chip">PyTorch</span></li>
+          <li><span class="tag-chip">Text Classification</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
     <!-- Candidate College Backend -->
-    <div class="showcase-card project-item" data-category="backend">
-      <div>
-        <div class="card-header">
-          <h4 class="card-title">Candidate College API</h4>
-          <span class="award-chip" style="background:#e67e22; color:#fff;">Laravel Backend</span>
+    <article class="project-item project-card surface-card surface-card--hover" data-category="backend">
+      <div class="project-card__body">
+        <div class="project-card__header">
+          <h4 class="project-card__title">Candidate College API</h4>
+          <span class="tag-chip tag-chip--accent project-card__badge">Laravel Backend</span>
         </div>
-        <div class="card-metric">
-          <i class="fas fa-database"></i> EER Architecture & Swagger Docs
-        </div>
-        <p class="card-desc">Developed RESTful APIs and EER database models using Laravel. Led Swagger integration for automated documentation as Co-Head of Web Development.</p>
-        <div class="tags-wrap">
-          <span class="project-tag">Laravel</span>
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">Swagger</span>
-          <span class="project-tag">CI/CD</span>
-        </div>
+        <p class="project-card__metric">
+          <i class="fas fa-database" aria-hidden="true"></i> EER Architecture &amp; Swagger Docs
+        </p>
+        <p class="project-card__desc">Developed RESTful APIs and EER database models using Laravel. Led Swagger integration for automated documentation as Co-Head of Web Development.</p>
+        <ul class="tags-wrap">
+          <li><span class="tag-chip">Laravel</span></li>
+          <li><span class="tag-chip">PHP</span></li>
+          <li><span class="tag-chip">MySQL</span></li>
+          <li><span class="tag-chip">Swagger</span></li>
+          <li><span class="tag-chip">CI/CD</span></li>
+        </ul>
       </div>
       <div class="card-actions">
-        <a href="/cv/" class="card-btn btn-demo"><i class="fas fa-info-circle"></i> View Details in CV</a>
+        <a href="/cv/" class="pill-btn pill-btn--ghost"><i class="fas fa-info-circle" aria-hidden="true"></i> View Details in CV</a>
       </div>
-    </div>
+    </article>
 
   </div>
+
+  <p class="portfolio-empty" hidden>No projects match that filter yet.</p>
 
 </div>
 
-<!-- Vanilla JS Filter Script -->
+<!-- Category filter: toggles a class, never inline styles -->
 <script>
-  function filterProjects(category, btnElement) {
-    var filterBtns = document.querySelectorAll('.filter-btn');
-    var projectItems = document.querySelectorAll('.project-item');
+  (function () {
+    function filterProjects(category) {
+      var buttons = document.querySelectorAll('.portfolio-filters .filter-btn');
+      var items = document.querySelectorAll('.showcase-grid .project-item');
+      var shown = 0;
+      var i;
 
-    filterBtns.forEach(function(b) {
-      b.classList.remove('active');
-    });
+      for (i = 0; i < buttons.length; i++) {
+        var isActive = buttons[i].getAttribute('data-filter') === category;
+        buttons[i].classList.toggle('is-active', isActive);
+        buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      }
 
-    if (btnElement) {
-      btnElement.classList.add('active');
-    } else {
-      filterBtns.forEach(function(b) {
-        if (b.getAttribute('data-filter') === category) {
-          b.classList.add('active');
-        }
-      });
+      for (i = 0; i < items.length; i++) {
+        var cats = items[i].getAttribute('data-category') || '';
+        var match = category === 'all' || cats.split(/\s+/).indexOf(category) !== -1;
+        items[i].classList.toggle('is-filtered-out', !match);
+        if (match) { shown++; }
+      }
+
+      var empty = document.querySelector('.portfolio-empty');
+      if (empty) { empty.hidden = shown !== 0; }
     }
 
-    projectItems.forEach(function(item) {
-      var categories = item.getAttribute('data-category');
-      if (category === 'all' || (categories && categories.indexOf(category) !== -1)) {
-        if (item.classList.contains('featured-nvidia-card')) {
-          item.style.setProperty('display', 'block', 'important');
-        } else {
-          item.style.setProperty('display', 'flex', 'important');
-        }
-      } else {
-        item.style.setProperty('display', 'none', 'important');
+    function init() {
+      var buttons = document.querySelectorAll('.portfolio-filters .filter-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function () {
+          filterProjects(this.getAttribute('data-filter'));
+        });
       }
-    });
-  }
+    }
 
-  function initFilterListeners() {
-    var filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        var cat = this.getAttribute('data-filter');
-        filterProjects(cat, this);
-      });
-    });
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    initFilterListeners();
-  } else {
-    document.addEventListener('DOMContentLoaded', initFilterListeners);
-  }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
 </script>

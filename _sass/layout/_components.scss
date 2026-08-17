@@ -1,0 +1,496 @@
+/* ==========================================================================
+   SHARED COMPONENTS
+
+   One vocabulary for the whole site. Pages must use these classes instead of
+   inline <style> blocks. Every value comes from the tokens defined in
+   _sass/theme/_default_{dark,light}.scss -- no raw hex here.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Eyebrow -- section label set as a code comment ("// research").
+   The "//" is added by CSS so the markup stays clean text.
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+
+  &:before {
+    content: "// ";
+    opacity: 0.6;
+  }
+}
+
+/* Section heading paired with an eyebrow */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 var(--space-4);
+}
+
+/* Vertical rhythm between major page sections */
+.stack {
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-7);
+
+  &:first-child { margin-top: 0; }
+  &:last-child  { margin-bottom: 0; }
+}
+
+/* The {accent} device in display headings */
+.brace {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Pill buttons
+   Filled uses dark ink on periwinkle (~8:1). White-on-periwinkle would be
+   ~2.4:1 and fails AA, so it is deliberately not used.
+   -------------------------------------------------------------------------- */
+.pill-btn,
+a.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.pill-btn--filled,
+a.pill-btn--filled {
+  background-color: var(--accent);
+  color: var(--ink);
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-hover);
+    color: var(--ink);
+    text-decoration: none;
+  }
+}
+
+.pill-btn--ghost,
+a.pill-btn--ghost {
+  background-color: transparent;
+  border-color: var(--line);
+  color: var(--text);
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Surface card -- the base bordered container
+   -------------------------------------------------------------------------- */
+.surface-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.surface-card--hover:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Stat cards -- big accent number + two-line label
+   -------------------------------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-4);
+}
+
+.stat-card {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.stat-card__num {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.stat-card__unit {
+  color: var(--accent);
+}
+
+.stat-card__label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Feature cards -- icon, title, muted body
+   -------------------------------------------------------------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.feature-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-2px);
+  }
+}
+
+.feature-card__icon {
+  font-size: 1.125rem;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.feature-card__title {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 var(--space-2);
+}
+
+.feature-card__body {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Skill rows -- tier named in the label, no invented percentages.
+   Width is set via the --fill custom property on .skill-row:
+     daily = 100%, production = 70%, familiar = 40%
+   -------------------------------------------------------------------------- */
+.skill-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 9rem) 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.skill-row__label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-track {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-2);
+  overflow: hidden;
+}
+
+.skill-fill {
+  display: block;
+  height: 100%;
+  width: var(--fill, 0%);
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+}
+
+/* The bar's real width is the default. Only rows that JS has explicitly
+   parked (.is-pending) start at zero, and JS removes that class to animate
+   them in. Written this way round on purpose: if the observer misses a row,
+   or JS fails entirely, the bar still shows its true value. An empty bar
+   would read as "no skill at all", so the animation must never be able to
+   make the page say something false. */
+.js .skill-row.is-pending .skill-fill {
+  width: 0;
+}
+
+.skill-fill {
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-row__tier {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Tag chips -- for project tech tags, post categories
+   -------------------------------------------------------------------------- */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background-color: var(--surface-2);
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.tag-chip--accent {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Dot grid -- reads as a token lattice. Decorative only.
+   Used at two corners of the homepage; never repeated per section.
+   -------------------------------------------------------------------------- */
+.dot-grid {
+  position: absolute;
+  width: 7rem;
+  height: 4.5rem;
+  background-image: radial-gradient(var(--accent-dim) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Hero glow -- the only gradient on the site
+   -------------------------------------------------------------------------- */
+/* Ambient page wash.
+   This used to be scoped to the hero, which gave the gradient hard edges and
+   made it read as a screenshot pasted onto the page. Painting it on a fixed,
+   full-viewport layer behind all content instead means it has no seams to
+   notice: it sits under the whole document and stays put while you scroll.
+   Cards keep their own --surface fill, so the wash only shows in the gaps. */
+/* `body` must be transparent for the wash to be visible at all. `body:before`
+   has a negative z-index and `body` is not a stacking context, so the
+   pseudo-element gets hoisted to the root stacking context and painted at the
+   "negative z-index descendants" step -- which comes BEFORE in-flow block
+   backgrounds, i.e. before body's own background. An opaque body therefore
+   paints straight over it. `html` carries the ink colour instead (set in
+   _base.scss), so nothing here shows through to white. */
+html,
+body {
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(75% 60% at 10% 0%,   var(--glow-a), transparent 68%),
+    radial-gradient(65% 55% at 95% 28%,  var(--glow-b), transparent 70%),
+    radial-gradient(90% 50% at 50% 100%, var(--glow-a), transparent 78%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Social rail -- vertical "Follow me" with a hairline and stacked icons.
+   Hidden below the sidebar breakpoint so it can never overlap content.
+   -------------------------------------------------------------------------- */
+.social-rail {
+  display: none;
+}
+
+/* 1100px, not $large (925px): the rail is absolutely positioned in the hero's
+   side gutter, and between 925 and 1100px that gutter is too narrow to hold it
+   without crowding the text. Routed through breakpoint() so it compiles to ems
+   like every other query in the build. */
+@include breakpoint(1100px) {
+  .social-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    position: absolute;
+    right: var(--space-5);
+    bottom: var(--space-6);
+  }
+
+  .social-rail__label {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    writing-mode: vertical-rl;
+  }
+
+  .social-rail__line {
+    width: 1px;
+    height: 3.5rem;
+    background-color: var(--line);
+  }
+
+  .social-rail__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social-rail__links a {
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: color 0.2s ease;
+
+    &:hover { color: var(--accent); }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Empty state -- for /talks/ and /publications/, which have no items yet
+   -------------------------------------------------------------------------- */
+.empty-state {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+
+  p { margin: 0; }
+}
+
+.empty-state__title {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Specificity reinforcement inside .page__content
+
+   _sass/layout/_page.scss styles bare elements as descendants:
+     .page__content p, li, dl { font-size: 1em }   -> (0,1,1)
+     .page__content p         { margin: 0 0 1.3em }-> (0,1,1)
+     .page__content h2        { border-bottom: .. }-> (0,1,1)
+   Those beat any single-class rule above (0,1,0), so a component rendered as
+   a <p>, <li> or <h2> inside page content silently loses its own type and
+   spacing. Re-assert the component values at (0,2,0) here, once, instead of
+   making every page partial work around it.
+   -------------------------------------------------------------------------- */
+.page__content {
+  .section-title {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  p.eyebrow {
+    font-size: 0.6875rem;
+    margin-bottom: var(--space-3);
+  }
+
+  p.feature-card__body {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .stat-card__label,
+  p.stat-card__label {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  li.tag-chip,
+  .tag-chip {
+    font-size: 0.6875rem;
+  }
+
+  .skill-row__label,
+  .skill-row__tier {
+    font-size: 0.8125rem;
+  }
+
+  .skill-row__tier {
+    font-size: 0.6875rem;
+  }
+
+  .empty-state p {
+    margin: 0;
+  }
+
+  p.empty-state__title {
+    font-size: 0.9375rem;
+    margin: 0 0 var(--space-2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Quality floor: visible keyboard focus, reduced motion
+   -------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Bars must still show their real value when motion is off */
+  .js .skill-row.is-pending .skill-fill {
+    width: var(--fill, 0%);
+  }
+
+  .feature-card:hover,
+  .surface-card--hover:hover {
+    transform: none;
+  }
+}

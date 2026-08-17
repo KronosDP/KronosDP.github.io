@@ -1,11 +1,25 @@
 ---
 layout: archive
-title: "Page Archive"
+title: "Page archive"
+eyebrow: "pages"
+intro: "Every standalone page on the site, including the ones that are not in the top navigation."
 permalink: /page-archive/
 author_profile: false
 ---
 
 {% include base_path %}
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
+
+{% assign listed_pages = site.pages | where_exp: "item", "item.title" %}
+
+{% if listed_pages.size == 0 %}
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing here yet</p>
+    <p>No titled pages were found while building the site.</p>
+  </div>
+{% else %}
+  <p class="archive__count">{{ listed_pages.size }} {% if listed_pages.size == 1 %}page{% else %}pages{% endif %}</p>
+
+  {% for post in listed_pages %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endif %}

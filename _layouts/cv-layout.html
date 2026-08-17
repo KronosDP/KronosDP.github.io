@@ -2,10 +2,20 @@
 layout: compress
 ---
 
+{% comment %}
+  Standalone CV shell. Currently unused by any page, but kept working so that
+  a page can opt into `layout: cv-layout` at any time.
+
+  Note: this layout used to <link> assets/css/cv-layout.css, which does not
+  exist in the repo -- it was a 404 on every request. The layout now relies on
+  the site stylesheet (loaded by head.html) plus the .cv-layout rules in
+  _sass/layout/_page.scss.
+{% endcomment %}
+
 {% include base_path %}
 
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js" data-theme="dark">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +23,6 @@ layout: compress
     <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %} | {{ site.name | default: site.title }}</title>
     {% include head.html %}
     {% include head/custom.html %}
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cv-layout.css">
   </head>
 
   <body class="cv-layout">
@@ -22,7 +31,18 @@ layout: compress
 
     <div id="main" role="main">
       <div class="container">
-        {{ content }}
+        {% unless page.header.overlay_color or page.header.overlay_image %}
+          <header class="archive__header">
+            {% if page.eyebrow %}<span class="eyebrow">{{ page.eyebrow }}</span>{% endif %}
+            {% if page.title and page.hide_title != true %}
+              <h1 class="page__title">{{ page.title }}</h1>
+            {% endif %}
+          </header>
+        {% endunless %}
+
+        <div class="page__content">
+          {{ content }}
+        </div>
       </div>
     </div>
 

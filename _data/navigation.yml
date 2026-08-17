@@ -9,16 +9,35 @@
 
 main:
   - title: "Teaching"
-    url: /teaching/    
-    
+    url: /teaching/
+
   - title: "Portfolio"
     url: /portfolio/
-        
+
   # - title: "Blog Posts"
   #   url: /year-archive/
-    
+
   - title: "CV"
     url: /cv/
-    
+
   # - title: "CV"
   #   url: /cv-json/
+
+# Sidebar pill navigation. "Work" is a collapsible-looking group (chevron
+# affordance) rather than a link of its own.
+sections:
+  - title: "Overview"
+    url: /
+
+  - title: "Work"
+    children:
+      - title: "Portfolio"
+        url: /portfolio/
+      - title: "Teaching"
+        url: /teaching/
+
+  - title: "CV"
+    url: /cv/
+
+  - title: "Contact"
+    url: "mailto:darrel.danadyaksa19@gmail.com"

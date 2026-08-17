@@ -1,124 +1,182 @@
 /* ==========================================================================
-   Syntax highlighting
+   SYNTAX HIGHLIGHTING (Rouge)
+
+   Retuned for the near-black navy surfaces. The palette is periwinkle-leaning
+   with three supporting hues, all pulled from the theme colour variables so
+   there are no ad-hoc hex values here:
+
+     comments   light-gray   deliberately kept bright enough to read (~7:1)
+     keywords   link-light   the periwinkle highlight
+     strings    success      soft green
+     numbers    warning      amber
+     names      primary      periwinkle
+     errors     danger       rose
+
+   Code blocks scroll inside themselves; they never widen the page.
    ========================================================================== */
 
-div.highlighter-rouge, figure.highlight {
+div.highlighter-rouge,
+figure.highlight {
   position: relative;
-  margin-bottom: 1em;
-  padding: 1em;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  background-color: var(--global-code-background-color);
-  box-shadow: $box-shadow;
-  font-size: $type-size-4;
+  margin: 2em 0;
+  padding: var(--space-4);
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  color: var(--global-code-text-color);
+  font-size: 1rem;
 
+  /* the little code glyph in the corner */
   &:before {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.5em;
-    background-color: mix(#fff, #7a8288, 90%);
+    padding: 0.5rem 0.65rem;
+    background-color: var(--surface-2);
+    border-bottom-left-radius: var(--radius-sm);
+    color: var(--accent-dim);
     content: "\f121";
     font-family: "Font Awesome 6 Free" !important;
-    font-size: $type-size-6;
+    font-weight: 900;
+    font-size: 0.6875rem;
     line-height: 1;
     text-transform: none;
     speak: none;
+    pointer-events: none;
   }
 
   .highlight {
     margin: 0;
-    font-family: $monospace;
+    font-family: var(--font-mono);
     font-size: $type-size-6;
-    line-height: 1.8;
+    line-height: 1.75;
+    background-color: transparent;
+  }
+
+  pre,
+  pre.highlight {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  code {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    white-space: pre;
   }
 }
 
-.highlight table td { padding: 5px; }
+/* Mermaid and Plotly blocks come out of kramdown as a bare
+   <pre><code class="language-mermaid|plotly">, which the client-side scripts
+   then replace in place. Keep the rendered diagram inside its own scroller. */
+pre > code.language-mermaid,
+pre > code.language-plotly {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+code.language-mermaid svg,
+code.language-plotly svg,
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Rouge line-number tables must scroll, not stretch the column */
+.highlight {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.highlight table {
+  display: table;
+  width: auto;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: inherit;
+}
+
+.highlight table td {
+  padding: 0 0.75em 0 0;
+  border: 0;
+  background-color: transparent;
+  vertical-align: top;
+}
+
 .highlight table pre { margin: 0; }
+
+.highlight .gutter,
+.highlight .lineno {
+  color: var(--text-muted);
+  opacity: 0.55;
+  user-select: none;
+}
 
 
 /*
-   Solarized Light
-   http://ethanschoonover.com/solarized
-
-   SOLARIZED HEX      ROLE
-   --------- -------- ------------------------------------------
-   base01    #586e75  body text / default code / primary content
-   base1     #93a1a1  comments / secondary content
-   base3     #fdf6e3  background
-   orange    #cb4b16  constants
-   red       #dc322f  regex, special keywords
-   blue      #22b3eb  reserved keywords
-   cyan      #2aa198  strings, numbers
-   green     #859900  operators, other keywords
+   Token palette
    ========================================================================== */
 
-.highlight .c { color: #93a1a1 } /* Comment */
-.highlight .err { color: #586e75 } /* Error */
-.highlight .g { color: #586e75 } /* Generic */
-.highlight .k { color: #859900 } /* Keyword */
-.highlight .l { color: #586e75 } /* Literal */
-.highlight .n { color: #586e75 } /* Name */
-.highlight .o { color: #859900 } /* Operator */
-.highlight .x { color: #cb4b16 } /* Other */
-.highlight .p { color: #586e75 } /* Punctuation */
-.highlight .cm { color: #93a1a1 } /* Comment.Multiline */
-.highlight .cp { color: #859900 } /* Comment.Preproc */
-.highlight .c1 { color: #93a1a1 } /* Comment.Single */
-.highlight .cs { color: #859900 } /* Comment.Special */
-.highlight .gd { color: #2aa198 } /* Generic.Deleted */
-.highlight .ge { color: #586e75; font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #dc322f } /* Generic.Error */
-.highlight .gh { color: #cb4b16 } /* Generic.Heading */
-.highlight .gi { color: #859900 } /* Generic.Inserted */
-.highlight .go { color: #586e75 } /* Generic.Output */
-.highlight .gp { color: #586e75 } /* Generic.Prompt */
-.highlight .gs { color: #586e75; font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #cb4b16 } /* Generic.Subheading */
-.highlight .gt { color: #586e75 } /* Generic.Traceback */
-.highlight .kc { color: #cb4b16 } /* Keyword.Constant */
-.highlight .kd { color: #22b3eb } /* Keyword.Declaration */
-.highlight .kn { color: #859900 } /* Keyword.Namespace */
-.highlight .kp { color: #859900 } /* Keyword.Pseudo */
-.highlight .kr { color: #22b3eb } /* Keyword.Reserved */
-.highlight .kt { color: #dc322f } /* Keyword.Type */
-.highlight .ld { color: #586e75 } /* Literal.Date */
-.highlight .m { color: #2aa198 } /* Literal.Number */
-.highlight .s { color: #2aa198 } /* Literal.String */
-.highlight .na { color: #586e75 } /* Name.Attribute */
-.highlight .nb { color: #B58900 } /* Name.Builtin */
-.highlight .nc { color: #22b3eb } /* Name.Class */
-.highlight .no { color: #cb4b16 } /* Name.Constant */
-.highlight .nd { color: #22b3eb } /* Name.Decorator */
-.highlight .ni { color: #cb4b16 } /* Name.Entity */
-.highlight .ne { color: #cb4b16 } /* Name.Exception */
-.highlight .nf { color: #22b3eb } /* Name.Function */
-.highlight .nl { color: #586e75 } /* Name.Label */
-.highlight .nn { color: #586e75 } /* Name.Namespace */
-.highlight .nx { color: #586e75 } /* Name.Other */
-.highlight .py { color: #586e75 } /* Name.Property */
-.highlight .nt { color: #22b3eb } /* Name.Tag */
-.highlight .nv { color: #22b3eb } /* Name.Variable */
-.highlight .ow { color: #859900 } /* Operator.Word */
-.highlight .w { color: #586e75 } /* Text.Whitespace */
-.highlight .mf { color: #2aa198 } /* Literal.Number.Float */
-.highlight .mh { color: #2aa198 } /* Literal.Number.Hex */
-.highlight .mi { color: #2aa198 } /* Literal.Number.Integer */
-.highlight .mo { color: #2aa198 } /* Literal.Number.Oct */
-.highlight .sb { color: #93a1a1 } /* Literal.String.Backtick */
-.highlight .sc { color: #2aa198 } /* Literal.String.Char */
-.highlight .sd { color: #586e75 } /* Literal.String.Doc */
-.highlight .s2 { color: #2aa198 } /* Literal.String.Double */
-.highlight .se { color: #cb4b16 } /* Literal.String.Escape */
-.highlight .sh { color: #586e75 } /* Literal.String.Heredoc */
-.highlight .si { color: #2aa198 } /* Literal.String.Interpol */
-.highlight .sx { color: #2aa198 } /* Literal.String.Other */
-.highlight .sr { color: #dc322f } /* Literal.String.Regex */
-.highlight .s1 { color: #2aa198 } /* Literal.String.Single */
-.highlight .ss { color: #2aa198 } /* Literal.String.Symbol */
-.highlight .bp { color: #22b3eb } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #22b3eb } /* Name.Variable.Class */
-.highlight .vg { color: #22b3eb } /* Name.Variable.Global */
-.highlight .vi { color: #22b3eb } /* Name.Variable.Instance */
-.highlight .il { color: #2aa198 } /* Literal.Number.Integer.Long */
+.highlight {
+  --syn-text     : var(--global-code-text-color);
+  --syn-muted    : var(--text-muted);
+  --syn-comment  : #{$light-gray};
+  --syn-keyword  : #{$link-light};
+  --syn-string   : #{$success-color};
+  --syn-number   : #{$warning-color};
+  --syn-name     : #{$primary-color};
+  --syn-type     : var(--accent-pastel);
+  --syn-error    : #{$danger-color};
+}
+
+.highlight {
+  color: var(--syn-text);
+
+  /* --- comments: muted but never near-invisible --- */
+  .c, .cm, .c1, .cd { color: var(--syn-comment); font-style: italic; }
+  .cp, .cs          { color: var(--syn-keyword); font-style: italic; }
+
+  /* --- errors and generics --- */
+  .err, .gr { color: var(--syn-error); }
+  .g, .l, .n, .p, .w, .nl, .nn, .nx, .py, .na, .go, .gp, .gt { color: var(--syn-text); }
+  .ge { font-style: italic; }
+  .gs { font-weight: 700; }
+  .gh, .gu { color: var(--syn-keyword); font-weight: 700; }
+  .gd { color: var(--syn-error); }
+  .gi { color: var(--syn-string); }
+
+  /* --- keywords and operators --- */
+  .k, .kn, .kp, .kr, .kd { color: var(--syn-keyword); font-weight: 500; }
+  .kc      { color: var(--syn-number); }
+  .kt      { color: var(--syn-type); }
+  .o, .ow  { color: var(--syn-muted); }
+  .x       { color: var(--syn-number); }
+
+  /* --- names --- */
+  .nb, .bp { color: var(--syn-type); }
+  .nc, .nd { color: var(--syn-type); font-weight: 500; }
+  .nf, .nt { color: var(--syn-name); }
+  .no, .ni, .ne { color: var(--syn-number); }
+  .nv, .vc, .vg, .vi { color: var(--syn-name); }
+
+  /* --- literals --- */
+  .ld { color: var(--syn-string); }
+  .m, .mf, .mh, .mi, .mo, .il { color: var(--syn-number); }
+  .s, .s1, .s2, .sb, .sc, .sd, .sh, .si, .sx, .ss { color: var(--syn-string); }
+  .se { color: var(--syn-number); font-weight: 500; }
+  .sr { color: var(--syn-error); }
+
+  /* --- diff-style highlighted line --- */
+  .hll { background-color: var(--surface); display: block; }
+}
