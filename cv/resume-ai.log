@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.5.28)  26 JUL 2026 20:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.5.28)  29 JUL 2026 22:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -300,15 +300,15 @@ LaTeX Font Info:    ... okay on input line 32.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
-* v-part:(T,H,B)=(30.35326pt, 734.26347pt, 30.35326pt)
+* h-part:(L,W,R)=(36.135pt, 542.02501pt, 36.135pt)
+* v-part:(T,H,B)=(27.46295pt, 740.04408pt, 27.46295pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=527.57014pt
-* \textheight=734.26347pt
-* \oddsidemargin=-28.90756pt
-* \evensidemargin=-28.90756pt
-* \topmargin=-78.91673pt
+* \textwidth=542.02501pt
+* \textheight=740.04408pt
+* \oddsidemargin=-36.135pt
+* \evensidemargin=-36.135pt
+* \topmargin=-81.80704pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -393,11 +393,11 @@ Package rerunfilecheck Info: File `resume-ai.out' has not changed.
 (rerunfilecheck)             Checksum: 20732472B6AAA8CCD7BD1068FCC5ADAA;923.
  ) 
 Here is how much of TeX's memory you used:
- 11122 strings out of 467866
- 176441 string characters out of 5418325
- 640621 words of memory out of 5000000
+ 11116 strings out of 467866
+ 176396 string characters out of 5418325
+ 640605 words of memory out of 5000000
  39704 multiletter control sequences out of 15000+600000
- 655173 words of font info for 187 fonts, out of 8000000 for 9000
+ 654972 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,5n,79p,1008b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/darre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
@@ -409,9 +409,9 @@ X/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/darre/AppData/Local/Programs/Mi
 KTeX/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Users/darre/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/darre/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on resume-ai.pdf (2 pages, 120183 bytes).
+Output written on resume-ai.pdf (2 pages, 125268 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 84 PDF objects out of 1000 (max. 8388607)
  8 named destinations out of 1000 (max. 500000)
  57897 words of extra memory for PDF output out of 61914 (max. 10000000)
 
