@@ -1,6 +1,8 @@
 ---
 permalink: /
 title: "Software Engineer & AI Researcher"
+excerpt: "Darrel Danadyaksa Poli — Software Engineer & AI Researcher from the University of Indonesia. Ex-NVIDIA AI Research Intern, Ex-Meeting.ai AI Engineer, and Top 10 Gemastik Finalist (2024 & 2025)."
+description: "Darrel Danadyaksa Poli — Software Engineer & AI Researcher from the University of Indonesia. Ex-NVIDIA AI Research Intern, Ex-Meeting.ai AI Engineer, and Top 10 Gemastik Finalist (2024 & 2025)."
 hide_title: true
 author_profile: false
 redirect_from: 
@@ -70,7 +72,7 @@ redirect_from:
       </div>
       <div class="stat-card">
         <span class="stat-card__num">Top 10</span>
-        <span class="stat-card__label">Gemastik 2023 national finalist</span>
+        <span class="stat-card__label">Gemastik UI Finalist (2024 &amp; 2025)</span>
       </div>
       <div class="stat-card">
         <span class="stat-card__num">5</span>

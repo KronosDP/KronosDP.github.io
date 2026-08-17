@@ -18,8 +18,12 @@
   {% assign seo_title = seo_title | markdownify | strip_html | strip_newlines | escape_once %}
 {% endif %}
 
-{% if site.url %}
-  {% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
+{% if page.canonical_url %}
+  {% assign canonical_url = page.canonical_url %}
+{% elsif seo_url %}
+  {% assign canonical_url = page.url | replace: "index.html", "" | prepend: seo_url | replace: "//", "/" | replace: "http:/", "http://" | replace: "https:/", "https://" %}
+{% else %}
+  {% assign canonical_url = page.url | replace: "index.html", "" %}
 {% endif %}
 
 <title>{{ seo_title | default: site.title }}{% if paginator %}{% unless paginator.page == 1 %} {{ site.title_separator }} {{ site.data.ui-text[site.locale].page | default: "Page" }} {{ paginator.page }}{% endunless %}{% endif %}</title>
@@ -29,6 +33,7 @@
   {% assign seo_description = seo_description | markdownify | strip_html | strip_newlines | escape_once %}
 {% endif %}
 <meta name="description" content="{{ seo_description }}">
+<meta name="keywords" content="Darrel Danadyaksa Poli, AI Engineer, AI Researcher, NVIDIA, Meeting.ai, University of Indonesia, Universitas Indonesia, Deep Learning, RWKV, PyTorch, Gemastik, Satria Data, Software Engineering, Backend Architecture, Go, Django, Flutter">
 
 {% assign seo_author = page.author | default: page.author[0] | default: site.author[0] %}
 {% if seo_author %}
@@ -48,75 +53,126 @@
   <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
 {% endif %}
 
-{% if seo_url %}
-  <link rel="canonical" href="{{ page.url | prepend: seo_url | replace: "/index.html", "/" }}">
+{% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
 {% endif %}
 
+{% assign og_img = site.og_image | default: "profile.png" | prepend: "/images/" | prepend: seo_url %}
+{% if page.header.image %}
+  {% if page.header.image contains "://" %}
+    {% assign og_img = page.header.image %}
+  {% else %}
+    {% assign og_img = page.header.image | prepend: "/images/" | prepend: seo_url %}
+  {% endif %}
+{% elsif page.header.overlay_image %}
+  {% if page.header.overlay_image contains "://" %}
+    {% assign og_img = page.header.overlay_image %}
+  {% else %}
+    {% assign og_img = page.header.overlay_image | prepend: "/images/" | prepend: seo_url %}
+  {% endif %}
+{% endif %}
+
+<!-- Open Graph protocol data -->
+<meta property="og:locale" content="{{ site.locale | default: "en_US" }}">
+<meta property="og:site_name" content="{{ site.title }}"> 
+<meta property="og:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
+<meta property="og:description" content="{{ seo_description }}">
+{% if canonical_url %}
+  <meta property="og:url" content="{{ canonical_url }}">
+{% endif %}
+{% if page.date %}
+  <meta property="og:type" content="article">
+{% elsif page.permalink == "/cv/" or page.permalink == "/about/" or page.url == "/" %}
+  <meta property="og:type" content="profile">
+{% else %}
+  <meta property="og:type" content="website">
+{% endif %}
+<meta property="og:image" content="{{ og_img }}">
+<meta property="og:image:alt" content="{{ page.title | default: site.title | escape_once }}">
+
+<!-- Twitter Card protocol -->
+<meta name="twitter:card" content="summary_large_image">
 {% if site.twitter.username %}
   <meta name="twitter:site" content="@{{ site.twitter.username | replace: "@", "" }}">
-  <meta name="twitter:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
-  <meta name="twitter:description" content="{{ seo_description }}">
-  <meta name="twitter:url" content="{{ canonical_url }}">
-
-  {% if page.header.image %}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{% if page.header.image contains "://" %}{{ page.header.image }}{% else %}{{ page.header.image | prepend: "/images/" | prepend: base_path }}{% endif %}">
-  {% else %}
-    <meta name="twitter:card" content="summary">
-    {% if site.og_image %}
-      <meta name="twitter:image" content="{{ site.og_image | prepend: "/images/" | prepend: base_path }}">
-    {% endif %}
-  {% endif %}
-
-  {% if seo_author_twitter %}
-    <meta name="twitter:creator" content="@{{ seo_author_twitter }}">
-  {% endif %}
+{% endif %}
+<meta name="twitter:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
+<meta name="twitter:description" content="{{ seo_description }}">
+<meta name="twitter:url" content="{{ canonical_url }}">
+<meta name="twitter:image" content="{{ og_img }}">
+{% if seo_author_twitter %}
+  <meta name="twitter:creator" content="@{{ seo_author_twitter }}">
 {% endif %}
 
-{% if site.facebook %}
-  {% if site.facebook.publisher %}
-    <meta property="article:publisher" content="{{ site.facebook.publisher }}">
-  {% endif %}
-
-  {% if site.facebook.app_id %}
-    <meta property="fb:app_id" content="{{ site.facebook.app_id }}">
-  {% endif %}
-{% endif %}
-
-{% if paginator.previous_page %}
-  <link rel="prev" href="{{ paginator.previous_page_path | prepend: seo_url }}">
-{% endif %}
-{% if paginator.next_page %}
-  <link rel="next" href="{{ paginator.next_page_path | prepend: seo_url }}">
-{% endif %}
-
-{% if site.social %}
-  <script type="application/ld+json">
+<!-- Schema.org JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context" : "https://schema.org",
-      "@type" : "{% if site.social.type %}{{ site.social.type }}{% else %}Person{% endif %}",
-      "name" : "{{ site.social.name | default: site.name }}",
-      "url" : {{ seo_url | jsonify }},
-      "image" : "{{ seo_url }}/images/profile.png",
-      "jobTitle" : "AI Engineer & AI Researcher",
-      "worksFor" : [
+      "@type": "WebSite",
+      "@id": "{{ seo_url }}/#website",
+      "url": {{ seo_url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ seo_url }}/#person",
+      "name": {{ site.author.name | default: site.name | jsonify }},
+      "alternateName": "KronosDP",
+      "url": {{ seo_url | jsonify }},
+      "image": "{{ seo_url }}/images/profile.png",
+      "jobTitle": "Software Engineer & AI Researcher",
+      "description": "Final-year Computer Science student at the University of Indonesia specializing in Software Engineering, Backend Architecture, and Artificial Intelligence.",
+      "worksFor": [
         {
           "@type": "Organization",
-          "name": "NVIDIA"
+          "name": "NVIDIA",
+          "url": "https://www.nvidia.com"
         },
         {
           "@type": "Organization",
-          "name": "Meeting.ai"
+          "name": "Meeting.ai",
+          "url": "https://meeting.ai"
         }
       ],
       "alumniOf": {
         "@type": "CollegeOrUniversity",
-        "name": "University of Indonesia"
+        "name": "University of Indonesia",
+        "alternateName": "Universitas Indonesia",
+        "url": "https://www.ui.ac.id"
       },
-      "sameAs" : {{ site.social.links | jsonify }}
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Deep Learning",
+        "Speech AI",
+        "ASR",
+        "PyTorch",
+        "CUDA",
+        "Sequence Models",
+        "RWKV",
+        "Software Engineering",
+        "Backend Architecture",
+        "Go",
+        "Django",
+        "Laravel",
+        "Flutter"
+      ],
+      "award": [
+        "Top 10 Gemastik Finalist from Universitas Indonesia (2024 & 2025)",
+        "Satria Data 2025 (99.7% Accuracy on Leaderboard)",
+        "Garuda Hacks 4.0 Honorable Mention (Tak Sendiri AI Agent)"
+      ],
+      "sameAs": [
+        "https://github.com/KronosDP",
+        "https://www.linkedin.com/in/darrel-danadyaksa-poli/",
+        "https://instagram.com/kronos_darrel"
+      ]
     }
-  </script>
-{% endif %}
+  ]
+}
+</script>
 
 {% if site.google_site_verification %}
   <meta name="google-site-verification" content="{{ site.google_site_verification }}" />
@@ -131,37 +187,3 @@
   <meta name="yandex-verification" content="{{ site.yandex_site_verification }}">
 {% endif %}
 <!-- end SEO -->
-
-<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
-<meta property="og:locale" content="{{ site.locale | default: "en" }}">
-<meta property="og:site_name" content="{{ site.title }}"> 
-<meta property="og:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
-{% if page.date %}
-  <meta property="og:type" content="article">
-{% endif %}
-{% if page.excerpt %}
-  <meta property="og:description" name="description" content="{{ seo_description }}">
-{% elsif site.og_description %}
-  <meta property="og:description" name="description" content="{{ site.og_description }}">
-{% endif %}
-{% if seo_url %}
-  <meta property="og:url" content="{{ page.url | prepend: seo_url | replace: "/index.html", "/" }}">
-{% endif %}
-
-{% if site.og_image %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "url": {{ seo_url | jsonify }},
-      "logo": {{ site.og_image | prepend: "/images/" | prepend: base_path | jsonify }}
-    }
-  </script>
-{% endif %}
-
-{% if page.header.image %}
-  <meta property="og:image" content="{% if page.header.image contains "://" %}{{ page.header.image }}{% else %}{{ page.header.image | prepend: "/images/" | prepend: base_path }}{% endif %}">
-{% elsif page.header.overlay_image %}
-  <meta property="og:image" content="{% if page.header.overlay_image contains "://" %}{{ page.header.overlay_image }}{% else %}{{ page.header.overlay_image | prepend: "/images/" | prepend: base_path }}{% endif %}">
-{% endif %}
-<!-- end Open Graph protocol -->

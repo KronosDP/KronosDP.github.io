@@ -134,14 +134,16 @@ Final Year Computer Science student with strong expertise across **Software Engi
 <div class="cv-item">
   <div class="cv-item__header">
     <div class="cv-item__ident">
-      <span class="cv-item__org">Gemastik 2023</span>
-      <span class="cv-item__role">BERT Clickbait Classification Researcher</span>
+      <span class="cv-item__org">Faculty of Computer Science, Universitas Indonesia</span>
+      <span class="cv-item__role">Teaching Assistant Coordinator &amp; Course TA</span>
     </div>
-    <p class="cv-item__meta">Indonesia &bull; Jul 2023 &ndash; Oct 2023</p>
+    <p class="cv-item__meta">Depok, Indonesia &bull; Aug 2023 &ndash; Present</p>
   </div>
   <ul>
-    <li><strong>Transformer Fine-Tuning:</strong> Fine-tuned a BERT-based transformer model on Indonesian news and textual datasets to detect, classify, and filter clickbait headlines.</li>
-    <li><strong>Indonesian NLP &amp; Tokenization:</strong> Implemented specialized Indonesian text tokenization, custom text pre-processing, and hyperparameter optimization for high-accuracy text classification.</li>
+    <li><strong>AI &amp; Data Science (2026):</strong> Mentored 80+ students on machine learning workflows, PyTorch deep learning architectures, and statistical evaluations.</li>
+    <li><strong>Software Engineering Project (2025):</strong> Guided student scrum teams through agile methodologies, RESTful API design, CI/CD automation, and test-driven development (TDD).</li>
+    <li><strong>Operating Systems (2025):</strong> Assisted in teaching concurrency, process scheduling, memory management, and POSIX system call programming in C.</li>
+    <li><strong>Calculus I &amp; II (2023 &ndash; 2026):</strong> Conducted tutorial sessions, graded examinations, and developed pedagogical problem sets across regular and international classes.</li>
   </ul>
 </div>
 
@@ -213,10 +215,10 @@ Final Year Computer Science student with strong expertise across **Software Engi
 </div>
 
 <ul class="cv-bullets">
+  <li><strong>Top 10 Gemastik Finalist from Universitas Indonesia (2024 &amp; 2025):</strong> Ranked among the top 10 finalists representing Universitas Indonesia in GEMASTIK national competition (Illegal Parking CV Pipeline in 2024, AI &amp; Software Systems in 2025).</li>
   <li><strong>SafetyPin Startup (2025):</strong> Co-founded SafetyPin, a social security startup leveraging technology and intelligent reporting systems to enhance personal safety solutions.</li>
-  <li><strong>Multimodal Emotion Detection (Satria Data 2025):</strong> Engineered an end-to-end emotion detection system combining BERT for textual feature extraction, Whisper for speech representations, and VAD for noise filtering.</li>
-  <li><strong>Illegal Parking CV System (Gemastik 2024):</strong> Designed and trained an object detection pipeline to identify illegal parking violations from surveillance feeds.</li>
-  <li><strong>BERT Clickbait Classification (Gemastik 2023):</strong> Fine-tuned a BERT-based transformer model on Indonesian textual datasets to detect clickbait headlines.</li>
+  <li><strong>Multimodal Emotion Detection (Satria Data 2025):</strong> Engineered an end-to-end emotion detection system combining BERT for textual feature extraction, Whisper for speech representations, and VAD for noise filtering (99.7% Leaderboard Accuracy).</li>
+  <li><strong>BERT Clickbait Classification (2023):</strong> Fine-tuned a BERT-based transformer model on Indonesian textual datasets to detect clickbait headlines.</li>
   <li><strong>Garuda Hacks 4.0 Honorable Mention (2023):</strong> Awarded Honorable Mention for building <em>Tak Sendiri</em>, a conversational AI agent for preliminary depression screening.</li>
   <li><strong>Certified Peer Counselor Training (2023):</strong> Completed certified training in peer counseling and psychological support.</li>
 </ul>
