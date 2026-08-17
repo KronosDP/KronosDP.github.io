@@ -40,11 +40,11 @@ redirect_from:
         <span class="homepage__title-line">Software That <span class="brace">{Scales}</span></span>
       </h1>
 
-      <p class="homepage__lede homepage__rise homepage__rise--4">Final-year Computer Science student at the University of Indonesia. AI research at NVIDIA, production speech models at Meeting.ai, and backends in Django, Go and Laravel.</p>
+      <p class="homepage__lede homepage__rise homepage__rise--4">Software Engineer &amp; AI Researcher (CS Alum, University of Indonesia). Ex-NVIDIA AI Research, production speech models at Meeting.ai, and scalable backend architecture.</p>
 
       <div class="homepage__cta homepage__rise homepage__rise--5">
         <a class="pill-btn pill-btn--filled" href="#about">About me</a>
-        <a class="pill-btn pill-btn--ghost" href="mailto:darrel.danadyaksa19@gmail.com">Let&rsquo;s talk <span aria-hidden="true">&rarr;</span></a>
+        <a class="pill-btn pill-btn--ghost" href="mailto:darrel.danadyaksa19@gmail.com">Let&rsquo;s talk <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
 
@@ -61,13 +61,13 @@ redirect_from:
 
   <!-- ===================== 2. STATS ===================== -->
   <section class="stack" aria-label="Highlights">
-    <div class="stat-grid">
+    <div class="stat-grid reveal-on-scroll">
       <div class="stat-card">
         <span class="stat-card__num">NVIDIA</span>
         <span class="stat-card__label">AI Research Intern, Jan&ndash;Jun 2025</span>
       </div>
       <div class="stat-card">
-        <span class="stat-card__num">99.7<span class="stat-card__unit">%</span></span>
+        <span class="stat-card__num stat-counter" data-target="99.7" data-decimals="1" data-suffix="%">99.7<span class="stat-card__unit">%</span></span>
         <span class="stat-card__label">Satria Data 2025 leaderboard accuracy</span>
       </div>
       <div class="stat-card">
@@ -75,18 +75,18 @@ redirect_from:
         <span class="stat-card__label">Gemastik UI Finalist (2024 &amp; 2025)</span>
       </div>
       <div class="stat-card">
-        <span class="stat-card__num">5</span>
+        <span class="stat-card__num stat-counter" data-target="5" data-decimals="0">5</span>
         <span class="stat-card__label">courses taught as Teaching Assistant at UI</span>
       </div>
     </div>
   </section>
 
   <!-- ===================== 3. ABOUT ===================== -->
-  <section class="stack homepage__about" id="about">
+  <section class="stack homepage__about reveal-on-scroll" id="about">
     <span class="eyebrow">about</span>
     <h2 class="section-title">Engineer first, researcher by habit</h2>
 
-    <p>Hello! I&rsquo;m <strong>Darrel Danadyaksa Poli</strong>, a final-year Computer Science student at the <strong>University of Indonesia (UI)</strong> specializing in <strong>Software Engineering</strong>, <strong>Backend Architecture</strong>, and <strong>Artificial Intelligence</strong>.</p>
+    <p>Hello! I&rsquo;m <strong>Darrel Danadyaksa Poli</strong>, a Computer Science graduate from the <strong>University of Indonesia (UI)</strong> specializing in <strong>Software Engineering</strong>, <strong>Backend Architecture</strong>, and <strong>Artificial Intelligence</strong>.</p>
 
     <p>My technical journey spans deep learning research at <strong>NVIDIA</strong> (sequence model capacity &amp; formal language recognition), production speech engineering at <strong>Meeting.ai</strong> (ASR stress-testing &amp; knowledge distillation), full-stack development (<strong>Go</strong>, <strong>Django</strong>, <strong>Laravel</strong>, <strong>Flutter</strong>), and co-founding social technology startups (<strong>SafetyPin</strong>).</p>
 
@@ -96,7 +96,7 @@ redirect_from:
   </section>
 
   <!-- ===================== 4. WHAT I DO ===================== -->
-  <section class="stack">
+  <section class="stack reveal-on-scroll">
     <span class="eyebrow">what i do</span>
     <h2 class="section-title">Four things I keep coming back to</h2>
 
@@ -128,7 +128,7 @@ redirect_from:
   </section>
 
   <!-- ===================== 5. TOOLKIT ===================== -->
-  <section class="stack">
+  <section class="stack reveal-on-scroll">
     <span class="eyebrow">toolkit</span>
     <h2 class="section-title">Tools, grouped by how often I reach for them</h2>
 

@@ -137,6 +137,94 @@ $(document).ready(function () {
     }
   }
 
+  // Scroll reveal system for .reveal-on-scroll elements
+  var revealElements = document.querySelectorAll(".reveal-on-scroll");
+  if (revealElements.length > 0) {
+    var revealEl = function (el) {
+      el.classList.add("is-revealed");
+    };
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReduced && "IntersectionObserver" in window) {
+      var revealObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            revealEl(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      Array.prototype.forEach.call(revealElements, function (el) {
+        revealObserver.observe(el);
+      });
+
+      var sweepRevealElements = function () {
+        Array.prototype.forEach.call(revealElements, function (el) {
+          if (!el.classList.contains("is-revealed") &&
+              el.getBoundingClientRect().top < window.innerHeight) {
+            revealEl(el);
+            revealObserver.unobserve(el);
+          }
+        });
+      };
+      $(window).on("load", sweepRevealElements);
+      setTimeout(sweepRevealElements, 800);
+    } else {
+      Array.prototype.forEach.call(revealElements, function (el) {
+        revealEl(el);
+      });
+    }
+  }
+
+  // Stat counter roll-up animation
+  var counterElements = document.querySelectorAll(".stat-counter");
+  if (counterElements.length > 0) {
+    var prefersReducedMotionCounter = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var animateCounter = function (el) {
+      var target = parseFloat(el.getAttribute("data-target"));
+      if (isNaN(target)) return;
+      var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+      var suffix = el.getAttribute("data-suffix") || "";
+      var duration = 1400; // ms
+      var startTime = null;
+
+      var step = function (timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var current = (ease * target).toFixed(decimals);
+
+        if (suffix === "%") {
+          el.innerHTML = current + '<span class="stat-card__unit">%</span>';
+        } else {
+          el.textContent = current + suffix;
+        }
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    if (!prefersReducedMotionCounter && "IntersectionObserver" in window) {
+      var counterObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      Array.prototype.forEach.call(counterElements, function (el) {
+        counterObserver.observe(el);
+      });
+    }
+  }
+
   // Init smooth scroll, this needs to be slightly more than then fixed masthead height
   $("a").smoothScroll({
     offset: -scssMastheadHeight,
