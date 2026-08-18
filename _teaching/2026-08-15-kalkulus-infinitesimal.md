@@ -31,31 +31,35 @@ Pendekatan infinitesimal memberikan intuisi geometri dan diferensial yang sangat
 
 ---
 
-## 1. Aksioma Sistem Bilangan Hiperreal $\mathbb{R}^*$
+## 1. Aksioma Sistem Bilangan Hiperreal $\mathbb{R}^\ast$
 
-Sistem bilangan hiperreal $\mathbb{R}^*$ memperluas sistem bilangan riil standar $\mathbb{R}$ dengan menambahkan kuantitas infinitesimal dan kuantitas tak terhingga (*infinite*):
+Sistem bilangan hiperreal $\mathbb{R}^\ast$ memperluas sistem bilangan riil standar $\mathbb{R}$ dengan menambahkan kuantitas infinitesimal dan kuantitas tak terhingga (*infinite*):
 
-1. **Prinsip Ekstensi**: $\mathbb{R} \subset \mathbb{R}^*$. Setiap bilangan riil adalah bilangan hiperreal.
-2. **Keterurutan & Aljabar (*Ordered Field*)**: $\mathbb{R}^*$ adalah lapangan terurut (*ordered field*) yang memenuhi seluruh aksioma aljabar biasa seperti komutatif, asosiatif, distributif, dan relasi transitif.
-3. **Elemen Infinitesimal**: Terdapat elemen infinitesimal $\varepsilon \in \mathbb{R}^*, \varepsilon > 0$ sedemikian sehingga:
+1. **Prinsip Ekstensi**: $\mathbb{R} \subset \mathbb{R}^\ast$. Setiap bilangan riil adalah bilangan hiperreal.
+2. **Keterurutan & Aljabar (*Ordered Field*)**: $\mathbb{R}^\ast$ adalah lapangan terurut (*ordered field*) yang memenuhi seluruh aksioma aljabar biasa seperti komutatif, asosiatif, distributif, dan relasi transitif.
+3. **Elemen Infinitesimal**: Terdapat elemen infinitesimal $\varepsilon \in \mathbb{R}^\ast, \varepsilon > 0$ sedemikian sehingga:
+
    $$\varepsilon < r \quad \forall r \in \mathbb{R}^+$$
+
 4. **Elemen Tak Terhingga (*Infinite*)**: Kebalikan dari infinitesimal tak nol, yaitu $H = \frac{1}{\varepsilon}$, bernilai lebih besar dari semua bilangan riil:
+
    $$H > r \quad \forall r \in \mathbb{R}$$
 
 ---
 
-## 2. Klasifikasi Bilangan Hiperreal $x \in \mathbb{R}^*$
+## 2. Klasifikasi Bilangan Hiperreal $x \in \mathbb{R}^\ast$
 
-Setiap elemen $x$ dalam $\mathbb{R}^*$ digolongkan ke dalam tiga kategori mendasar:
+Setiap elemen $x$ dalam $\mathbb{R}^\ast$ digolongkan ke dalam tiga kategori mendasar:
 
 | Kategori | Definisi Formal | Contoh Representatif |
 | :--- | :--- | :--- |
-| **Infinitesimal** ($\approx 0$) | $|x| < r$ untuk semua $r \in \mathbb{R}^+$ (termasuk $x=0$) | $\varepsilon, \; \varepsilon^2, \; \frac{1}{H}, \; \sqrt{\varepsilon}$ |
-| **Hingga (*Finite*)** | $|x| < r$ untuk suatu $r \in \mathbb{R}^+$ | $5, \; \pi, \; 3 + 2\varepsilon, \; \frac{4H+1}{2H-3}$ |
-| **Tak Terhingga (*Infinite*)** | $|x| > r$ untuk semua $r \in \mathbb{R}^+$ | $H, \; H^2, \; \frac{1}{\varepsilon}, \; \sqrt{H}$ |
+| **Infinitesimal** ($\approx 0$) | $\vert x \vert < r$ untuk semua $r \in \mathbb{R}^+$ (termasuk $x=0$) | $\varepsilon, \; \varepsilon^2, \; \frac{1}{H}, \; \sqrt{\varepsilon}$ |
+| **Hingga (*Finite*)** | $\vert x \vert < r$ untuk suatu $r \in \mathbb{R}^+$ | $5, \; \pi, \; 3 + 2\varepsilon, \; \frac{4H+1}{2H-3}$ |
+| **Tak Terhingga (*Infinite*)** | $\vert x \vert > r$ untuk semua $r \in \mathbb{R}^+$ | $H, \; H^2, \; \frac{1}{\varepsilon}, \; \sqrt{H}$ |
 
 ### Notasi Kedekatan Infinitesimal ($\approx$)
-Dua bilangan hiperreal $a, b \in \mathbb{R}^*$ dikatakan **infinitesimally close** ($a \approx b$) jika selisih keduanya merupakan infinitesimal:
+Dua bilangan hiperreal $a, b \in \mathbb{R}^\ast$ dikatakan **infinitesimally close** ($a \approx b$) jika selisih keduanya merupakan infinitesimal:
+
 $$a \approx b \iff a - b \text{ adalah infinitesimal}$$
 
 ---
@@ -64,12 +68,12 @@ $$a \approx b \iff a - b \text{ adalah infinitesimal}$$
 
 Salah satu pilar terpenting dalam analisis non-standar adalah **Teorema Bagian Standar (*Standard Part Principle*)**:
 
-> **Teorema:** Untuk setiap bilangan hiperreal hingga $x \in \mathbb{R}^*$, terdapat **tepat satu** bilangan riil standar $r \in \mathbb{R}$ sedemikian sehingga $x \approx r$. Bilangan riil unik ini dilambangkan sebagai $\operatorname{st}(x)$.
+> **Teorema:** Untuk setiap bilangan hiperreal hingga $x \in \mathbb{R}^\ast$, terdapat **tepat satu** bilangan riil standar $r \in \mathbb{R}$ sedemikian sehingga $x \approx r$. Bilangan riil unik ini dilambangkan sebagai $\operatorname{st}(x)$.
 
 $$\operatorname{st}(x) = r \quad \iff \quad x \approx r$$
 
 ### Sifat-Sifat Aljabar Operator $\operatorname{st}$
-Misalkan $a, b \in \mathbb{R}^*$ adalah bilangan hiperreal hingga. Maka berlaku:
+Misalkan $a, b \in \mathbb{R}^\ast$ adalah bilangan hiperreal hingga. Maka berlaku:
 - **Penjumlahan:** $\operatorname{st}(a + b) = \operatorname{st}(a) + \operatorname{st}(b)$
 - **Pengurangan:** $\operatorname{st}(a - b) = \operatorname{st}(a) - \operatorname{st}(b)$
 - **Perkalian:** $\operatorname{st}(a \cdot b) = \operatorname{st}(a) \cdot \operatorname{st}(b)$
@@ -84,10 +88,12 @@ Dengan menggunakan operator $\operatorname{st}$, kita dapat mendefinisikan konse
 
 ### A. Kontinuitas Fungsi
 > **Definisi:** Suatu fungsi riil $f$ kontinu di titik $c \in \mathbb{R}$ jika untuk setiap perubahan infinitesimal $\Delta x \approx 0$:
+>
 > $$f(c + \Delta x) \approx f(c) \quad \iff \quad \operatorname{st}(f(c + \Delta x)) = f(c)$$
 
 ### B. Turunan (*Derivative*)
 > **Definisi:** Misalkan $y = f(x)$. Turunan $f'(x)$ di titik $x \in \mathbb{R}$ didefinisikan sebagai bagian standar dari rasio diferensial $\frac{\Delta y}{\Delta x}$ untuk sembarang $\Delta x \approx 0$ ($\Delta x \neq 0$):
+>
 > $$f'(x) = \operatorname{st}\left(\frac{\Delta y}{\Delta x}\right) = \operatorname{st}\left(\frac{f(x + \Delta x) - f(x)}{\Delta x}\right)$$
 
 ---
@@ -98,10 +104,15 @@ Mari kita buktikan turunan dari fungsi $f(x) = x^2$ menggunakan metode infinites
 
 1. Ambil kenaikan infinitesimal $\Delta x \neq 0, \Delta x \approx 0$.
 2. Hitung selisih $\Delta y$:
+
    $$\Delta y = f(x + \Delta x) - f(x) = (x + \Delta x)^2 - x^2 = x^2 + 2x\Delta x + (\Delta x)^2 - x^2 = 2x\Delta x + (\Delta x)^2$$
+
 3. Bentuk rasio diferensial:
+
    $$\frac{\Delta y}{\Delta x} = \frac{2x\Delta x + (\Delta x)^2}{\Delta x} = 2x + \Delta x$$
+
 4. Ambil Standard Part ($\operatorname{st}$):
+
    $$f'(x) = \operatorname{st}\left(\frac{\Delta y}{\Delta x}\right) = \operatorname{st}(2x + \Delta x) = \operatorname{st}(2x) + \operatorname{st}(\Delta x) = 2x + 0 = 2x$$
 
 Hasilnya diperoleh secara langsung dan sangat intuitif, memperjelas mengapa suku $(\Delta x)^2$ dapat diabaikan secara formal dan valid secara matematika.
