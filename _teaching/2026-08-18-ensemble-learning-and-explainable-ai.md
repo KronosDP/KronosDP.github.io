@@ -48,7 +48,7 @@ Topik ini membedah dua pilar fundamental dalam ekosistem *machine learning* mode
         <span>📑</span> Presentasi Resmi: Ensemble Learning & Explainable AI
       </h3>
       <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: inherit;">
-        Berkas lengkap 60 halaman *slide deck* perkuliahan COMPFEST 18 Academy (format PDF resolusi tinggi) memuat pembuktian matematis, studi kasus industri kredit perbankan, komparasi algoritma, serta studi implementasi XAI.
+        Berkas lengkap 60 halaman <em>slide deck</em> perkuliahan COMPFEST 18 Academy (format PDF resolusi tinggi) memuat pembuktian matematis, studi kasus industri kredit perbankan, komparasi algoritma, serta studi implementasi XAI.
       </p>
     </div>
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
