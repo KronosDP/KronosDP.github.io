@@ -32,8 +32,8 @@ function isActive(href: string) {
 
     <div class="masthead__actions">
       <div class="masthead__social">
-        <a href="https://github.com/KronosDP" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><Icon name="github" size={15} /></a>
-        <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={15} /></a>
+        <a href="https://github.com/KronosDP" class="masthead__social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><Icon name="github" size={15} /></a>
+        <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" class="masthead__social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={15} /></a>
       </div>
       <a href="/cv/resume-ai.pdf" class="btn btn--primary btn--nav" data-analytics="download_pdf" download>
         <Icon name="download" size={13} /><span>Download CV</span>
@@ -108,16 +108,22 @@ function isActive(href: string) {
   }
   .masthead__social {
     display: flex;
-    gap: 14px;
-    color: var(--color-muted);
-    font-size: 15px;
+    gap: 10px;
   }
-  .masthead__social a {
-    color: inherit;
+  .masthead__social-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
     display: flex;
-  }
-  .masthead__social a:hover {
+    align-items: center;
+    justify-content: center;
     color: var(--color-text);
+  }
+  .masthead__social-icon:hover {
+    border-color: var(--color-border-emphasis);
+    color: var(--color-accent);
   }
   .masthead__toggle {
     display: none;
