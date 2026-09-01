@@ -1,0 +1,174 @@
+---
+import Icon from './Icon.astro';
+
+const navItems = [
+  { label: 'Research', href: '/projects/sequence-model-capacity-regular-languages/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Talks', href: '/talks/' },
+  { label: 'Teaching', href: '/teaching/' },
+  { label: 'CV', href: '/cv/' },
+];
+
+const path = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return path === '/';
+  return path === href || path.startsWith(href);
+}
+---
+
+<header class="masthead">
+  <div class="masthead__inner container">
+    <a href="/" class="masthead__brand">Darrel Danadyaksa Poli<span class="masthead__brand-dot">.</span></a>
+
+    <nav class="masthead__nav" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class:list={['masthead__link', { 'is-active': isActive(item.href) }]}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="masthead__actions">
+      <div class="masthead__social">
+        <a href="https://github.com/KronosDP" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><Icon name="github" size={15} /></a>
+        <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={15} /></a>
+      </div>
+      <a href="/cv/resume-ai.pdf" class="btn btn--primary btn--nav" data-analytics="download_pdf" download>
+        <Icon name="download" size={13} /><span>Download CV</span>
+      </a>
+      <button class="masthead__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <Icon name="menu" size={20} />
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="masthead__mobile-nav" aria-label="Primary, mobile">
+    {
+      navItems.map((item) => (
+        <a href={item.href} class:list={['masthead__mobile-link', { 'is-active': isActive(item.href) }]}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<style>
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(11, 17, 32, 0.72);
+    backdrop-filter: blur(8px);
+  }
+  .masthead__inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 70px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .masthead__brand {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .masthead__brand-dot {
+    color: var(--color-accent);
+  }
+  .masthead__nav {
+    display: flex;
+    gap: 22px;
+    margin-left: 32px;
+  }
+  .masthead__link {
+    font-size: 14px;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .masthead__link.is-active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+  .masthead__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .masthead__social {
+    display: flex;
+    gap: 14px;
+    color: var(--color-muted);
+    font-size: 15px;
+  }
+  .masthead__social a {
+    color: inherit;
+    display: flex;
+  }
+  .masthead__social a:hover {
+    color: var(--color-text);
+  }
+  .masthead__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    padding: 4px;
+    cursor: pointer;
+  }
+  .masthead__mobile-nav {
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-canvas);
+  }
+  .masthead__mobile-link {
+    padding: 14px var(--gutter-mobile);
+    font-size: 15px;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .masthead__mobile-link.is-active {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .masthead__nav,
+    .masthead__social {
+      display: none;
+    }
+    .masthead__toggle {
+      display: flex;
+    }
+    .masthead__mobile-nav.is-open {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .masthead__actions :global(.btn--nav span) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>

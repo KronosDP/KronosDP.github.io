@@ -1,0 +1,170 @@
+---
+import Icon from './Icon.astro';
+
+interface ProjectData {
+  title: string;
+  category: string;
+  categoryLabel: string;
+  org: string;
+  result?: string;
+  year: string;
+  stack: string[];
+  description: string;
+  hasWriteup: boolean;
+  writeupUrl?: string;
+  githubUrl?: string;
+  figureCaption?: string;
+}
+
+interface Props {
+  project: ProjectData;
+  variant: 'image-top' | 'image-left' | 'compact';
+  emphasis?: boolean;
+  eyebrowStyle?: 'category' | 'org';
+}
+
+const { project, variant, emphasis = false, eyebrowStyle = 'category' } = Astro.props;
+const href = project.writeupUrl ?? project.githubUrl;
+const Tag = href ? 'a' : 'div';
+
+const eyebrow =
+  eyebrowStyle === 'category'
+    ? `${project.categoryLabel} · ${project.org} · ${project.year}`
+    : project.org.includes(project.year)
+      ? project.org + (project.result ? ` · ${project.result}` : '')
+      : `${project.org} · ${project.year}` + (project.result ? ` · ${project.result}` : '');
+---
+
+<Tag
+  href={href}
+  target={project.githubUrl && !project.writeupUrl ? '_blank' : undefined}
+  rel={project.githubUrl && !project.writeupUrl ? 'noopener noreferrer' : undefined}
+  class:list={['project-card', `project-card--${variant}`, 'card', { 'card--emphasis': emphasis }]}
+>
+  {
+    variant !== 'compact' && (
+      <div class="project-card__figure figure-placeholder">
+        {project.figureCaption && <span>{project.figureCaption}</span>}
+      </div>
+    )
+  }
+  <div class="project-card__body">
+    <div class="project-card__eyebrow-row">
+      <span class="project-card__eyebrow">{eyebrow.toLowerCase()}</span>
+      {project.hasWriteup && <span class="pill project-card__writeup-badge">write-up</span>}
+      {project.githubUrl && <Icon name="github" size={11} class="project-card__github-icon" />}
+    </div>
+    <h3 class="project-card__title">{project.title}</h3>
+    <p class="project-card__description">{project.description}</p>
+    <div class="project-card__stack">
+      {project.stack.map((tag) => <span class="pill project-card__tag">{tag}</span>)}
+    </div>
+  </div>
+</Tag>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 22px;
+  }
+  a.project-card:hover {
+    border-color: var(--color-border-emphasis);
+  }
+  .project-card--image-top {
+    padding: 24px;
+  }
+  .project-card--image-top .project-card__figure {
+    height: 120px;
+    margin-bottom: 18px;
+  }
+  .project-card--image-left {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    padding: 24px;
+  }
+  .project-card--image-left .project-card__figure {
+    min-height: 140px;
+  }
+  .project-card__eyebrow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .project-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .project-card__writeup-badge {
+    padding: 2px 8px;
+    background: var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-badge-text);
+    border: none;
+  }
+  .project-card__github-icon {
+    color: var(--color-muted);
+  }
+  .project-card--image-left .project-card__title {
+    font-size: 18px;
+    margin: 0 0 10px;
+  }
+  .project-card--image-top .project-card__title,
+  .project-card--compact .project-card__title {
+    font-size: 15px;
+    margin: 9px 0 8px;
+  }
+  .project-card__title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+  .project-card__description {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin: 0 0 12px;
+  }
+  .project-card--image-left .project-card__description,
+  .project-card--image-top .project-card__description {
+    font-size: 14px;
+    margin: 0 0 14px;
+  }
+  .project-card__stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .project-card__tag {
+    padding: 3px 9px;
+    font-size: 10px;
+    color: var(--color-muted);
+  }
+  .project-card--compact .project-card__stack {
+    display: block;
+  }
+  .project-card--compact .project-card__tag {
+    padding: 0;
+    background: none;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 700px) {
+    .project-card--image-left {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

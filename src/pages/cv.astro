@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const experience = [
+  {
+    org: 'NVIDIA',
+    role: 'AI Research Intern',
+    dates: 'Jan–Jun 2025 · Remote',
+    bullets: [
+      'Evaluated RWKV-v4 and RWKV-v7 against Transformers, LSTMs and GRUs for formal regular language expressivity.',
+      'Wrote a custom PyTorch CUDA C++ WKV operator for accelerated recurrent state transitions.',
+      'Designed L1–L4 synthetic benchmarks with 1–3 edit-distance hard negatives to stress decision boundaries.',
+    ],
+  },
+  {
+    org: 'Meeting.ai',
+    role: 'AI Engineer Intern',
+    dates: 'Jul–Dec 2025 · Jakarta',
+    bullets: [
+      'Benchmarked ASR pipelines at 10+ simultaneous sessions to isolate latency bottlenecks.',
+      'Compressed a speaker verification model via knowledge distillation, holding accuracy at a smaller footprint.',
+      'Architected a user-in-the-loop correction mechanism to resolve clustering ambiguity.',
+    ],
+  },
+  {
+    org: 'Intergalactic Science Kingdom',
+    role: 'AI & Backend Engineer',
+    dates: 'Jan–Jul 2026',
+    bullets: [
+      'Architected and deployed Marie Chan on Go and Django backends.',
+      'Integrated OpenRouter for multi-model LLM routing, context management and speech synthesis.',
+    ],
+  },
+  {
+    org: 'BEM UI',
+    role: 'Coordinator, IT Division',
+    dates: 'Jul 2025–Jan 2026',
+    bullets: ['Directed development workflows and reviewed system architecture across university IT projects.'],
+  },
+];
+
+const awards = [
+  { year: '2025', text: 'Satria Data multimodal emotion detection — 99.71% public LB' },
+  { year: '2023 & 2024', text: 'Gemastik national Top 10 finalist' },
+  { year: '2023', text: 'Garuda Hacks 4.0 Honorable Mention — Tak Sendiri' },
+];
+
+const skills = [
+  { label: 'Languages', value: 'Python, Go, Java, PHP, Rust, Dart, SQL, CUDA C++' },
+  { label: 'ML', value: 'PyTorch, TensorFlow, HuggingFace, OpenCV, Scikit-Learn' },
+  { label: 'Backend', value: 'Django, Go, Laravel, Spring Boot, Flutter, PostgreSQL' },
+  { label: 'Data', value: 'Pandas, NumPy, SQL, statistical modelling, experiment design, dashboarding' },
+  { label: 'Infra', value: 'Docker, Git, GCP, Supabase, Linux, CI/CD' },
+];
+---
+
+<BaseLayout title="CV" description="Darrel Danadyaksa Poli's CV — AI Researcher & Software Engineer.">
+  <section class="container cv-header">
+    <div>
+      <span class="eyebrow">// curriculum vitae</span>
+      <h1 class="cv-header__name">Darrel Danadyaksa Poli</h1>
+      <p class="cv-header__meta">AI Researcher & Software Engineer · Jakarta, Indonesia · <a href="mailto:darrel.danadyaksa19@gmail.com">darrel.danadyaksa19@gmail.com</a></p>
+    </div>
+    <div class="cv-header__ctas">
+      <a href="/cv/resume-ai.pdf" class="btn btn--primary" data-analytics="download_pdf" download><Icon name="file-pdf" size={14} />PDF · 2 pages</a>
+      <button class="btn btn--ghost" id="copy-plaintext-btn" type="button" data-url="/cv/resume-ai.txt">Copy plain text</button>
+    </div>
+  </section>
+
+  <section class="container cv-body">
+    <div>
+      <div class="cv-section">
+        <h2 class="cv-section__title">Experience</h2>
+        <div class="cv-experience-list">
+          {
+            experience.map((job) => (
+              <div>
+                <div class="cv-experience__head">
+                  <p class="cv-experience__role">{job.org} <span class="cv-experience__role-title">— {job.role}</span></p>
+                  <span class="cv-experience__dates">{job.dates}</span>
+                </div>
+                <ul class="cv-experience__bullets">
+                  {job.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h2 class="cv-section__title">Education</h2>
+        <div class="cv-experience__head">
+          <p class="cv-experience__role">University of Indonesia <span class="cv-experience__role-title">— BSc Computer Science</span></p>
+          <span class="cv-experience__dates">Aug 2022–Aug 2026</span>
+        </div>
+        <p class="cv-education__desc">Focus: software engineering, deep learning, NLP, computer vision, algorithms & complexity. Teaching Assistant across five courses. Certified peer counselor at <em>Curhat Sama Panda</em>.</p>
+      </div>
+
+      <div class="cv-section cv-section--last">
+        <h2 class="cv-section__title">Selected awards</h2>
+        <div class="cv-awards-list">
+          {
+            awards.map((a) => (
+              <div class="cv-awards__row">
+                <span class="cv-awards__year">{a.year}</span>
+                <span>{a.text}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-sidebar">
+      <div class="card cv-pdf-preview">
+        <div class="cv-pdf-preview__page">
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--title"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--subtitle"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--heading"></div>
+          <div class="cv-pdf-preview__rule"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 92%;"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 96%;"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--heading" style="margin-top: 8px;"></div>
+          <div class="cv-pdf-preview__rule"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 98%;"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 88%;"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 94%;"></div>
+          <div class="cv-pdf-preview__bar cv-pdf-preview__bar--line" style="width: 70%;"></div>
+        </div>
+        <p class="cv-pdf-preview__caption">resume-ai.pdf · 2 pages</p>
+      </div>
+      <div class="card cv-skills">
+        <p class="eyebrow">// skills</p>
+        <div class="cv-skills-list">
+          {
+            skills.map((s) => (
+              <div>
+                <span class="cv-skills__label">{s.label}</span>
+                {s.value}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cv-header {
+    padding: 48px var(--gutter) 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .cv-header__name {
+    font-family: var(--font-mono);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 12px;
+  }
+  .cv-header__meta {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+  .cv-header__ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cv-body {
+    padding: 0 var(--gutter) 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 56px;
+  }
+
+  .cv-section {
+    margin-bottom: 36px;
+  }
+  .cv-section--last {
+    margin-bottom: 0;
+  }
+  .cv-section__title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cv-experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .cv-experience__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .cv-experience__role {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .cv-experience__role-title {
+    color: var(--color-muted);
+    font-weight: 400;
+  }
+  .cv-experience__dates {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+  .cv-experience__bullets {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .cv-education__desc {
+    margin: 10px 0 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .cv-awards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+  .cv-awards__row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+  }
+  .cv-awards__year {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text);
+  }
+
+  .cv-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cv-pdf-preview {
+    padding: 8px;
+  }
+  .cv-pdf-preview__page {
+    aspect-ratio: 8.5 / 11;
+    border-radius: 8px;
+    background: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    gap: 8px;
+  }
+  .cv-pdf-preview__bar {
+    border-radius: 2px;
+  }
+  .cv-pdf-preview__bar--title {
+    height: 9px;
+    width: 62%;
+    background: var(--color-canvas);
+    margin: 0 auto;
+  }
+  .cv-pdf-preview__bar--subtitle {
+    height: 4px;
+    width: 44%;
+    background: var(--color-muted);
+    margin: 0 auto 8px;
+  }
+  .cv-pdf-preview__bar--heading {
+    height: 5px;
+    width: 34%;
+    background: var(--color-canvas);
+  }
+  .cv-pdf-preview__bar--line {
+    height: 3px;
+    width: 100%;
+    background: var(--color-badge-text);
+  }
+  .cv-pdf-preview__rule {
+    height: 1px;
+    background: var(--color-muted);
+  }
+  .cv-pdf-preview__caption {
+    margin: 12px 4px 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+  .cv-skills {
+    padding: 20px;
+  }
+  .cv-skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+  .cv-skills__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .cv-body {
+      grid-template-columns: 1fr;
+    }
+    .cv-sidebar {
+      order: -1;
+    }
+  }
+  @media (max-width: 560px) {
+    .cv-experience__head {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cv-awards__row {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('copy-plaintext-btn');
+  btn?.addEventListener('click', async () => {
+    const url = btn.getAttribute('data-url');
+    if (!url) return;
+    try {
+      const res = await fetch(url);
+      const text = await res.text();
+      await navigator.clipboard.writeText(text);
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.textContent = original;
+      }, 1800);
+    } catch {
+      window.open(url, '_blank');
+    }
+  });
+</script>

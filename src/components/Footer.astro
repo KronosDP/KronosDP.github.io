@@ -1,0 +1,85 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="eyebrow">// Elsewhere</p>
+      <div class="site-footer__links">
+        <a href="https://github.com/KronosDP" target="_blank" rel="noopener noreferrer" data-analytics="github_click">GitHub</a>
+        <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" target="_blank" rel="noopener noreferrer" data-analytics="linkedin_click">LinkedIn</a>
+        <a href="mailto:darrel.danadyaksa19@gmail.com" data-analytics="contact_click">Email</a>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">// Site</p>
+      <div class="site-footer__links">
+        <a href="/projects/sequence-model-capacity-regular-languages/">Research</a>
+        <a href="/projects/">Projects</a>
+        <a href="/talks/">Talks</a>
+        <a href="/teaching/">Teaching</a>
+        <a href="/cv/">CV</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">// Status</p>
+      <p class="site-footer__status">
+        Open to AI research, AI/ML engineering and data science roles, remote or Jakarta-based.
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="site-footer__bottom">© {year} Darrel Danadyaksa Poli</div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding-top: 32px;
+  }
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-bottom: 24px;
+  }
+  .site-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+  .site-footer__links a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .site-footer__links a:hover {
+    color: var(--color-text);
+  }
+  .site-footer__status {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+  .site-footer__bottom {
+    margin-top: 24px;
+    padding: 16px 0 24px;
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 700px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

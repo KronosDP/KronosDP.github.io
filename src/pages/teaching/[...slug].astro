@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('teaching');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const dateStr = data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<ArticleLayout
+  title={data.title}
+  description={data.excerpt}
+  eyebrow={data.type.toLowerCase()}
+  meta={`${data.venue} · ${dateStr}`}
+  backHref="/teaching/"
+  backLabel="all teaching material"
+>
+  <Content />
+</ArticleLayout>
