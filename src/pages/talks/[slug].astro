@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('talks');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const meta = [data.venue, data.year].filter(Boolean).join(' · ');
+---
+
+<ArticleLayout title={data.title} description={data.description} eyebrow={data.eyebrow} meta={meta} backHref="/talks/" backLabel="all talks">
+  {
+    data.gallery.length > 0 && (
+      <div class="talk-gallery">
+        {data.gallery.map((photo) => (
+          <figure class="talk-gallery__item">
+            <img src={photo.src} alt={photo.caption ?? data.title} loading="lazy" />
+            {photo.caption && <figcaption>{photo.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    )
+  }
+
+  <div class="talk-tags">
+    {data.tags.map((tag) => <span class="pill">{tag}</span>)}
+  </div>
+
+  <Content />
+
+  {
+    (data.slidesUrl || data.relatedWriteupUrl) && (
+      <div class="talk-links card">
+        {data.slidesUrl && (
+          <a href={data.slidesUrl} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
+            <Icon name="file-pdf" size={14} /> Slides
+          </a>
+        )}
+        {data.relatedWriteupUrl && (
+          <a href={data.relatedWriteupUrl} class="btn btn--primary">
+            {data.relatedWriteupLabel ?? 'Full write-up'} <Icon name="arrow-right" size={14} />
+          </a>
+        )}
+      </div>
+    )
+  }
+</ArticleLayout>
+
+<style>
+  .talk-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0 4px;
+  }
+  .talk-gallery__item {
+    margin: 0;
+    border-radius: var(--radius-figure);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .talk-gallery__item img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+  .talk-gallery__item figcaption {
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    border-top: 1px solid var(--color-border);
+  }
+  .talk-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 20px 0 32px;
+  }
+  .talk-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 40px;
+  }
+</style>

@@ -16,7 +16,7 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
   <section class="container talks-list">
     {
       talks.map((talk, i) => (
-        <div class:list={['card talk-card', { 'card--emphasis': talk.data.featured }]} data-reveal style={`--reveal-delay: ${Math.min(i, 3) * 70}ms;`}>
+        <a href={`/talks/${talk.data.slug}/`} class:list={['card talk-card', { 'card--emphasis': talk.data.featured }]} data-reveal style={`--reveal-delay: ${Math.min(i, 3) * 70}ms;`}>
           {
             talk.data.image ? (
               <div class="talk-card__figure talk-card__figure--image">
@@ -38,9 +38,9 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
           </div>
           <div class="talk-card__meta">
             <span class="talk-card__year">{talk.data.year}</span>
-            {talk.data.slidesUrl && <a href={talk.data.slidesUrl} class="talk-card__slides-link">slides →</a>}
+            <span class="talk-card__read-link">read more →</span>
           </div>
-        </div>
+        </a>
       ))
     }
   </section>
@@ -84,6 +84,11 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
     grid-template-columns: 200px 1fr 150px;
     gap: 24px;
     padding: 24px;
+    text-decoration: none;
+    color: inherit;
+  }
+  a.talk-card:hover {
+    border-color: var(--color-border-emphasis);
   }
   .talk-card__figure {
     min-height: 120px;
@@ -140,13 +145,12 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
     font-size: 12px;
     color: var(--color-muted);
   }
-  .talk-card__slides-link {
+  .talk-card__read-link {
     display: block;
     margin-top: 14px;
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--color-accent);
-    text-decoration: none;
   }
 
   .cta-banner {

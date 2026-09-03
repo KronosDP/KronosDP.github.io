@@ -84,7 +84,7 @@ const { title, description, eyebrow, meta, backHref, backLabel } = Astro.props;
   .article__prose strong {
     color: var(--color-text);
   }
-  .article__prose a {
+  .article__prose a:not(.btn) {
     color: var(--color-accent);
   }
   .article__prose ul,
