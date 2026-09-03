@@ -1,0 +1,181 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Talks" description="Sessions and training led for corporate programmes, student festivals and university onboarding.">
+  <section class="container page-header" data-reveal>
+    <span class="eyebrow">// talks</span>
+    <h1 class="page-header__title">Sessions and training I’ve led</h1>
+    <p class="page-header__lede">Invited speaker and trainer for corporate programmes, student festivals and university onboarding. Slides and recordings where they exist.</p>
+  </section>
+
+  <section class="container talks-list">
+    {
+      talks.map((talk, i) => (
+        <div class:list={['card talk-card', { 'card--emphasis': talk.data.featured }]} data-reveal style={`--reveal-delay: ${Math.min(i, 3) * 70}ms;`}>
+          {
+            talk.data.image ? (
+              <div class="talk-card__figure talk-card__figure--image">
+                <img src={talk.data.image} alt={talk.data.title} loading="lazy" />
+              </div>
+            ) : (
+              <div class="figure-placeholder talk-card__figure">
+                <span>session photo</span>
+              </div>
+            )
+          }
+          <div>
+            <span class="talk-card__eyebrow">{talk.data.eyebrow}</span>
+            <h2 class="talk-card__title">{talk.data.title}</h2>
+            <p class="talk-card__desc">{talk.data.description}</p>
+            <div class="talk-card__tags">
+              {talk.data.tags.map((tag) => <span class="pill talk-card__tag">{tag}</span>)}
+            </div>
+          </div>
+          <div class="talk-card__meta">
+            <span class="talk-card__year">{talk.data.year}</span>
+            {talk.data.slidesUrl && <a href={talk.data.slidesUrl} class="talk-card__slides-link">slides →</a>}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="container">
+    <div class="cta-banner card" data-reveal>
+      <p class="cta-banner__text">Available for training sessions and guest lectures on sequence models, speech AI and backend architecture.</p>
+      <a href="/contact/" class="btn btn--primary">Invite me to speak <Icon name="arrow-right" size={14} /></a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .page-header__title {
+    font-family: var(--font-mono);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+  .page-header__lede {
+    max-width: 72ch;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .talks-list {
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .talk-card {
+    display: grid;
+    grid-template-columns: 200px 1fr 150px;
+    gap: 24px;
+    padding: 24px;
+  }
+  .talk-card__figure {
+    min-height: 120px;
+  }
+  .talk-card__figure--image {
+    border-radius: var(--radius-figure);
+    overflow: hidden;
+  }
+  .talk-card__figure--image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-figure);
+    box-sizing: border-box;
+  }
+  .talk-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .talk-card__title {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 10px 0 8px;
+  }
+  .talk-card__desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--color-muted);
+    margin: 0 0 14px;
+  }
+  .talk-card__tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .talk-card__tag {
+    padding: 3px 9px;
+    font-size: 10px;
+  }
+  .talk-card__meta {
+    text-align: right;
+  }
+  .talk-card__year {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+  .talk-card__slides-link {
+    display: block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .cta-banner {
+    margin-bottom: 48px;
+    border-style: dashed;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cta-banner__text {
+    margin: 0;
+    max-width: 60ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 800px) {
+    .talk-card {
+      grid-template-columns: 1fr;
+    }
+    .talk-card__meta {
+      text-align: left;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+  }
+</style>

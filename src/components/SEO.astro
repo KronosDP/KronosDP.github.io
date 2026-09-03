@@ -1,0 +1,81 @@
+---
+// Ports _includes/seo.html's hand-written schema.org JSON-LD verbatim --
+// real, non-obvious SEO work from the Jekyll site worth keeping exactly.
+interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title,
+  description = 'Darrel Danadyaksa Poli: Software Engineer, AI Engineer, & AI Researcher.',
+  path = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://kronosdp.github.io';
+const canonical = new URL(path, siteUrl).toString();
+const pageTitle = path === '/' ? title : `${title} - Darrel Danadyaksa Poli`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: 'Darrel Danadyaksa Poli',
+      description,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#person`,
+      name: 'Darrel Danadyaksa Poli',
+      url: siteUrl,
+      email: 'mailto:darrel.danadyaksa19@gmail.com',
+      jobTitle: 'Software Engineer & AI Researcher',
+      worksFor: [
+        { '@type': 'Organization', name: 'NVIDIA' },
+        { '@type': 'Organization', name: 'Meeting.ai' },
+      ],
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'University of Indonesia',
+      },
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Software Engineering',
+        'Backend Architecture',
+        'Speech Recognition',
+      ],
+      award: [
+        'Satria Data 2025 multimodal emotion & journaling system: 0.70 micro-F1 (text ablation)',
+        'Gemastik national Top 10 finalist, 2024 & 2025',
+        "Garuda Hacks 4.0 Honorable Mention, Tak Sendiri",
+      ],
+      sameAs: [
+        'https://github.com/KronosDP',
+        'https://www.linkedin.com/in/darrel-danadyaksa-poli/',
+        'https://www.instagram.com/kronos_darrel',
+      ],
+    },
+  ],
+};
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={new URL('/images/profile.webp', siteUrl).toString()} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

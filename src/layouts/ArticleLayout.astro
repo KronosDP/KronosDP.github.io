@@ -1,0 +1,132 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow: string;
+  meta?: string;
+  backHref: string;
+  backLabel: string;
+}
+
+const { title, description, eyebrow, meta, backHref, backLabel } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container article">
+    <a href={backHref} class="article__back">← {backLabel}</a>
+    <div data-reveal>
+      <span class="eyebrow article__eyebrow">// {eyebrow}</span>
+      <h1 class="article__title">{title}</h1>
+      {meta && <p class="article__meta">{meta}</p>}
+    </div>
+    <div class="article__prose" data-reveal style="--reveal-delay: 90ms;">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: 800px;
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+  .article__back {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .article__eyebrow {
+    margin: 24px 0 14px;
+  }
+  .article__title {
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    margin: 0 0 12px;
+  }
+  .article__meta {
+    margin: 0 0 32px;
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+</style>
+
+<style is:global>
+  .article__prose {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+  .article__prose h2 {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 40px 0 16px;
+  }
+  .article__prose h3 {
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 32px 0 12px;
+  }
+  .article__prose p {
+    margin: 0 0 1.3em;
+  }
+  .article__prose strong {
+    color: var(--color-text);
+  }
+  .article__prose a {
+    color: var(--color-accent);
+  }
+  .article__prose ul,
+  .article__prose ol {
+    margin: 0 0 1.3em;
+    padding-left: 1.4em;
+  }
+  .article__prose li {
+    margin-bottom: 0.4em;
+  }
+  .article__prose blockquote {
+    margin: 0 0 1.3em;
+    padding: 4px 0 4px 20px;
+    border-left: 2px solid var(--color-border-emphasis);
+    color: var(--color-text);
+  }
+  .article__prose img {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+  }
+  .article__prose pre.astro-code {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 16px 20px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0 0 1.3em;
+    background-color: var(--color-raised) !important;
+  }
+  .article__prose code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+  .article__prose :not(pre) > code {
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: var(--color-badge-text);
+  }
+  .article__prose .katex {
+    font-size: 1.05em;
+  }
+</style>

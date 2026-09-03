@@ -1,0 +1,507 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import StatCard from '../components/StatCard.astro';
+
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const selectedWork = allProjects.slice(0, 3);
+const research = (await getCollection('research'))[0];
+---
+
+<BaseLayout title="Darrel Danadyaksa Poli">
+  <!-- Hero -->
+  <section class="container hero">
+    <div class="dot-grid" style="right: 340px; top: 44px;"></div>
+    <div class="hero__main" data-reveal>
+      <span class="eyebrow">// current research: nvidia, jan-jun 2025</span>
+      <h1 class="hero__title">
+        {research.data.question.replace('regular languages?', '')}<span class="hero__accent">regular languages?</span>
+      </h1>
+      <p class="hero__lede">{research.data.summary}</p>
+      <div class="hero__ctas">
+        <a href={`/projects/${research.data.slug}/`} class="btn btn--primary">Read the write-up <Icon name="arrow-right" size={14} /></a>
+        <a href="/projects/" class="btn btn--ghost">All projects</a>
+      </div>
+      <div class="hero__tags">
+        <span class="pill pill--accent">RWKV-v7</span>
+        <span class="pill">CUDA C++</span>
+        <span class="pill">PyTorch</span>
+        <span class="pill">formal languages</span>
+        <span class="pill">expressivity</span>
+      </div>
+    </div>
+
+    <aside class="identity-card card" data-reveal style="--reveal-delay: 120ms;">
+      <div class="identity-card__header">
+        <img src="/images/profile.webp" alt="Darrel Danadyaksa Poli" width="56" height="56" class="identity-card__avatar" />
+        <div>
+          <p class="identity-card__name">Darrel Danadyaksa Poli</p>
+          <p class="identity-card__role">AI Researcher & Software Engineer</p>
+        </div>
+      </div>
+      <div class="identity-card__divider"></div>
+      <div class="identity-card__facts">
+        <div class="identity-card__fact"><Icon name="graduation-cap" size={14} /><span>BSc Computer Science, <strong>University of Indonesia</strong>, 2022-2026</span></div>
+        <div class="identity-card__fact"><Icon name="map-pin" size={14} /><span>Jakarta, Indonesia, open to remote</span></div>
+        <div class="identity-card__fact"><Icon name="dot" size={14} class="identity-card__status-dot" /><span class="identity-card__fact-strong">Open to AI research, AI/ML engineering & data science roles</span></div>
+      </div>
+      <div class="identity-card__divider"></div>
+      <p class="eyebrow identity-card__worked-at-label">// worked at</p>
+      <div class="identity-card__worked-at">
+        <span>NVIDIA: <em>AI Research</em></span>
+        <span>Meeting.ai: <em>AI Engineering</em></span>
+        <span>BEM Fakultas Ilmu Komputer UI: <em>IT Coordinator</em></span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Proof strip -->
+  <section class="container section">
+    <div class="stat-grid">
+      <div data-reveal style="--reveal-delay: 0ms;"><StatCard value="0.70" label="micro-F1, text-modality ablation: Satria Data 2025 emotion & journaling system" /></div>
+      <div data-reveal style="--reveal-delay: 70ms;"><StatCard value="Top 10" label="Gemastik national finalist, 2023 & 2024" /></div>
+      <div data-reveal style="--reveal-delay: 140ms;"><StatCard value="10+" label="concurrent ASR sessions stress-tested at Meeting.ai" /></div>
+      <div data-reveal style="--reveal-delay: 210ms;"><StatCard value="5" label="university courses taught as Teaching Assistant at UI" /></div>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section class="container section">
+    <div class="section__heading-row" data-reveal>
+      <div>
+        <span class="eyebrow">// selected work</span>
+        <h2 class="section__title">Three things worth reading in full</h2>
+      </div>
+      <a href="/projects/" class="section__see-all">all {allProjects.length} projects →</a>
+    </div>
+    <div class="selected-work-grid">
+      {
+        selectedWork.map((project, i) => (
+          <div data-reveal style={`--reveal-delay: ${i * 90}ms;`}>
+            <ProjectCard project={project.data} variant="image-top" emphasis={i === 0} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Experience timeline -->
+  <section class="container section">
+    <span class="eyebrow">// experience</span>
+    <h2 class="section__title" style="margin-bottom: 24px;">Where the work happened</h2>
+    <div class="timeline">
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jan-Jun 2025</span>
+        <span class="timeline__rail"><span class="timeline__dot timeline__dot--accent"></span><span class="timeline__line"></span></span>
+        <div>
+          <p class="timeline__role">AI Research Intern · <span class="timeline__org">NVIDIA</span></p>
+          <p class="timeline__desc">Non-Transformer sequence architectures for formal-language expressivity. Custom CUDA C++ WKV operator; synthetic L1-L4 benchmarks with 1-3 edit-distance hard negatives.</p>
+        </div>
+      </div>
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jul-Dec 2025</span>
+        <span class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></span>
+        <div>
+          <p class="timeline__role">AI Engineer Intern · <span class="timeline__org">Meeting.ai</span></p>
+          <p class="timeline__desc">ASR concurrency stress-testing, speaker-verification distillation, and an active-learning correction loop for clustering ambiguity.</p>
+        </div>
+      </div>
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jan-Jul 2026</span>
+        <span class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></span>
+        <div>
+          <p class="timeline__role">AI & Backend Engineer · <span class="timeline__org">Intergalactic Science Kingdom</span></p>
+          <p class="timeline__desc">Marie Chan: Go + Django backends, OpenRouter multi-model LLM routing, BDD/TDD around agentic workflows.</p>
+        </div>
+      </div>
+      <div class="timeline__item timeline__item--last" data-reveal>
+        <span class="timeline__date">Jul 2025-Jan 2026</span>
+        <span class="timeline__rail"><span class="timeline__dot"></span></span>
+        <div>
+          <p class="timeline__role">IT Division Coordinator · <span class="timeline__org">BEM Fakultas Ilmu Komputer UI</span></p>
+          <p class="timeline__desc">Directed development workflows and reviewed architecture across university-wide IT projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Toolkit -->
+  <section class="container section about-toolkit">
+    <div data-reveal>
+      <span class="eyebrow">// about</span>
+      <h2 class="section__title">Engineer first, researcher by habit</h2>
+      <p class="about-toolkit__p">I like problems where the research question and the deployment constraint are the same problem: can this architecture represent the thing at all, and can it run fast enough to matter. That is why the NVIDIA work involved writing a CUDA kernel, and why the Meeting.ai work involved a latency harness rather than a notebook.</p>
+      <p class="about-toolkit__p">Outside that: five semesters as a teaching assistant at UI, a certified peer counselor at <em>Curhat Sama Panda</em>, and enough flight-sim hours to be opinionated about approach plates.</p>
+    </div>
+    <div data-reveal style="--reveal-delay: 100ms;">
+      <span class="eyebrow">// toolkit</span>
+      <h2 class="section__title" style="margin-bottom: 20px;">Grouped by reach-for frequency</h2>
+      <div class="toolkit">
+        <div>
+          <p class="toolkit__tier">daily</p>
+          <div class="toolkit__row">
+            <span class="pill pill--accent">Python</span><span class="pill pill--accent">PyTorch</span><span class="pill pill--accent">Git</span>
+          </div>
+        </div>
+        <div>
+          <p class="toolkit__tier">shipped to production</p>
+          <div class="toolkit__row">
+            <span class="pill">Go</span><span class="pill">Django</span><span class="pill">Docker</span><span class="pill">Flutter</span><span class="pill">CUDA C++</span><span class="pill">PostgreSQL</span>
+          </div>
+        </div>
+        <div>
+          <p class="toolkit__tier">familiar</p>
+          <div class="toolkit__row">
+            <span class="pill">Rust</span><span class="pill">Laravel</span><span class="pill">Spring Boot</span><span class="pill">GCP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact band -->
+  <section class="container section">
+    <div class="contact-band card card--emphasis" data-reveal>
+      <div>
+        <h2 class="contact-band__title">Hiring in AI research, ML engineering or data science?</h2>
+        <p class="contact-band__desc">I reply within a day. Happy to walk through the NVIDIA benchmark design or the distillation setup on a call.</p>
+      </div>
+      <div class="contact-band__ctas">
+        <a href="mailto:darrel.danadyaksa19@gmail.com" class="btn btn--primary" data-analytics="contact_click">darrel.danadyaksa19@gmail.com</a>
+        <a href="/cv/resume-ai.pdf" class="btn btn--ghost" data-analytics="download_pdf" download><Icon name="file-pdf" size={14} />CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    padding-top: 64px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 56px;
+    align-items: start;
+  }
+  .hero__main {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__title {
+    font-family: var(--font-mono);
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.16;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero__accent {
+    color: var(--color-accent);
+  }
+  .hero__lede {
+    max-width: 62ch;
+    margin: 24px 0 0;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .identity-card {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+  }
+  .identity-card__header {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .identity-card__avatar {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-raised);
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+  .identity-card__name {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .identity-card__role {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+  .identity-card__divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 20px 0;
+  }
+  .identity-card__facts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+  .identity-card__fact {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+  }
+  .identity-card__fact :global(svg) {
+    color: var(--color-accent);
+    margin-top: 2px;
+  }
+  /* :global() because this class lands on the <svg> rendered inside the
+     separate Icon component, which doesn't carry this file's scope
+     attribute - same reason .identity-card__fact :global(svg) exists above. */
+  :global(.identity-card__status-dot) {
+    color: var(--color-success) !important;
+    display: inline-block;
+    border-radius: 50%;
+    animation: status-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes status-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 5px transparent;
+    }
+  }
+  .identity-card__fact-strong {
+    color: var(--color-text);
+  }
+  .identity-card__worked-at-label {
+    margin-bottom: 12px;
+  }
+  .identity-card__worked-at {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .identity-card__worked-at em {
+    color: var(--color-muted);
+    font-style: normal;
+  }
+
+  .section {
+    padding-top: 0;
+    padding-bottom: var(--section-gap);
+  }
+  .section__title {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .section__heading-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  .section__see-all {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--card-gap);
+  }
+
+  .selected-work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--card-gap);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 150px 20px 1fr;
+    gap: 20px;
+    padding-bottom: 24px;
+  }
+  .timeline__date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+    text-align: right;
+    padding-top: 2px;
+  }
+  .timeline__rail {
+    position: relative;
+    display: block;
+  }
+  .timeline__dot {
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-border-emphasis);
+  }
+  .timeline__dot--accent {
+    background: var(--color-accent);
+  }
+  .timeline__line {
+    position: absolute;
+    left: 9px;
+    top: 20px;
+    bottom: -24px;
+    width: 1px;
+    background: var(--color-border);
+  }
+  .timeline__role {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .timeline__org {
+    color: var(--color-accent);
+  }
+  .timeline__desc {
+    margin: 6px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .about-toolkit {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 56px;
+  }
+  .about-toolkit__p {
+    max-width: 64ch;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin: 0 0 16px;
+  }
+  .toolkit {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .toolkit__tier {
+    margin: 0 0 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .toolkit__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .contact-band {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .contact-band__title {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  .contact-band__desc {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+  .contact-band__ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 960px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .selected-work-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-toolkit {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .timeline__item {
+      grid-template-columns: 100px 16px 1fr;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero__title {
+      font-size: 32px;
+    }
+    .stat-grid {
+      grid-template-columns: 1fr;
+    }
+    .timeline__item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .timeline__date {
+      text-align: left;
+    }
+    .timeline__rail {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featured = allProjects.filter((p) => p.data.featured);
+const rest = allProjects.filter((p) => !p.data.featured);
+
+const categoryOrder = ['research', 'speech-nlp', 'computer-vision', 'data-science', 'backend-platform'] as const;
+const categoryCounts: { key: string; label: string; count: number }[] = [];
+for (const cat of categoryOrder) {
+  const match = allProjects.find((p) => p.data.category === cat);
+  const count = allProjects.filter((p) => p.data.category === cat).length;
+  if (match) categoryCounts.push({ key: cat, label: match.data.categoryLabel, count });
+}
+
+const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
+---
+
+<BaseLayout title="Projects" description={`${allProjects.length} projects, sorted by what they prove: research first, then production systems, then competitions.`}>
+  <section class="container page-header" data-reveal>
+    <span class="eyebrow">// projects</span>
+    <h1 class="page-header__title">{allProjects.length} projects, sorted by what they prove</h1>
+    <p class="page-header__lede">
+      Research first, then production systems, then competitions.
+      {writeupCount === 1 && ` Each card names the problem, the method and the outcome; the one with a full write-up is marked.`}
+      {writeupCount > 1 && ` Each card names the problem, the method and the outcome; the ${writeupCount} with write-ups are marked.`}
+    </p>
+    <div class="filter-row" id="filter-row">
+      <button class="pill filter-chip is-active" data-filter="all">All {allProjects.length}</button>
+      {
+        categoryCounts.map((c) => (
+          <button class="pill filter-chip" data-filter={c.key}>
+            {c.label} {c.count}
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    featured.length > 0 && (
+      <section class="container featured-row" id="project-grid-featured">
+        {featured.map((p, i) => (
+          <div class="grid-cell" data-category={p.data.category} data-reveal style={`--reveal-delay: ${i * 90}ms;`}>
+            <ProjectCard project={p.data} variant="image-left" emphasis eyebrowStyle="category" />
+          </div>
+        ))}
+      </section>
+    )
+  }
+
+  <section class="container rest-grid" id="project-grid-rest">
+    {
+      rest.map((p, i) => (
+        <div class="grid-cell" data-category={p.data.category} data-reveal style={`--reveal-delay: ${(i % 3) * 80}ms;`}>
+          <ProjectCard project={p.data} variant="compact" eyebrowStyle="org" />
+        </div>
+      ))
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .page-header__title {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+  .page-header__lede {
+    max-width: 70ch;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .filter-chip {
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+  }
+  .filter-chip.is-active {
+    background: var(--color-accent);
+    color: var(--color-canvas);
+    border-color: var(--color-accent);
+  }
+
+  .featured-row {
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--card-gap);
+  }
+  .rest-grid {
+    padding-bottom: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--card-gap);
+  }
+  .grid-cell {
+    height: 100%;
+  }
+  .grid-cell :global(.project-card) {
+    height: 100%;
+  }
+  .grid-cell.is-filtering-out {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  .grid-cell.is-hidden {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .featured-row {
+      grid-template-columns: 1fr;
+    }
+    .rest-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .rest-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
+  const cells = document.querySelectorAll<HTMLElement>('.grid-cell');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const filter = chip.dataset.filter;
+      cells.forEach((cell) => {
+        const show = filter === 'all' || cell.dataset.category === filter;
+        if (show) {
+          cell.classList.remove('is-hidden', 'is-filtering-out');
+        } else if (!cell.classList.contains('is-hidden')) {
+          cell.classList.add('is-filtering-out');
+          const hide = () => {
+            if (cell.classList.contains('is-filtering-out')) cell.classList.add('is-hidden');
+          };
+          // transitionend is the common path, but a safety timeout covers
+          // any case where it doesn't fire (so a filtered card can never
+          // get stuck invisible while still holding its place in the grid).
+          cell.addEventListener('transitionend', hide, { once: true });
+          setTimeout(hide, 500);
+        }
+      });
+    });
+  });
+</script>

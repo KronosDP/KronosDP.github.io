@@ -1,0 +1,38 @@
+---
+interface Props {
+  value: string;
+  accentSuffix?: string;
+  label: string;
+}
+const { value, accentSuffix, label } = Astro.props;
+---
+
+<div class="stat-card card">
+  <span class="stat-card__value">{value}{accentSuffix && <span class="stat-card__accent">{accentSuffix}</span>}</span>
+  <span class="stat-card__label">{label}</span>
+</div>
+
+<style>
+  .stat-card {
+    padding: 20px 24px;
+  }
+  .stat-card__value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .stat-card__accent {
+    color: var(--color-accent);
+  }
+  .stat-card__label {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+</style>

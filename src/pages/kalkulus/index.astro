@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<BaseLayout title="Kalkulus 1 Practice Portal" description="Interactive problem viewer and question bank for CSGE601012, Short Semester 2026.">
+  <link rel="stylesheet" href="https://tikzjax.com/v1/tikzjax.css" />
+  <script is:inline src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+  <div class="kalkulus" id="kalkulus-app">
+    <button id="kalkulus-menu-toggle" class="kalkulus-menu-toggle" aria-label="Toggle menu">
+      <Icon name="menu" size={20} />
+    </button>
+
+    <aside id="kalkulus-sidebar" class="kalkulus-sidebar">
+      <div class="kalkulus-sidebar__header">
+        <a href="/teaching/" class="kalkulus-back-link">← Kembali ke Teaching Hub</a>
+        <span class="pill">CSGE601012</span>
+        <h1 class="kalkulus-brand-title">Kalkulus 1</h1>
+        <p class="kalkulus-brand-subtitle">SP 2026 Homework Portal</p>
+      </div>
+      <nav class="kalkulus-nav">
+        <p class="eyebrow">// daftar pekerjaan rumah</p>
+        <ul id="kalkulus-pr-list" class="kalkulus-pr-list"></ul>
+      </nav>
+      <p class="kalkulus-sidebar__footer">Dibuat untuk persiapan Kuis, UTS, dan UAS Kalkulus 1 SP 2026.</p>
+    </aside>
+
+    <div id="kalkulus-overlay" class="kalkulus-overlay"></div>
+
+    <main class="kalkulus-main">
+      <header class="kalkulus-header">
+        <div>
+          <h2 id="kalkulus-active-title" class="kalkulus-active-title">Memuat data…</h2>
+          <p id="kalkulus-active-subtitle" class="kalkulus-active-subtitle">Silakan pilih PR di bilah samping</p>
+        </div>
+        <div class="kalkulus-header__actions">
+          <a id="kalkulus-download-problem" href="#" class="btn btn--ghost" target="_blank"><Icon name="file-pdf" size={13} />Soal PDF</a>
+          <a id="kalkulus-download-solution" href="#" class="btn btn--ghost" target="_blank"><Icon name="file-pdf" size={13} />Solusi PDF</a>
+        </div>
+      </header>
+
+      <section class="kalkulus-controls">
+        <div class="kalkulus-mode-switch" role="group" aria-label="Mode latihan">
+          <button id="kalkulus-mode-inline" class="pill filter-chip is-active" data-mode="inline">Satu Halaman (Reveal)</button>
+          <button id="kalkulus-mode-separate" class="pill filter-chip" data-mode="separate">Halaman Terpisah</button>
+        </div>
+        <div class="kalkulus-search">
+          <Icon name="external" size={14} class="kalkulus-search__icon" />
+          <input type="text" id="kalkulus-search-input" placeholder="Cari topik atau soal..." aria-label="Cari soal" />
+          <button id="kalkulus-clear-search" class="kalkulus-clear-search" style="display: none;" aria-label="Clear search">×</button>
+        </div>
+      </section>
+
+      <div id="kalkulus-separate-tabs" class="kalkulus-tabs" style="display: none;">
+        <button id="kalkulus-tab-problems" class="kalkulus-tab is-active" data-tab="problems">Daftar Soal</button>
+        <button id="kalkulus-tab-solutions" class="kalkulus-tab" data-tab="solutions">Daftar Solusi</button>
+      </div>
+
+      <section id="kalkulus-content" class="kalkulus-content">
+        <div class="kalkulus-loading">
+          <p>Memuat dan merender soal matematika…</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .kalkulus {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 71px);
+  }
+  .kalkulus-menu-toggle {
+    display: none;
+  }
+
+  .kalkulus-sidebar {
+    border-right: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .kalkulus-back-link {
+    display: block;
+    font-size: 12px;
+    color: var(--color-muted);
+    text-decoration: none;
+    margin-bottom: 14px;
+  }
+  .kalkulus-brand-title {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 12px 0 4px;
+  }
+  .kalkulus-brand-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+  .kalkulus-pr-list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .kalkulus-pr-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid transparent;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      padding-left var(--duration-base) var(--ease-out);
+  }
+  .kalkulus-pr-item:hover {
+    background: var(--color-raised);
+    padding-left: 16px;
+  }
+  .kalkulus-pr-item.is-active {
+    background: var(--color-raised);
+    border-color: var(--color-border-emphasis);
+  }
+  .kalkulus-pr-item__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-accent);
+  }
+  .kalkulus-pr-item__title {
+    font-size: 13.5px;
+    color: var(--color-text);
+  }
+  .kalkulus-sidebar__footer {
+    margin: auto 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .kalkulus-overlay {
+    display: none;
+  }
+
+  .kalkulus-main {
+    padding: 32px var(--gutter);
+    min-width: 0;
+  }
+  .kalkulus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .kalkulus-active-title {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+  .kalkulus-active-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+  .kalkulus-header__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .kalkulus-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .kalkulus-mode-switch {
+    display: flex;
+    gap: 8px;
+  }
+  .filter-chip {
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+  }
+  .filter-chip.is-active {
+    background: var(--color-accent);
+    color: var(--color-canvas);
+    border-color: var(--color-accent);
+  }
+  .kalkulus-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .kalkulus-search__icon {
+    position: absolute;
+    left: 12px;
+    color: var(--color-muted);
+  }
+  .kalkulus-search input {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    padding: 8px 36px 8px 36px;
+    color: var(--color-text);
+    font-size: 13px;
+    min-width: 220px;
+  }
+  .kalkulus-clear-search {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--color-muted);
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .kalkulus-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kalkulus-tab {
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out);
+  }
+  .kalkulus-tab.is-active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .kalkulus-loading {
+    color: var(--color-muted);
+    padding: 48px 0;
+    text-align: center;
+  }
+
+  .kalkulus-content {
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+  .kalkulus-content.is-fading {
+    opacity: 0;
+  }
+
+  @media (max-width: 900px) {
+    .kalkulus {
+      grid-template-columns: 1fr;
+    }
+    .kalkulus-menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 82px;
+      left: 16px;
+      z-index: 30;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+    .kalkulus-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 280px;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform var(--duration-slow) var(--ease-in-out);
+    }
+    .kalkulus-sidebar.is-open {
+      transform: translateX(0);
+    }
+    .kalkulus-overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-base) var(--ease-out);
+    }
+    .kalkulus-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .kalkulus-main {
+      padding: 24px var(--gutter-mobile);
+    }
+  }
+</style>
+
+<style is:global>
+  /* Rendering for the kalkulus content injected from problems_data.json */
+  .topic-section {
+    margin-bottom: 32px;
+  }
+  .topic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .topic-title {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .topic-points {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .problem-card,
+  .solution-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 18px 20px;
+  }
+  .solution-card {
+    border-color: var(--color-border-emphasis);
+    margin-top: 12px;
+  }
+  .solution-collapse {
+    display: none;
+  }
+  .solution-collapse.open {
+    display: block;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+  }
+  .card-btn {
+    border: 1px solid var(--color-border);
+    background: var(--color-raised);
+    color: var(--color-text);
+    border-radius: var(--radius-pill);
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .card-btn-teal {
+    border-color: var(--color-border-emphasis);
+  }
+  .card-body {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+  .card-body strong {
+    color: var(--color-text);
+  }
+  .tikz-container {
+    margin: 16px 0;
+    overflow-x: auto;
+  }
+  .highlight-pulse {
+    animation: kalkulus-pulse 1.6s ease;
+  }
+  @keyframes kalkulus-pulse {
+    0% {
+      box-shadow: 0 0 0 2px var(--color-accent);
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+  .empty-state {
+    text-align: center;
+    padding: 48px 0;
+    color: var(--color-muted);
+  }
+</style>
+
+<script src="../../scripts/kalkulus-app.client.ts"></script>

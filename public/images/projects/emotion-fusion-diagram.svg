@@ -1,0 +1,75 @@
+<svg viewBox="0 0 2000 720" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b76b8" />
+    </marker>
+  </defs>
+
+  <rect width="2000" height="720" fill="#0b1120" />
+
+  <!-- connectors -->
+  <g fill="none" stroke="#5b76b8" stroke-width="3">
+    <!-- row1 chain -->
+    <path d="M360,140 L420,140" marker-end="url(#arrow)" />
+    <path d="M720,140 L780,140" marker-end="url(#arrow)" />
+    <!-- row1 -> fusion -->
+    <path d="M1080,160 L1220,300" marker-end="url(#arrow)" />
+    <!-- row2 chain -->
+    <path d="M360,360 L420,360" marker-end="url(#arrow)" />
+    <!-- row2 -> fusion -->
+    <path d="M720,360 L1220,360" marker-end="url(#arrow)" />
+    <!-- row3 chain -->
+    <path d="M360,580 L420,580" marker-end="url(#arrow)" />
+    <!-- row3 -> fusion -->
+    <path d="M720,580 L1220,420" marker-end="url(#arrow)" />
+    <!-- fusion -> output -->
+    <path d="M1510,360 L1610,360" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- row 1: video pipeline -->
+  <g>
+    <rect x="60" y="90" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="90" y="140" fill="#e8ecf6" font-size="32" font-weight="700">video frames</text>
+    <text x="90" y="172" fill="#93a0bc" font-size="21">MTCNN face detect</text>
+
+    <rect x="420" y="90" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="450" y="140" fill="#7c9ce8" font-size="32" font-weight="700">ViT-B16</text>
+    <text x="450" y="172" fill="#93a0bc" font-size="21">frame features</text>
+
+    <rect x="780" y="90" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="810" y="140" fill="#7c9ce8" font-size="32" font-weight="700">LSTM</text>
+    <text x="810" y="172" fill="#93a0bc" font-size="21">temporal dynamics</text>
+  </g>
+
+  <!-- row 2: audio pipeline -->
+  <g>
+    <rect x="60" y="310" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="90" y="360" fill="#e8ecf6" font-size="32" font-weight="700">audio signal</text>
+    <text x="90" y="392" fill="#93a0bc" font-size="21">MFCC / chroma / VAD</text>
+
+    <rect x="420" y="310" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="450" y="360" fill="#7c9ce8" font-size="32" font-weight="700">CNN + GRU</text>
+    <text x="450" y="392" fill="#93a0bc" font-size="21">acoustic dynamics</text>
+  </g>
+
+  <!-- row 3: text pipeline -->
+  <g>
+    <rect x="60" y="530" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="90" y="580" fill="#e8ecf6" font-size="32" font-weight="700">speech</text>
+    <text x="90" y="612" fill="#93a0bc" font-size="21">Whisper small, ASR</text>
+
+    <rect x="420" y="530" width="300" height="100" rx="10" fill="#141c31" stroke="#22314f" stroke-width="2" />
+    <text x="450" y="580" fill="#7c9ce8" font-size="32" font-weight="700">IndoBERT</text>
+    <text x="450" y="612" fill="#93a0bc" font-size="21">large, text embed</text>
+  </g>
+
+  <!-- fusion -->
+  <rect x="1230" y="260" width="280" height="200" rx="12" fill="#7c9ce8" />
+  <text x="1370" y="352" fill="#0b1120" font-size="38" font-weight="700" text-anchor="middle">fusion</text>
+  <text x="1370" y="392" fill="#1c2b4d" font-size="24" text-anchor="middle">head</text>
+
+  <!-- output -->
+  <rect x="1610" y="310" width="330" height="100" rx="10" fill="#141c31" stroke="#4b63a8" stroke-width="2" />
+  <text x="1640" y="360" fill="#e8ecf6" font-size="32" font-weight="700">8-class</text>
+  <text x="1640" y="392" fill="#93a0bc" font-size="21">emotion labels</text>
+</svg>

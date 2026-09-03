@@ -1,0 +1,251 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('teaching')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const courses = [
+  { name: 'AI & Data Science', years: '2026' },
+  { name: 'SE Project', years: '2025' },
+  { name: 'Operating Systems', years: '2025' },
+  { name: 'Calculus 1', years: '2023-2026' },
+  { name: 'Calculus 2', years: '2024' },
+];
+---
+
+<BaseLayout title="Teaching" description="Teaching assistant material at the Faculty of Computer Science, University of Indonesia.">
+  <section class="container page-header" data-reveal>
+    <span class="eyebrow">// teaching</span>
+    <h1 class="page-header__title">Five courses, and the tools I built for them</h1>
+    <p class="page-header__lede">Teaching assistant at the Faculty of Computer Science, University of Indonesia. Material below is written for students, in the language of the class it was taught in.</p>
+  </section>
+
+  <section class="container course-strip">
+    {
+      courses.map((c, i) => (
+        <div class="card course-chip" data-reveal style={`--reveal-delay: ${i * 60}ms;`}>
+          <p class="course-chip__name">{c.name}</p>
+          <p class="course-chip__years">{c.years}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="container">
+    <div class="card card--emphasis featured-tool" data-reveal>
+      <div>
+        <span class="eyebrow" style="margin-bottom: 10px;">featured tool · live</span>
+        <h2 class="featured-tool__title">Kalkulus 1 Practice Portal</h2>
+        <p class="featured-tool__desc">An interactive problem viewer and question bank for CSGE601012, Short Semester 2026. Hundreds of problems across six sets, with instant solution reveals, LaTeX math and TikZ geometric diagrams.</p>
+        <div class="featured-tool__ctas">
+          <a href="/kalkulus/" class="btn btn--primary">Open the portal →</a>
+          <a href="/kalkulus/" class="btn btn--ghost">PDF archive, sets 1-6</a>
+        </div>
+      </div>
+      <img src="/images/teaching/kalkulus-portal.png" alt="Kalkulus 1 Practice Portal: problem viewer with LaTeX math rendering" class="featured-tool__figure featured-tool__screenshot" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section__heading-row">
+      <h2 class="section__title">Notes & walkthroughs</h2>
+      <span class="section__count">{entries.length} entries</span>
+    </div>
+    <div class="notes-list">
+      {
+        entries.map((entry, i) => (
+          <a href={`/teaching/${entry.data.slug}/`} class="notes-list__item" data-reveal style={`--reveal-delay: ${Math.min(i, 5) * 45}ms;`}>
+            <span class="notes-list__date">{entry.data.date.toISOString().slice(0, 10)}</span>
+            <span>
+              <span class="notes-list__title">{entry.data.title}</span>
+              {entry.data.excerpt && <span class="notes-list__excerpt">{entry.data.excerpt}</span>}
+            </span>
+            <span class="notes-list__course">{entry.data.course ?? entry.data.type}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .page-header__title {
+    font-family: var(--font-mono);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+  .page-header__lede {
+    max-width: 72ch;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .course-strip {
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .course-chip {
+    padding: 18px;
+  }
+  .course-chip:hover {
+    border-color: var(--color-border-emphasis);
+  }
+  .course-chip__name {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .course-chip__years {
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  .featured-tool {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 32px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+  .featured-tool__title {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .featured-tool__desc {
+    max-width: 60ch;
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+  .featured-tool__ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .featured-tool__figure {
+    min-height: 160px;
+  }
+  .featured-tool__screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    border-radius: var(--radius-figure);
+    border: 1px solid var(--color-border);
+  }
+
+  .section {
+    padding-bottom: 48px;
+  }
+  .section__heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .section__title {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .section__count {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .notes-list__item {
+    display: grid;
+    grid-template-columns: 110px 1fr 130px;
+    gap: 20px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+    /* Note: [data-reveal]'s opacity/transform transition is repeated here
+       because this rule's `transition` shorthand would otherwise replace
+       it outright (same selector specificity, later in cascade order). */
+    transition:
+      padding-left var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out),
+      opacity var(--duration-slow) var(--ease-out) var(--reveal-delay),
+      transform var(--duration-slow) var(--ease-out) var(--reveal-delay);
+  }
+  .notes-list__item:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .notes-list__item:hover {
+    padding-left: 10px;
+    background-color: var(--color-surface);
+  }
+  .notes-list__date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+  .notes-list__title {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .notes-list__excerpt {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+  .notes-list__course {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-muted);
+    text-align: right;
+  }
+
+  @media (max-width: 900px) {
+    .course-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .featured-tool {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .course-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .notes-list__item {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .notes-list__course {
+      text-align: left;
+    }
+  }
+</style>

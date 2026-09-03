@@ -1,0 +1,281 @@
+---
+import Icon from './Icon.astro';
+
+const navItems = [
+  { label: 'Research', href: '/projects/sequence-model-capacity-regular-languages/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Talks', href: '/talks/' },
+  { label: 'Teaching', href: '/teaching/' },
+  { label: 'CV', href: '/cv/' },
+];
+
+const path = Astro.url.pathname;
+function matches(href: string) {
+  return href === '/' ? path === '/' : path === href || path.startsWith(href);
+}
+// Pick the single most specific (longest) matching href so a nested route like
+// Research's project page doesn't also light up the broader Projects link.
+const activeHref = navItems.reduce<string | null>((best, item) => {
+  if (!matches(item.href)) return best;
+  return !best || item.href.length > best.length ? item.href : best;
+}, null);
+function isActive(href: string) {
+  return href === activeHref;
+}
+---
+
+<header class="masthead">
+  <div class="masthead__inner container">
+    <a href="/" class="masthead__brand">Darrel Danadyaksa Poli<span class="masthead__brand-dot">.</span></a>
+
+    <nav class="masthead__nav" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class:list={['masthead__link', { 'is-active': isActive(item.href) }]}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="masthead__actions">
+      <div class="masthead__social">
+        <a href="https://github.com/KronosDP" class="masthead__social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><Icon name="github" size={15} /></a>
+        <a href="https://www.linkedin.com/in/darrel-danadyaksa-poli/" class="masthead__social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={15} /></a>
+      </div>
+      <a href="/cv/resume-ai.pdf" class="btn btn--primary btn--nav" data-analytics="download_pdf" download>
+        <Icon name="download" size={13} /><span>Download CV</span>
+      </a>
+      <button class="masthead__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="masthead__toggle-icon masthead__toggle-icon--menu"><Icon name="menu" size={20} /></span>
+        <span class="masthead__toggle-icon masthead__toggle-icon--close"><Icon name="close" size={20} /></span>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="masthead__mobile-nav" aria-label="Primary, mobile">
+    {
+      navItems.map((item) => (
+        <a href={item.href} class:list={['masthead__mobile-link', { 'is-active': isActive(item.href) }]}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<style>
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(11, 17, 32, 0.72);
+    backdrop-filter: blur(8px);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out);
+  }
+  .masthead.is-scrolled {
+    background: rgba(11, 17, 32, 0.9);
+    box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.7);
+  }
+  .masthead__inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 70px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .masthead__brand {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+  .masthead__brand:hover {
+    color: var(--color-text);
+  }
+  .masthead__brand:hover .masthead__brand-dot {
+    color: var(--color-accent-hover);
+  }
+  .masthead__brand-dot {
+    color: var(--color-accent);
+    transition: color var(--duration-base) var(--ease-out);
+  }
+  .masthead__nav {
+    display: flex;
+    gap: 22px;
+    margin-left: 32px;
+  }
+  .masthead__link {
+    position: relative;
+    font-size: 14px;
+    color: var(--color-text);
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+  .masthead__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+  .masthead__link:hover {
+    color: var(--color-accent-hover);
+  }
+  .masthead__link:hover::after {
+    transform: scaleX(1);
+  }
+  .masthead__link.is-active {
+    color: var(--color-accent);
+  }
+  .masthead__link.is-active::after {
+    transform: scaleX(1);
+  }
+  .masthead__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .masthead__social {
+    display: flex;
+    gap: 10px;
+  }
+  .masthead__social-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out);
+  }
+  .masthead__social-icon:hover {
+    border-color: var(--color-border-emphasis);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .masthead__toggle {
+    display: none;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    padding: 4px;
+    cursor: pointer;
+  }
+  .masthead__toggle-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+  .masthead__toggle-icon--close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.7);
+  }
+  .masthead__toggle[aria-expanded='true'] .masthead__toggle-icon--menu {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.7);
+  }
+  .masthead__toggle[aria-expanded='true'] .masthead__toggle-icon--close {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+  .masthead__mobile-nav {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-canvas);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      max-height var(--duration-slow) var(--ease-in-out),
+      opacity var(--duration-base) var(--ease-out),
+      visibility 0s linear var(--duration-slow);
+  }
+  .masthead__mobile-nav.is-open {
+    max-height: 420px;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      max-height var(--duration-slow) var(--ease-in-out),
+      opacity var(--duration-base) var(--ease-out),
+      visibility 0s linear 0s;
+  }
+  .masthead__mobile-link {
+    padding: 14px var(--gutter-mobile);
+    font-size: 15px;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition:
+      color var(--duration-base) var(--ease-out),
+      padding-left var(--duration-base) var(--ease-out);
+  }
+  .masthead__mobile-link:hover {
+    color: var(--color-accent-hover);
+    padding-left: calc(var(--gutter-mobile) + 4px);
+  }
+  .masthead__mobile-link.is-active {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .masthead__nav,
+    .masthead__social {
+      display: none;
+    }
+    .masthead__toggle {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .masthead__actions :global(.btn--nav span) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  const header = document.querySelector('.masthead');
+  const updateScrolledState = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  updateScrolledState();
+  window.addEventListener('scroll', updateScrolledState, { passive: true });
+</script>
