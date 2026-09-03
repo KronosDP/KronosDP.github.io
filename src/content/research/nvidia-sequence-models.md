@@ -13,21 +13,22 @@ summary: >
   open question is capacity: does the compressed recurrent state actually
   retain what a Transformer's full attention window retains? I built a
   controlled setting where the answer is checkable rather than vibes-based.
-figureCaption: "Fig. 1 — per-language-class comparison across RWKV-v4, RWKV-v7, Transformer, LSTM and GRU."
+figureCaption: "Fig. 1: per-language-class comparison across RWKV-v7, Transformer, LSTM and GRU."
+image: /images/research/rwkv-l1-l4-comparison.png
 benchmarkIntro: >
   Four synthetic regular languages, chosen so each isolates a different
   failure mode rather than blending them:
 languages:
   - code: L1
-    description: "Parity counting — requires an unbounded modular counter in state."
+    description: "Parity counting, requiring an unbounded modular counter in state."
   - code: L2
-    description: "Substring matching — requires positional recall over long spans."
+    description: "Substring matching, requiring positional recall over long spans."
   - code: L3
-    description: "Language union — requires tracking two hypotheses at once."
+    description: "Language union, requiring tracking two hypotheses at once."
   - code: L4
-    description: "Composed constraints — the combination, as an upper-bound check."
+    description: "Composed constraints: the combination, as an upper-bound check."
 hardNegativesIntro: >
-  Random negatives are too easy — a model can pass by learning surface
+  Random negatives are too easy: a model can pass by learning surface
   statistics. Every negative in the suite is a perturbation of a positive at
   edit distance 1-3, so a correct answer requires the decision boundary to
   sit exactly on the language, not near it.

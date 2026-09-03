@@ -10,9 +10,17 @@ const navItems = [
 ];
 
 const path = Astro.url.pathname;
+function matches(href: string) {
+  return href === '/' ? path === '/' : path === href || path.startsWith(href);
+}
+// Pick the single most specific (longest) matching href so a nested route like
+// Research's project page doesn't also light up the broader Projects link.
+const activeHref = navItems.reduce<string | null>((best, item) => {
+  if (!matches(item.href)) return best;
+  return !best || item.href.length > best.length ? item.href : best;
+}, null);
 function isActive(href: string) {
-  if (href === '/') return path === '/';
-  return path === href || path.startsWith(href);
+  return href === activeHref;
 }
 ---
 
@@ -39,7 +47,8 @@ function isActive(href: string) {
         <Icon name="download" size={13} /><span>Download CV</span>
       </a>
       <button class="masthead__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        <Icon name="menu" size={20} />
+        <span class="masthead__toggle-icon masthead__toggle-icon--menu"><Icon name="menu" size={20} /></span>
+        <span class="masthead__toggle-icon masthead__toggle-icon--close"><Icon name="close" size={20} /></span>
       </button>
     </div>
   </div>
@@ -63,6 +72,13 @@ function isActive(href: string) {
     border-bottom: 1px solid var(--color-border);
     background: rgba(11, 17, 32, 0.72);
     backdrop-filter: blur(8px);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out);
+  }
+  .masthead.is-scrolled {
+    background: rgba(11, 17, 32, 0.9);
+    box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.7);
   }
   .masthead__inner {
     display: flex;
@@ -80,9 +96,17 @@ function isActive(href: string) {
     color: var(--color-text);
     text-decoration: none;
     white-space: nowrap;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+  .masthead__brand:hover {
+    color: var(--color-text);
+  }
+  .masthead__brand:hover .masthead__brand-dot {
+    color: var(--color-accent-hover);
   }
   .masthead__brand-dot {
     color: var(--color-accent);
+    transition: color var(--duration-base) var(--ease-out);
   }
   .masthead__nav {
     display: flex;
@@ -90,15 +114,36 @@ function isActive(href: string) {
     margin-left: 32px;
   }
   .masthead__link {
+    position: relative;
     font-size: 14px;
     color: var(--color-text);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+  .masthead__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+  .masthead__link:hover {
+    color: var(--color-accent-hover);
+  }
+  .masthead__link:hover::after {
+    transform: scaleX(1);
   }
   .masthead__link.is-active {
     color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+  }
+  .masthead__link.is-active::after {
+    transform: scaleX(1);
   }
   .masthead__actions {
     margin-left: auto;
@@ -120,24 +165,71 @@ function isActive(href: string) {
     align-items: center;
     justify-content: center;
     color: var(--color-text);
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out);
   }
   .masthead__social-icon:hover {
     border-color: var(--color-border-emphasis);
     color: var(--color-accent);
+    transform: translateY(-2px);
   }
   .masthead__toggle {
     display: none;
+    position: relative;
+    width: 28px;
+    height: 28px;
     background: none;
     border: none;
     color: var(--color-text);
     padding: 4px;
     cursor: pointer;
   }
+  .masthead__toggle-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+  .masthead__toggle-icon--close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.7);
+  }
+  .masthead__toggle[aria-expanded='true'] .masthead__toggle-icon--menu {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.7);
+  }
+  .masthead__toggle[aria-expanded='true'] .masthead__toggle-icon--close {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
   .masthead__mobile-nav {
-    display: none;
+    display: flex;
     flex-direction: column;
     border-top: 1px solid var(--color-border);
     background: var(--color-canvas);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      max-height var(--duration-slow) var(--ease-in-out),
+      opacity var(--duration-base) var(--ease-out),
+      visibility 0s linear var(--duration-slow);
+  }
+  .masthead__mobile-nav.is-open {
+    max-height: 420px;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      max-height var(--duration-slow) var(--ease-in-out),
+      opacity var(--duration-base) var(--ease-out),
+      visibility 0s linear 0s;
   }
   .masthead__mobile-link {
     padding: 14px var(--gutter-mobile);
@@ -145,6 +237,13 @@ function isActive(href: string) {
     color: var(--color-text);
     text-decoration: none;
     border-bottom: 1px solid var(--color-border);
+    transition:
+      color var(--duration-base) var(--ease-out),
+      padding-left var(--duration-base) var(--ease-out);
+  }
+  .masthead__mobile-link:hover {
+    color: var(--color-accent-hover);
+    padding-left: calc(var(--gutter-mobile) + 4px);
   }
   .masthead__mobile-link.is-active {
     color: var(--color-accent);
@@ -156,9 +255,6 @@ function isActive(href: string) {
       display: none;
     }
     .masthead__toggle {
-      display: flex;
-    }
-    .masthead__mobile-nav.is-open {
       display: flex;
     }
   }
@@ -177,4 +273,9 @@ function isActive(href: string) {
     const isOpen = mobileNav?.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
   });
+
+  const header = document.querySelector('.masthead');
+  const updateScrolledState = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  updateScrolledState();
+  window.addEventListener('scroll', updateScrolledState, { passive: true });
 </script>

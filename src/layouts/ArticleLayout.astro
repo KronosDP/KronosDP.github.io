@@ -16,10 +16,12 @@ const { title, description, eyebrow, meta, backHref, backLabel } = Astro.props;
 <BaseLayout title={title} description={description}>
   <article class="container article">
     <a href={backHref} class="article__back">← {backLabel}</a>
-    <span class="eyebrow article__eyebrow">// {eyebrow}</span>
-    <h1 class="article__title">{title}</h1>
-    {meta && <p class="article__meta">{meta}</p>}
-    <div class="article__prose">
+    <div data-reveal>
+      <span class="eyebrow article__eyebrow">// {eyebrow}</span>
+      <h1 class="article__title">{title}</h1>
+      {meta && <p class="article__meta">{meta}</p>}
+    </div>
+    <div class="article__prose" data-reveal style="--reveal-delay: 90ms;">
       <slot />
     </div>
   </article>

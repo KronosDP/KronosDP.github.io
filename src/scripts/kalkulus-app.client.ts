@@ -62,6 +62,21 @@ const menuToggleEl = el('kalkulus-menu-toggle');
 const sidebarEl = el('kalkulus-sidebar');
 const overlayEl = el('kalkulus-overlay');
 
+// The source data writes display-math environments (align*, gather*, ...)
+// bare, without $$/\[ \] delimiters -- MathJax (the old renderer) detects
+// those environments on its own, but KaTeX's auto-render only scans for
+// configured delimiters and silently leaves undelimited LaTeX as text. Wrap
+// them here so auto-render actually reaches them.
+const BARE_DISPLAY_ENV = /\\begin\{(align\*?|gather\*?|alignat\*?|equation\*?)\}[\s\S]*?\\end\{\1\}/g;
+function wrapBareMathEnvironments(html: string): string {
+  return html.replace(BARE_DISPLAY_ENV, (match, _env, offset: number) => {
+    const before = html.slice(Math.max(0, offset - 10), offset);
+    const after = html.slice(offset + match.length, offset + match.length + 10);
+    const alreadyWrapped = /(\$\$|\\\[)\s*$/.test(before) && /^\s*(\$\$|\\\])/.test(after);
+    return alreadyWrapped ? match : `\\[${match}\\]`;
+  });
+}
+
 async function init() {
   try {
     const res = await fetch('/kalkulus/problems_data.json');
@@ -97,6 +112,18 @@ function renderSidebar() {
 }
 
 function renderContent() {
+  // Fade the swap rather than snapping straight to new content: hide,
+  // rebuild synchronously, then let it fade back in on the next frame.
+  // The timeout is a safety net if rAF never fires (e.g. a backgrounded
+  // tab), so the content can't get stuck invisible.
+  contentEl.classList.add('is-fading');
+  renderContentInner();
+  const reveal = () => contentEl.classList.remove('is-fading');
+  requestAnimationFrame(reveal);
+  setTimeout(reveal, 200);
+}
+
+function renderContentInner() {
   if (!state.data) return;
   const pr = state.data.prs.find((p) => p.pr_number === state.activePR);
   if (!pr) return;
@@ -150,12 +177,12 @@ function renderContent() {
         wrapper.innerHTML = `
           <div class="problem-card" id="${pId}">
             <div class="card-header"><span class="card-label">Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn toggle-sol-btn" data-target="${sId}">Tampilkan Solusi</button></div>
-            <div class="card-body">${prob.problem_html}</div>
+            <div class="card-body">${wrapBareMathEnvironments(prob.problem_html)}</div>
           </div>
           <div class="solution-collapse" id="${sId}">
             <div class="solution-card">
               <div class="card-header"><span class="card-label">Solusi Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn card-btn-teal hide-sol-btn" data-target="${sId}">Sembunyikan</button></div>
-              <div class="card-body">${prob.solution_html}</div>
+              <div class="card-body">${wrapBareMathEnvironments(prob.solution_html)}</div>
             </div>
           </div>`;
         list.appendChild(wrapper);
@@ -181,9 +208,9 @@ function renderContent() {
         const sId = `sol-pr${pr.pr_number}-t${tIdx + 1}-p${prob.id}`;
         const card = document.createElement('div');
         if (state.activeTab === 'problems') {
-          card.innerHTML = `<div class="problem-card" id="${pId}"><div class="card-header"><span class="card-label">Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn jump-to-sol-btn" data-target-tab="solutions" data-target-id="${sId}">Lihat Solusi &rarr;</button></div><div class="card-body">${prob.problem_html}</div></div>`;
+          card.innerHTML = `<div class="problem-card" id="${pId}"><div class="card-header"><span class="card-label">Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn jump-to-sol-btn" data-target-tab="solutions" data-target-id="${sId}">Lihat Solusi &rarr;</button></div><div class="card-body">${wrapBareMathEnvironments(prob.problem_html)}</div></div>`;
         } else {
-          card.innerHTML = `<div class="solution-card" id="${sId}"><div class="card-header"><span class="card-label">Solusi Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn card-btn-teal jump-to-prob-btn" data-target-tab="problems" data-target-id="${pId}">&larr; Kembali ke Soal</button></div><div class="card-body">${prob.solution_html}</div></div>`;
+          card.innerHTML = `<div class="solution-card" id="${sId}"><div class="card-header"><span class="card-label">Solusi Soal ${pr.pr_number}.${prob.id}</span><button class="card-btn card-btn-teal jump-to-prob-btn" data-target-tab="problems" data-target-id="${pId}">&larr; Kembali ke Soal</button></div><div class="card-body">${wrapBareMathEnvironments(prob.solution_html)}</div></div>`;
         }
         list.appendChild(card);
       }

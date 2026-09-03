@@ -11,6 +11,7 @@ import '../styles/tokens.css';
 import SEO from '../components/SEO.astro';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
 
 interface Props {
   title: string;
@@ -36,6 +37,7 @@ const GA_ID = 'G-QTL7K64TDM';
     <link rel="manifest" href="/images/manifest.json" />
     <link rel="icon" href="/images/favicon.ico" />
     <meta name="theme-color" content="#0B1120" />
+    <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
 
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
     <script is:inline define:vars={{ GA_ID }}>
@@ -54,6 +56,34 @@ const GA_ID = 'G-QTL7K64TDM';
       <slot />
     </main>
     <Footer />
+    <Lightbox />
+
+    <script>
+      // Site-wide scroll/entrance reveal: any element marked data-reveal
+      // fades/rises into place once it enters the viewport. One observer
+      // for the whole page keeps every section's motion consistent and
+      // cheap; elements already in view on load reveal almost immediately,
+      // which doubles as the page-entrance animation for hero content.
+      const revealTargets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reducedMotion || !('IntersectionObserver' in window) || revealTargets.length === 0) {
+        revealTargets.forEach((el) => el.classList.add('is-revealed'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -64px 0px' },
+        );
+        revealTargets.forEach((el) => observer.observe(el));
+      }
+    </script>
 
     <script>
       // Recruiter-event tracking, ported from

@@ -4,14 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Page not found" description="This page does not exist.">
   <section class="container error-page">
-    <span class="eyebrow">404</span>
-    <h1 class="error-page__title">This page <span class="error-page__brace">/</span> does not exist</h1>
-    <p class="error-page__lede">The link may be out of date, or the page may have moved while the site was rebuilt. Nothing is broken on your end.</p>
-    <div class="error-page__ctas">
+    <span class="eyebrow" data-reveal>404</span>
+    <h1 class="error-page__title" data-reveal style="--reveal-delay: 40ms;">This page <span class="error-page__brace">/</span> does not exist</h1>
+    <p class="error-page__lede" data-reveal style="--reveal-delay: 80ms;">The link may be out of date, or the page may have moved while the site was rebuilt. Nothing is broken on your end.</p>
+    <div class="error-page__ctas" data-reveal style="--reveal-delay: 120ms;">
       <a href="/" class="btn btn--primary">Back to home</a>
       <a href="/projects/" class="btn btn--ghost">Project showcase</a>
     </div>
-    <div class="error-page__links">
+    <div class="error-page__links" data-reveal style="--reveal-delay: 160ms;">
       <p class="eyebrow">try one of these</p>
       <ul>
         <li><a href="/cv/">Curriculum vitae</a></li>

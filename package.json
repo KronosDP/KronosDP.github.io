@@ -1,7 +1,7 @@
 {
   "name": "kronosdp-github-io",
   "version": "2.0.0",
-  "description": "Darrel Danadyaksa Poli — personal site and portfolio",
+  "description": "Darrel Danadyaksa Poli's personal site and portfolio",
   "type": "module",
   "private": true,
   "scripts": {

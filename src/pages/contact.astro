@@ -9,10 +9,10 @@ const research = (await getCollection('research'))[0];
 <BaseLayout title="Contact" description="Get in touch about AI research, ML engineering or data science roles.">
   <section class="container contact">
     <div class="dot-grid" style="right: 60px; top: 30px;"></div>
-    <div class="contact__main">
+    <div class="contact__main" data-reveal>
       <span class="eyebrow">// contact</span>
       <h1 class="contact__title">Tell me what you’re building</h1>
-      <p class="contact__lede">I reply to everything within a day. If it helps, say which of these it is — a role, a research collaboration, or a question about something on this site.</p>
+      <p class="contact__lede">I reply to everything within a day. If it helps, say which of these it is: a role, a research collaboration, or a question about something on this site.</p>
 
       <div class="contact-methods">
         <button class="card card--emphasis contact-method" id="copy-email-btn" data-email="darrel.danadyaksa19@gmail.com" type="button">
@@ -45,20 +45,20 @@ const research = (await getCollection('research'))[0];
     </div>
 
     <aside class="contact-sidebar">
-      <div class="card contact-currently">
+      <div class="card contact-currently" data-reveal style="--reveal-delay: 100ms;">
         <p class="eyebrow">// currently</p>
         <div class="contact-currently__status">
           <span class="contact-currently__dot"></span>
           <span>Open to AI research, AI/ML engineering, and data science & analytics roles</span>
         </div>
         <div class="contact-currently__facts">
-          <div><Icon name="map-pin" size={14} /><span>Jakarta, Indonesia — GMT+7</span></div>
+          <div><Icon name="map-pin" size={14} /><span>Jakarta, Indonesia, GMT+7</span></div>
           <div><Icon name="globe" size={14} /><span>Remote or relocation, both fine</span></div>
           <div><Icon name="clock" size={14} /><span>Usually replies within 24 hours</span></div>
           <div><Icon name="language" size={14} /><span>English, Bahasa Indonesia</span></div>
         </div>
       </div>
-      <div class="card contact-before">
+      <div class="card contact-before" data-reveal style="--reveal-delay: 170ms;">
         <p class="eyebrow">// before you write</p>
         <p class="contact-before__desc">The two-page CV covers dates, stacks and scope. The NVIDIA write-up covers how I think about a problem.</p>
         <div class="contact-before__links">
@@ -178,6 +178,16 @@ const research = (await getCollection('research'))[0];
     background: var(--color-success);
     margin-top: 6px;
     flex: 0 0 9px;
+    animation: status-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes status-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 5px transparent;
+    }
   }
   .contact-currently__facts {
     display: flex;
@@ -232,6 +242,9 @@ const research = (await getCollection('research'))[0];
       await navigator.clipboard.writeText(email);
       const original = label.textContent;
       label.textContent = 'copied!';
+      label.classList.remove('pop-feedback');
+      void label.offsetWidth; // restart the animation if clicked again quickly
+      label.classList.add('pop-feedback');
       setTimeout(() => {
         label.textContent = original;
       }, 1800);

@@ -18,14 +18,14 @@ for (const cat of categoryOrder) {
 const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
 ---
 
-<BaseLayout title="Projects" description={`${allProjects.length} projects, sorted by what they prove — research first, then production systems, then competitions.`}>
-  <section class="container page-header">
+<BaseLayout title="Projects" description={`${allProjects.length} projects, sorted by what they prove: research first, then production systems, then competitions.`}>
+  <section class="container page-header" data-reveal>
     <span class="eyebrow">// projects</span>
     <h1 class="page-header__title">{allProjects.length} projects, sorted by what they prove</h1>
     <p class="page-header__lede">
       Research first, then production systems, then competitions.
-      {writeupCount === 1 && ` Each card names the problem, the method and the outcome — the one with a full write-up is marked.`}
-      {writeupCount > 1 && ` Each card names the problem, the method and the outcome — the ${writeupCount} with write-ups are marked.`}
+      {writeupCount === 1 && ` Each card names the problem, the method and the outcome; the one with a full write-up is marked.`}
+      {writeupCount > 1 && ` Each card names the problem, the method and the outcome; the ${writeupCount} with write-ups are marked.`}
     </p>
     <div class="filter-row" id="filter-row">
       <button class="pill filter-chip is-active" data-filter="all">All {allProjects.length}</button>
@@ -42,8 +42,8 @@ const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
   {
     featured.length > 0 && (
       <section class="container featured-row" id="project-grid-featured">
-        {featured.map((p) => (
-          <div class="grid-cell" data-category={p.data.category}>
+        {featured.map((p, i) => (
+          <div class="grid-cell" data-category={p.data.category} data-reveal style={`--reveal-delay: ${i * 90}ms;`}>
             <ProjectCard project={p.data} variant="image-left" emphasis eyebrowStyle="category" />
           </div>
         ))}
@@ -53,8 +53,8 @@ const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
 
   <section class="container rest-grid" id="project-grid-rest">
     {
-      rest.map((p) => (
-        <div class="grid-cell" data-category={p.data.category}>
+      rest.map((p, i) => (
+        <div class="grid-cell" data-category={p.data.category} data-reveal style={`--reveal-delay: ${(i % 3) * 80}ms;`}>
           <ProjectCard project={p.data} variant="compact" eyebrowStyle="org" />
         </div>
       ))
@@ -116,6 +116,10 @@ const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
   .grid-cell :global(.project-card) {
     height: 100%;
   }
+  .grid-cell.is-filtering-out {
+    opacity: 0;
+    transform: scale(0.96);
+  }
   .grid-cell.is-hidden {
     display: none;
   }
@@ -146,7 +150,19 @@ const writeupCount = allProjects.filter((p) => p.data.hasWriteup).length;
       const filter = chip.dataset.filter;
       cells.forEach((cell) => {
         const show = filter === 'all' || cell.dataset.category === filter;
-        cell.classList.toggle('is-hidden', !show);
+        if (show) {
+          cell.classList.remove('is-hidden', 'is-filtering-out');
+        } else if (!cell.classList.contains('is-hidden')) {
+          cell.classList.add('is-filtering-out');
+          const hide = () => {
+            if (cell.classList.contains('is-filtering-out')) cell.classList.add('is-hidden');
+          };
+          // transitionend is the common path, but a safety timeout covers
+          // any case where it doesn't fire (so a filtered card can never
+          // get stuck invisible while still holding its place in the grid).
+          cell.addEventListener('transitionend', hide, { once: true });
+          setTimeout(hide, 500);
+        }
       });
     });
   });

@@ -1,5 +1,5 @@
 ---
-title: 'CSGE601012: Kalkulus 1 SP 2026 — Interactive Problem Portal & Archive'
+title: 'CSGE601012: Kalkulus 1 SP 2026, Interactive Problem Portal & Archive'
 slug: 2026-06-19-kalkulus-1-sp-portal
 type: Course Material
 venue: Faculty of Computer Science, University of Indonesia
@@ -18,7 +18,7 @@ tags:
   - University of Indonesia
 ---
 
-Dokumentasi dan arsip lengkap materi asistensi perkuliahan **CSGE601012 Kalkulus 1 SP (Semester Pendek) 2026** di Fakultas Ilmu Komputer, Universitas Indonesia. Halaman ini menyediakan akses langsung ke **Interactive Homework & Practice Portal**, lembar soal latihan (PR 1–6), kunci solusi resmi, serta berkas kuis mingguan.
+Dokumentasi dan arsip lengkap materi asistensi perkuliahan **CSGE601012 Kalkulus 1 SP (Semester Pendek) 2026** di Fakultas Ilmu Komputer, Universitas Indonesia. Halaman ini menyediakan akses langsung ke **Interactive Homework & Practice Portal**, lembar soal latihan (PR 1-6), kunci solusi resmi, serta berkas kuis mingguan.
 
 <div class="notice--primary" style="padding: 1.25rem 1.5rem; border-radius: 8px; margin: 1.5rem 0; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #3b82f6;">
   <h3 style="margin-top: 0; color: #3b82f6; display: flex; align-items: center; gap: 8px;">
@@ -34,7 +34,7 @@ Dokumentasi dan arsip lengkap materi asistensi perkuliahan **CSGE601012 Kalkulus
 
 ---
 
-## 📚 Daftar Tugas Mandiri (PR 1 – 6)
+## 📚 Daftar Tugas Mandiri (PR 1-6)
 
 Setiap PR disusun dalam dua versi dokumen PDF: **Soal Saja** (untuk latihan mandiri mahasiswa) dan **Kunci Solusi Lengkap** (dilengkapi langkah pengerjaan sistematis dan rubrik penilaian).
 

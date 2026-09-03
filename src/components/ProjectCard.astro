@@ -14,6 +14,7 @@ interface ProjectData {
   writeupUrl?: string;
   githubUrl?: string;
   figureCaption?: string;
+  image?: string;
 }
 
 interface Props {
@@ -42,11 +43,15 @@ const eyebrow =
   class:list={['project-card', `project-card--${variant}`, 'card', { 'card--emphasis': emphasis }]}
 >
   {
-    variant !== 'compact' && (
+    variant !== 'compact' && (project.image ? (
+      <div class="project-card__figure">
+        <img src={project.image} alt={project.figureCaption ?? project.title} loading="lazy" />
+      </div>
+    ) : (
       <div class="project-card__figure figure-placeholder">
         {project.figureCaption && <span>{project.figureCaption}</span>}
       </div>
-    )
+    ))
   }
   <div class="project-card__body">
     <div class="project-card__eyebrow-row">
@@ -71,6 +76,20 @@ const eyebrow =
   }
   a.project-card:hover {
     border-color: var(--color-border-emphasis);
+  }
+  .project-card__figure {
+    border-radius: var(--radius-figure);
+    overflow: hidden;
+  }
+  .project-card__figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-figure);
+    box-sizing: border-box;
   }
   .project-card--image-top {
     padding: 24px;
@@ -151,7 +170,9 @@ const eyebrow =
     color: var(--color-muted);
   }
   .project-card--compact .project-card__stack {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
   }
   .project-card--compact .project-card__tag {
     padding: 0;

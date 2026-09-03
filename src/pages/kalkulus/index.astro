@@ -117,13 +117,19 @@ import Icon from '../../components/Icon.astro';
     display: flex;
     flex-direction: column;
     gap: 2px;
+    border: 1px solid transparent;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      padding-left var(--duration-base) var(--ease-out);
   }
   .kalkulus-pr-item:hover {
     background: var(--color-raised);
+    padding-left: 16px;
   }
   .kalkulus-pr-item.is-active {
     background: var(--color-raised);
-    border: 1px solid var(--color-border-emphasis);
+    border-color: var(--color-border-emphasis);
   }
   .kalkulus-pr-item__num {
     font-family: var(--font-mono);
@@ -241,6 +247,9 @@ import Icon from '../../components/Icon.astro';
     color: var(--color-muted);
     cursor: pointer;
     border-bottom: 2px solid transparent;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out);
   }
   .kalkulus-tab.is-active {
     color: var(--color-accent);
@@ -251,6 +260,13 @@ import Icon from '../../components/Icon.astro';
     color: var(--color-muted);
     padding: 48px 0;
     text-align: center;
+  }
+
+  .kalkulus-content {
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+  .kalkulus-content.is-fading {
+    opacity: 0;
   }
 
   @media (max-width: 900px) {
@@ -280,17 +296,24 @@ import Icon from '../../components/Icon.astro';
       width: 280px;
       z-index: 50;
       transform: translateX(-100%);
-      transition: transform 0.2s ease;
+      transition: transform var(--duration-slow) var(--ease-in-out);
     }
     .kalkulus-sidebar.is-open {
       transform: translateX(0);
     }
-    .kalkulus-overlay.is-visible {
+    .kalkulus-overlay {
       display: block;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
       z-index: 40;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-base) var(--ease-out);
+    }
+    .kalkulus-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
     }
     .kalkulus-main {
       padding: 24px var(--gutter-mobile);

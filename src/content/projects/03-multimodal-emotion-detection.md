@@ -1,13 +1,14 @@
 ---
-title: "Multimodal emotion detection at 99.71%"
+title: "Multimodal emotion & journaling system"
 slug: multimodal-emotion-detection
 category: speech-nlp
 categoryLabel: "Speech & NLP"
 org: "Satria Data 2025"
 year: "2025"
 stack: [BERT, Whisper, Multimodal]
-description: "BERT text embeddings, Whisper speech representations and VAD audio features fused through a ViT-LSTM head. 99.71% public / 99.45% private LB, 0.990 F1-macro."
+description: "Video (ViT-B16 + LSTM), audio (CNN + GRU) and Whisper-transcribed text (IndoBERT) proposed for 8-class multilabel emotion detection. Text-only ablation (the only modality with reported numbers) reaches 0.6975 micro-F1 / 0.2740 macro-F1."
 hasWriteup: false
 figureCaption: "fusion architecture diagram"
+image: /images/projects/emotion-fusion-diagram.svg
 order: 3
 ---

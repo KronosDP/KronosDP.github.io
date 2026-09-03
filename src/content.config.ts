@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 // -- Projects (/projects/) -------------------------------------------------
 // Authored from cv/resume-ai.txt and the design canvas during the Astro
-// migration — the old _portfolio/ collection (3 thematic pages: psychology,
+// migration: the old _portfolio/ collection (3 thematic pages: psychology,
 // research, work) is superseded by this per-project structure and was
 // dropped rather than ported.
 const projects = defineCollection({
@@ -23,6 +23,7 @@ const projects = defineCollection({
     githubUrl: z.string().optional(),
     featured: z.boolean().default(false),
     figureCaption: z.string().optional(),
+    image: z.string().optional(),
     order: z.number(),
   }),
 });
@@ -42,6 +43,7 @@ const research = defineCollection({
     stack: z.array(z.string()),
     summary: z.string(),
     figureCaption: z.string().optional(),
+    image: z.string().optional(),
     benchmarkIntro: z.string(),
     languages: z.array(z.object({ code: z.string(), description: z.string() })),
     hardNegativesIntro: z.string(),
@@ -61,7 +63,7 @@ const research = defineCollection({
 });
 
 // -- Talks (/talks/) --------------------------------------------------------
-// Scaffolded placeholders — _talks/ has no real entries yet. Fields marked
+// Scaffolded placeholders: _talks/ has no real entries yet. Fields marked
 // "TODO" in content are surfaced with a visible placeholder in TalkCard.
 const talks = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/talks' }),
@@ -72,6 +74,7 @@ const talks = defineCollection({
     tags: z.array(z.string()),
     year: z.string().optional(),
     slidesUrl: z.string().optional(),
+    image: z.string().optional(),
     featured: z.boolean().default(false),
     isPlaceholder: z.boolean().default(false),
     order: z.number(),

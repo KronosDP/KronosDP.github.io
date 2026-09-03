@@ -7,7 +7,7 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
 ---
 
 <BaseLayout title="Talks" description="Sessions and training led for corporate programmes, student festivals and university onboarding.">
-  <section class="container page-header">
+  <section class="container page-header" data-reveal>
     <span class="eyebrow">// talks</span>
     <h1 class="page-header__title">Sessions and training I’ve led</h1>
     <p class="page-header__lede">Invited speaker and trainer for corporate programmes, student festivals and university onboarding. Slides and recordings where they exist.</p>
@@ -15,11 +15,19 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
 
   <section class="container talks-list">
     {
-      talks.map((talk) => (
-        <div class:list={['card talk-card', { 'card--emphasis': talk.data.featured }]}>
-          <div class="figure-placeholder talk-card__figure">
-            <span>session photo</span>
-          </div>
+      talks.map((talk, i) => (
+        <div class:list={['card talk-card', { 'card--emphasis': talk.data.featured }]} data-reveal style={`--reveal-delay: ${Math.min(i, 3) * 70}ms;`}>
+          {
+            talk.data.image ? (
+              <div class="talk-card__figure talk-card__figure--image">
+                <img src={talk.data.image} alt={talk.data.title} loading="lazy" />
+              </div>
+            ) : (
+              <div class="figure-placeholder talk-card__figure">
+                <span>session photo</span>
+              </div>
+            )
+          }
           <div>
             <span class="talk-card__eyebrow">{talk.data.eyebrow}</span>
             <h2 class="talk-card__title">{talk.data.title}</h2>
@@ -38,7 +46,7 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
   </section>
 
   <section class="container">
-    <div class="cta-banner card">
+    <div class="cta-banner card" data-reveal>
       <p class="cta-banner__text">Available for training sessions and guest lectures on sequence models, speech AI and backend architecture.</p>
       <a href="/contact/" class="btn btn--primary">Invite me to speak <Icon name="arrow-right" size={14} /></a>
     </div>
@@ -79,6 +87,20 @@ const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.dat
   }
   .talk-card__figure {
     min-height: 120px;
+  }
+  .talk-card__figure--image {
+    border-radius: var(--radius-figure);
+    overflow: hidden;
+  }
+  .talk-card__figure--image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-figure);
+    box-sizing: border-box;
   }
   .talk-card__eyebrow {
     font-family: var(--font-mono);

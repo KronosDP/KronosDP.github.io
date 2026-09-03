@@ -67,7 +67,7 @@ Topik ini membedah dua pilar fundamental dalam ekosistem *machine learning* mode
 ## 📌 Daftar Isi {#daftar-isi}
 
 1. [Dilema Utama: Akurasi vs Akuntabilitas di Dunia Nyata](#1-dilema-utama-akurasi-vs-akuntabilitas)
-2. [Bagian I: Ensemble Learning — Mengapa Kerumunan Model Lemah Mengalahkan Satu Model Kuat](#2-bagian-i-ensemble-learning)
+2. [Bagian I: Ensemble Learning, Mengapa Kerumunan Model Lemah Mengalahkan Satu Model Kuat](#2-bagian-i-ensemble-learning)
    - [Intuisi Wisdom of Crowds & Penurunan Matematis Variansi](#21-intuisi-dan-penurunan-matematis-variansi)
    - [Bukti Probabilitas Majority Voting](#22-bukti-probabilitas-majority-voting)
    - [Tiga Paradigma Ensembling: Bagging, Boosting, dan Stacking](#23-tiga-paradigma-ensembling)
@@ -75,7 +75,7 @@ Topik ini membedah dua pilar fundamental dalam ekosistem *machine learning* mode
    - [Evolusi 30 Tahun Algoritma Boosting](#25-evolusi-30-tahun-algoritma-boosting)
    - [Stacking & Bahaya Fatal Data Leakage](#26-stacking-dan-out-of-fold-predictions)
    - [Matriks Komparasi Lengkap Ensemble](#27-matriks-komparasi-lengkap-ensemble)
-3. [Bagian II: Explainable AI (XAI) — Dari "Apa" Menjadi "Mengapa"](#3-bagian-ii-explainable-ai-xai)
+3. [Bagian II: Explainable AI (XAI), Dari "Apa" Menjadi "Mengapa"](#3-bagian-ii-explainable-ai-xai)
    - [Tiga Persona Pemangku Kepentingan (Audiens)](#31-tiga-persona-pemangku-kepentingan)
    - [Taksonomi Interpretability: Matriks 2x2](#32-taksonomi-interpretability)
    - [Jebakan Fitur `feature_importances_` Bawaan Tree](#33-jebakan-feature_importances_-bawaan)
@@ -94,7 +94,7 @@ Topik ini membedah dua pilar fundamental dalam ekosistem *machine learning* mode
 
 Di bangku universitas dan kompetisi sains data (seperti Kaggle), metrik evaluasi sering kali berfokus tunggal pada **Akurasi / ROC-AUC / F1-Score**. Model terbaik adalah model dengan skor tertinggi di *leaderboard*.
 
-Namun, di industri dan sistem produksi nyata—terutama sektor berdampak tinggi (*high-stakes*) seperti perbankan, kesehatan, asuransi, dan ketenagakerjaan—metrik performa hanyalah separuh dari persyaratan:
+Namun, di industri dan sistem produksi nyata, terutama sektor berdampak tinggi (*high-stakes*) seperti perbankan, kesehatan, asuransi, dan ketenagakerjaan, metrik performa hanyalah separuh dari persyaratan:
 
 ```
                   ACCURATE (Akurat)
@@ -352,7 +352,7 @@ di mana vektor koefisien $\hat{\beta}$ adalah nilai kontribusi penjelasan lokal 
 
 > 🔍 **Studi Kasus Klasik LIME: Model Serigala vs Anjing Husky**
 >
-> Sebuah *deep neural network* memiliki akurasi nyaris sempurna dalam membedakan serigala (*wolf*) vs anjing husky. Saat diuji dengan LIME, terungkap bahwa model sama sekali tidak melihat bentuk telinga, mata, atau moncong hewan—model hanya mendeteksi keberadaan **salju (*snow*) pada latar belakang foto**! Penjelasan XAI adalah sarana *debugging* kritis, bukan sekadar pelengkap regulasi.
+> Sebuah *deep neural network* memiliki akurasi nyaris sempurna dalam membedakan serigala (*wolf*) vs anjing husky. Saat diuji dengan LIME, terungkap bahwa model sama sekali tidak melihat bentuk telinga, mata, atau moncong hewan; model hanya mendeteksi keberadaan **salju (*snow*) pada latar belakang foto**! Penjelasan XAI adalah sarana *debugging* kritis, bukan sekadar pelengkap regulasi.
 
 ---
 
@@ -416,7 +416,7 @@ Plot visual seperti *Waterfall Plot* atau *Force Plot* sangat berguna bagi prakt
 > 
 > **Faktor utama penyebab keputusan**:
 > - Terdeteksi 4 kali keterlambatan pembayaran cicilan di atas 90 hari (+21.4% risiko).
-> - Terdeteksi 3 kali keterlambatan pembayaran 60–89 hari (+14.2% risiko).
+> - Terdeteksi 3 kali keterlambatan pembayaran 60-89 hari (+14.2% risiko).
 > 
 > **Faktor positif yang mendukung profil Anda**:
 > - Anda hanya menggunakan 16% dari total limit kredit yang tersedia (-6.8% risiko).

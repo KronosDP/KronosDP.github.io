@@ -14,8 +14,8 @@ const research = (await getCollection('research'))[0];
   <!-- Hero -->
   <section class="container hero">
     <div class="dot-grid" style="right: 340px; top: 44px;"></div>
-    <div class="hero__main">
-      <span class="eyebrow">// current research — nvidia, jan–jun 2025</span>
+    <div class="hero__main" data-reveal>
+      <span class="eyebrow">// current research: nvidia, jan-jun 2025</span>
       <h1 class="hero__title">
         {research.data.question.replace('regular languages?', '')}<span class="hero__accent">regular languages?</span>
       </h1>
@@ -33,7 +33,7 @@ const research = (await getCollection('research'))[0];
       </div>
     </div>
 
-    <aside class="identity-card card">
+    <aside class="identity-card card" data-reveal style="--reveal-delay: 120ms;">
       <div class="identity-card__header">
         <img src="/images/profile.webp" alt="Darrel Danadyaksa Poli" width="56" height="56" class="identity-card__avatar" />
         <div>
@@ -43,16 +43,16 @@ const research = (await getCollection('research'))[0];
       </div>
       <div class="identity-card__divider"></div>
       <div class="identity-card__facts">
-        <div class="identity-card__fact"><Icon name="graduation-cap" size={14} /><span>BSc Computer Science, <strong>University of Indonesia</strong> — 2022–2026</span></div>
-        <div class="identity-card__fact"><Icon name="map-pin" size={14} /><span>Jakarta, Indonesia — open to remote</span></div>
+        <div class="identity-card__fact"><Icon name="graduation-cap" size={14} /><span>BSc Computer Science, <strong>University of Indonesia</strong>, 2022-2026</span></div>
+        <div class="identity-card__fact"><Icon name="map-pin" size={14} /><span>Jakarta, Indonesia, open to remote</span></div>
         <div class="identity-card__fact"><Icon name="dot" size={14} class="identity-card__status-dot" /><span class="identity-card__fact-strong">Open to AI research, AI/ML engineering & data science roles</span></div>
       </div>
       <div class="identity-card__divider"></div>
       <p class="eyebrow identity-card__worked-at-label">// worked at</p>
       <div class="identity-card__worked-at">
-        <span>NVIDIA <em>— AI Research</em></span>
-        <span>Meeting.ai <em>— AI Engineering</em></span>
-        <span>BEM UI <em>— IT Coordinator</em></span>
+        <span>NVIDIA: <em>AI Research</em></span>
+        <span>Meeting.ai: <em>AI Engineering</em></span>
+        <span>BEM Fakultas Ilmu Komputer UI: <em>IT Coordinator</em></span>
       </div>
     </aside>
   </section>
@@ -60,16 +60,16 @@ const research = (await getCollection('research'))[0];
   <!-- Proof strip -->
   <section class="container section">
     <div class="stat-grid">
-      <StatCard value="99.71" accentSuffix="%" label="Public LB accuracy, Satria Data 2025 multimodal emotion detection" />
-      <StatCard value="Top 10" label="Gemastik national finalist, 2023 & 2024" />
-      <StatCard value="10+" label="concurrent ASR sessions stress-tested at Meeting.ai" />
-      <StatCard value="5" label="university courses taught as Teaching Assistant at UI" />
+      <div data-reveal style="--reveal-delay: 0ms;"><StatCard value="0.70" label="micro-F1, text-modality ablation: Satria Data 2025 emotion & journaling system" /></div>
+      <div data-reveal style="--reveal-delay: 70ms;"><StatCard value="Top 10" label="Gemastik national finalist, 2023 & 2024" /></div>
+      <div data-reveal style="--reveal-delay: 140ms;"><StatCard value="10+" label="concurrent ASR sessions stress-tested at Meeting.ai" /></div>
+      <div data-reveal style="--reveal-delay: 210ms;"><StatCard value="5" label="university courses taught as Teaching Assistant at UI" /></div>
     </div>
   </section>
 
   <!-- Selected work -->
   <section class="container section">
-    <div class="section__heading-row">
+    <div class="section__heading-row" data-reveal>
       <div>
         <span class="eyebrow">// selected work</span>
         <h2 class="section__title">Three things worth reading in full</h2>
@@ -79,7 +79,9 @@ const research = (await getCollection('research'))[0];
     <div class="selected-work-grid">
       {
         selectedWork.map((project, i) => (
-          <ProjectCard project={project.data} variant="image-top" emphasis={i === 0} />
+          <div data-reveal style={`--reveal-delay: ${i * 90}ms;`}>
+            <ProjectCard project={project.data} variant="image-top" emphasis={i === 0} />
+          </div>
         ))
       }
     </div>
@@ -90,35 +92,35 @@ const research = (await getCollection('research'))[0];
     <span class="eyebrow">// experience</span>
     <h2 class="section__title" style="margin-bottom: 24px;">Where the work happened</h2>
     <div class="timeline">
-      <div class="timeline__item">
-        <span class="timeline__date">Jan–Jun 2025</span>
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jan-Jun 2025</span>
         <span class="timeline__rail"><span class="timeline__dot timeline__dot--accent"></span><span class="timeline__line"></span></span>
         <div>
           <p class="timeline__role">AI Research Intern · <span class="timeline__org">NVIDIA</span></p>
-          <p class="timeline__desc">Non-Transformer sequence architectures for formal-language expressivity. Custom CUDA C++ WKV operator; synthetic L1–L4 benchmarks with 1–3 edit-distance hard negatives.</p>
+          <p class="timeline__desc">Non-Transformer sequence architectures for formal-language expressivity. Custom CUDA C++ WKV operator; synthetic L1-L4 benchmarks with 1-3 edit-distance hard negatives.</p>
         </div>
       </div>
-      <div class="timeline__item">
-        <span class="timeline__date">Jul–Dec 2025</span>
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jul-Dec 2025</span>
         <span class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></span>
         <div>
           <p class="timeline__role">AI Engineer Intern · <span class="timeline__org">Meeting.ai</span></p>
           <p class="timeline__desc">ASR concurrency stress-testing, speaker-verification distillation, and an active-learning correction loop for clustering ambiguity.</p>
         </div>
       </div>
-      <div class="timeline__item">
-        <span class="timeline__date">Jan–Jul 2026</span>
+      <div class="timeline__item" data-reveal>
+        <span class="timeline__date">Jan-Jul 2026</span>
         <span class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></span>
         <div>
           <p class="timeline__role">AI & Backend Engineer · <span class="timeline__org">Intergalactic Science Kingdom</span></p>
           <p class="timeline__desc">Marie Chan: Go + Django backends, OpenRouter multi-model LLM routing, BDD/TDD around agentic workflows.</p>
         </div>
       </div>
-      <div class="timeline__item timeline__item--last">
-        <span class="timeline__date">Jul 2025–Jan 2026</span>
+      <div class="timeline__item timeline__item--last" data-reveal>
+        <span class="timeline__date">Jul 2025-Jan 2026</span>
         <span class="timeline__rail"><span class="timeline__dot"></span></span>
         <div>
-          <p class="timeline__role">IT Division Coordinator · <span class="timeline__org">BEM UI</span></p>
+          <p class="timeline__role">IT Division Coordinator · <span class="timeline__org">BEM Fakultas Ilmu Komputer UI</span></p>
           <p class="timeline__desc">Directed development workflows and reviewed architecture across university-wide IT projects.</p>
         </div>
       </div>
@@ -127,13 +129,13 @@ const research = (await getCollection('research'))[0];
 
   <!-- About + Toolkit -->
   <section class="container section about-toolkit">
-    <div>
+    <div data-reveal>
       <span class="eyebrow">// about</span>
       <h2 class="section__title">Engineer first, researcher by habit</h2>
-      <p class="about-toolkit__p">I like problems where the research question and the deployment constraint are the same problem — can this architecture represent the thing at all, and can it run fast enough to matter. That is why the NVIDIA work involved writing a CUDA kernel, and why the Meeting.ai work involved a latency harness rather than a notebook.</p>
+      <p class="about-toolkit__p">I like problems where the research question and the deployment constraint are the same problem: can this architecture represent the thing at all, and can it run fast enough to matter. That is why the NVIDIA work involved writing a CUDA kernel, and why the Meeting.ai work involved a latency harness rather than a notebook.</p>
       <p class="about-toolkit__p">Outside that: five semesters as a teaching assistant at UI, a certified peer counselor at <em>Curhat Sama Panda</em>, and enough flight-sim hours to be opinionated about approach plates.</p>
     </div>
-    <div>
+    <div data-reveal style="--reveal-delay: 100ms;">
       <span class="eyebrow">// toolkit</span>
       <h2 class="section__title" style="margin-bottom: 20px;">Grouped by reach-for frequency</h2>
       <div class="toolkit">
@@ -161,7 +163,7 @@ const research = (await getCollection('research'))[0];
 
   <!-- Contact band -->
   <section class="container section">
-    <div class="contact-band card card--emphasis">
+    <div class="contact-band card card--emphasis" data-reveal>
       <div>
         <h2 class="contact-band__title">Hiring in AI research, ML engineering or data science?</h2>
         <p class="contact-band__desc">I reply within a day. Happy to walk through the NVIDIA benchmark design or the distillation setup on a call.</p>
@@ -275,8 +277,23 @@ const research = (await getCollection('research'))[0];
     color: var(--color-accent);
     margin-top: 2px;
   }
-  .identity-card__status-dot {
+  /* :global() because this class lands on the <svg> rendered inside the
+     separate Icon component, which doesn't carry this file's scope
+     attribute - same reason .identity-card__fact :global(svg) exists above. */
+  :global(.identity-card__status-dot) {
     color: var(--color-success) !important;
+    display: inline-block;
+    border-radius: 50%;
+    animation: status-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes status-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 5px transparent;
+    }
   }
   .identity-card__fact-strong {
     color: var(--color-text);
