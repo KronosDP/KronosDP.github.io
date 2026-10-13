@@ -1,9 +1,4 @@
-/*
-  Design tokens lifted verbatim from the Claude Design canvas
-  ("Portfolio Redesign.dc.html", screens 1b-1h). Dark-only, matching the
-  site's existing hard-locked data-theme="dark", kept as custom properties
-  so a light variant stays possible later without a rewrite.
-*/
+/* Shared portfolio palette: navy surfaces, cool text, and blue accents. */
 :root {
   color-scheme: dark;
 
@@ -36,8 +31,8 @@
   --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Geometry */
-  --radius-pill: 999px;
-  --radius-card: 14px;
+  --radius-pill: 4px;
+  --radius-card: 6px;
   --radius-figure: 8px;
   --gutter: 48px;
   --gutter-mobile: 20px;

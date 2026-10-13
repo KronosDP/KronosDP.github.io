@@ -70,8 +70,9 @@ const CLARITY_ID = 'yirupml2ix';
   </head>
   <body>
     <a href="#main" class="visually-hidden">Skip to content</a>
+    <slot name="intro" />
     <Masthead />
-    <main id="main">
+    <main id="main" tabindex="-1">
       <slot />
     </main>
     <Footer />

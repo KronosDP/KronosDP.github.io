@@ -1,0 +1,135 @@
+---
+import GpuClusters from './GpuClusters.astro';
+const code = [
+  ['comment', '# research → training → inference'],
+  ['keyword', 'import torch'],
+  ['keyword', 'from transformers import AutoTokenizer'],
+  ['keyword', 'from vllm import LLM, SamplingParams'],
+  ['', ''],
+  ['comment', '# small questions. deep experiments.'],
+  ['', 'device = "cuda" if torch.cuda.is_available() else "cpu"'],
+  ['', 'tokenizer = AutoTokenizer.from_pretrained(model_id)'],
+  ['', 'model = LLM(model=model_id, dtype="bfloat16")'],
+  ['', 'sampling = SamplingParams(temperature=0.7)'],
+  ['', ''],
+  ['comment', '# turn an idea into something that runs'],
+  ['', 'outputs = model.generate(prompts, sampling)'],
+  ['', 'for output in outputs:'],
+  ['', '    print(output.outputs[0].text)'],
+];
+---
+<section class="terminal-intro" aria-label="AI and machine learning workspace">
+  <header class="intro-header">
+    <a class="intro-brand" href="#main"><span class="brand-mark">d/</span> darrel.dev<span class="muted">~/lab</span></a>
+    <a href="https://github.com/KronosDP" target="_blank" rel="noopener noreferrer">github ↗</a>
+  </header>
+  <div class="intro-heading">
+    <p class="overline"><span class="status-dot"></span> UBUNTU / AI RESEARCH WORKSPACE</p>
+    <h1>Curiosity, <span>compiled.</span></h1>
+    <p>Darrel Danadyaksa Poli <span class="separator">/</span> AI researcher & engineer</p>
+  </div>
+  <div class="workspace">
+    <div class="editor" aria-hidden="true">
+      <div class="pane-title"><span class="file-tab">py &nbsp; inference.py</span><span>~/experiments</span></div>
+      <div class="code-lines">
+        {code.map(([kind, line], i) => <div class:list={['code-line', kind]}><span class="line-number">{String(i + 1).padStart(2, '0')}</span><span>{line || ' '}</span></div>)}
+        <div class="code-line typing-line"><span class="line-number">16</span><span id="typed-code"># build. measure. understand.</span><span class="cursor"></span></div>
+      </div>
+      <div class="editor-status"><span class="mode">NORMAL</span><span>inference.py</span><span class="editor-language">Python &nbsp; UTF-8</span></div>
+    </div>
+    <div class="compute">
+      <GpuClusters />
+    </div>
+    <div class="shell" aria-hidden="true">
+      <p><span class="prompt">darrel@ubuntu</span><span class="muted">:~/lab$</span> uv run inference.py</p>
+      <p class="shell-output"><span class="log-tag">[huggingface]</span> <span id="terminal-output">Resolving model artifacts…</span></p>
+      <p class="shell-footer"><span class="prompt">❯</span> <span id="terminal-message">from an idea to an experiment.</span><span class="cursor small"></span></p>
+    </div>
+  </div>
+  <div class="intro-bottom">
+    <div class="stack" aria-label="Technology stack"><span class="ubuntu">◉ Ubuntu</span><span class="pytorch">◌ PyTorch</span><span class="huggingface">☻ Hugging Face</span><span class="vllm">▰ vLLM</span><span>CUDA</span></div>
+    <div class="intro-footer"><p>// understanding models. building systems.</p><div class="intro-actions"><button id="motion-toggle" type="button" aria-pressed="false" hidden>Ⅱ pause</button><a class="enter" href="#main">explore my work <span>↵</span></a></div></div>
+  </div>
+</section>
+
+<style>
+  .terminal-intro { --terminal-dim: var(--color-muted); min-height: 100svh; padding: 32px clamp(22px, 6vw, 100px) 28px; background: var(--color-page); font: 12px/1.6 var(--font-mono); display: flex; flex-direction: column; overflow: hidden; }
+  a { text-decoration: none; color: var(--color-text); } a:hover { color: var(--color-accent); }
+  .intro-header, .intro-footer, .intro-actions, .pane-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .intro-header { width: 100%; max-width: 1400px; margin: 0 auto; }
+  .intro-brand { display: flex; gap: 15px; align-items: center; font-size: 14px; } .brand-mark { color: var(--color-accent); font-size: 25px; font-weight: 700; }
+  .muted { color: var(--terminal-dim); }
+  .intro-heading { width: 100%; max-width: 1400px; margin: 48px auto 30px; }
+  .overline { color: var(--terminal-dim); font-size: 10px; letter-spacing: .17em; display: flex; align-items: center; gap: 9px; }
+  .status-dot { width: 5px; height: 5px; background: var(--color-success); border-radius: 50%; }
+  h1 { font-size: clamp(32px, 4.8vw, 66px); letter-spacing: -.06em; line-height: 1.2; font-weight: 400; margin: 14px 0; } h1 span { color: var(--color-accent); }
+  .intro-heading > p:last-child { color: var(--color-muted); } .separator { color: var(--color-border); margin: 0 12px; }
+  .workspace { width: 100%; max-width: 1400px; margin: auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(290px, 1fr); column-gap: 5%; }
+  .editor { min-width: 0; } .pane-title { border-bottom: 1px solid var(--color-border); color: var(--color-muted); font-size: 11px; } .file-tab { border-bottom: 1px solid var(--color-accent); color: var(--color-badge-text); padding: 10px 14px; }
+  .code-lines { padding: 19px 0; overflow: hidden; font-size: clamp(10px, 1.05vw, 14px); }
+  .code-line { display: flex; white-space: pre; min-height: 1.7em; color: var(--color-muted); } .line-number { width: 36px; flex-shrink: 0; color: var(--color-border); user-select: none; } .keyword { color: var(--color-badge-text); } .comment { color: var(--color-muted); } .typing-line { color: var(--color-text); }
+  .cursor { width: .65em; height: 1.3em; display: inline-block; background: var(--color-accent); align-self: center; animation: blink 1.15s steps(1) infinite; vertical-align: middle; } .small { margin-left: 6px; }
+  .editor-status { display: flex; gap: 12px; background: var(--color-surface); color: var(--color-muted); font-size: 10px; } .mode { background: var(--color-accent); color: var(--color-canvas); padding: 0 9px; } .editor-language { margin-left: auto; padding-right: 8px; }
+  .compute { align-self: center; min-width: 0; }
+  .shell { grid-column: 1 / -1; padding: 18px 0; color: var(--color-badge-text); font-size: 11px; } .shell p { margin: 4px 0; } .prompt { color: var(--color-accent); } .log-tag { color: var(--color-accent); } .shell-output { color: var(--color-muted); } .shell-footer { padding-top: 10px; }
+  .intro-bottom { width: 100%; max-width: 1400px; margin: 24px auto 0; } .stack { display: flex; flex-wrap: wrap; gap: 25px; padding: 17px 0; border-top: 1px solid var(--color-border); color: var(--color-muted); font-size: 10px; } .stack .ubuntu { color: var(--color-accent); } .stack .pytorch { color: var(--color-accent); } .stack .huggingface { color: var(--color-accent); } .stack .vllm { color: var(--color-accent); }
+  .intro-footer { margin-top: 12px; } .intro-footer p { color: var(--color-muted); font-size: 11px; } .intro-actions { gap: 22px; } button { border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font: inherit; padding: 8px 0; } .enter { background: var(--color-accent); color: var(--color-canvas); padding: 6px 14px; white-space: nowrap; } .enter span { margin-left: 18px; } .enter:hover { background: var(--color-accent-hover); color: var(--color-canvas); }
+  .terminal-intro[data-paused] *, .terminal-intro[data-paused] *::after { animation-play-state: paused !important; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (min-width: 1500px) { .terminal-intro { padding-top: 40px; padding-bottom: 36px; } }
+  @media (max-width: 700px) { .terminal-intro { padding-top: 18px; } .intro-heading { margin-top: 28px; margin-bottom: 20px; } .workspace { grid-template-columns: minmax(0, 1fr); } .compute { margin-top: 28px; } .code-lines { font-size: 10px; } .intro-brand .muted { display: none; } .intro-footer { align-items: flex-start; flex-direction: column; gap: 10px; } .intro-actions { width: 100%; justify-content: space-between; } .stack { gap: 15px; } .intro-bottom { margin-top: 10px; } }
+  @media (min-width: 701px) and (max-height: 850px) {
+    .terminal-intro { padding-top: 16px; padding-bottom: 16px; }
+    .intro-heading { margin-top: 4px; margin-bottom: 4px; }
+    h1 { font-size: 38px; margin: 5px 0; }
+    .code-lines { font-size: 11px; padding: 10px 0; }
+    .code-line { min-height: 1.35em; line-height: 1.35; }
+    .shell { padding: 7px 0; } .shell-footer { padding-top: 2px; }
+    .intro-bottom { margin-top: 8px; }
+    .stack { padding: 10px 0; }
+    .intro-footer { margin-top: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cursor { opacity: 1; } }
+</style>
+
+<script>
+  const intro = document.querySelector<HTMLElement>('.terminal-intro');
+  const typed = document.getElementById('typed-code');
+  const output = document.getElementById('terminal-output');
+  const message = document.getElementById('terminal-message');
+  const toggle = document.getElementById('motion-toggle');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const phrases = ['# build. measure. understand.', '# make the experiment reproducible.', '# bring the model into the real world.'];
+  const logs = ['Resolving model artifacts…', 'Model weights loaded. CUDA backend ready.', 'vLLM engine initialized. Ready for inference.'];
+  let paused = motion.matches;
+  let visible = true;
+  let tick = 0;
+  let previous = 0;
+  function syncMotion() {
+    intro?.toggleAttribute('data-paused', paused);
+    toggle?.setAttribute('aria-pressed', String(paused));
+    if (toggle) toggle.textContent = paused ? '▷ play' : 'Ⅱ pause';
+  }
+  if (toggle) toggle.hidden = false;
+  syncMotion();
+  toggle?.addEventListener('click', () => { paused = !paused; syncMotion(); });
+  motion.addEventListener('change', () => { paused = motion.matches; syncMotion(); });
+  const visibility = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+  if (intro) visibility.observe(intro);
+  function animate(time: number) {
+    if (!paused && visible && !document.hidden && time - previous > 75) {
+      previous = time;
+      tick++;
+      const phase = Math.floor(tick / 100) % phrases.length;
+      const position = tick % 100;
+      if (typed) typed.textContent = phrases[phase].slice(0, Math.min(position, phrases[phase].length));
+      if (output) output.textContent = logs[phase];
+      if (message) message.textContent = phase === 2 ? 'ready when you are. explore below.' : 'from an idea to an experiment.';
+    }
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+  document.querySelector<HTMLAnchorElement>('.enter')?.addEventListener('click', () => {
+    document.getElementById('main')?.focus({ preventScroll: true });
+  });
+</script>

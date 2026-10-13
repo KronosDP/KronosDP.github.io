@@ -92,9 +92,21 @@ const eyebrow =
     box-sizing: border-box;
   }
   .project-card--image-top {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 24px;
   }
+  .project-card--image-top .project-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .project-card--image-top .project-card__stack {
+    margin-top: auto;
+  }
   .project-card--image-top .project-card__figure {
+    flex-shrink: 0;
     height: 120px;
     margin-bottom: 18px;
   }
@@ -121,6 +133,8 @@ const eyebrow =
     color: var(--color-accent);
   }
   .project-card__writeup-badge {
+    flex-shrink: 0;
+    white-space: nowrap;
     padding: 2px 8px;
     background: var(--color-border);
     font-family: var(--font-mono);
